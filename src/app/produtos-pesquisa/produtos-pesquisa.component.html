@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="p-grid">
+
+    <form>
+
+      <div class="p-col-12">
+        <h1>Produtos</h1>
+      </div>
+
+      <div class="p-col-12 p-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="Descrição">
+      </div>
+
+      <div class="p-col-4" style="margin-top: 4px;">
+        <button pButton type="submit" label="Pesquisar"></button>
+
+        <a pButton label="Novo Produto" routerLink="/produto-cadastro"></a>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="container" style="margin-top: 20px;">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>descricao</th>
+          <th>Valor Compra</th>
+          <th>Valor Venda</th>
+          <th>Categoria</th>
+          <th>Estoque</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos">
+
+          <td>{{ produto.id }}</td>
+          <td> {{ produto.descricao }}</td>
+          <td> {{ produto.valorCompra }}</td>
+          <td> {{ produto.valorVenda }}</td>
+          <td> {{ produto.categoria }}</td>
+          <td> {{ produto.quantidadeEstoque }}</td>
+          <td>
+            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+              [routerLink]="['/produtos', produto.codigo]"></a>
+            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+              (click)="deleteProduto(produto)"></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card text-center" *ngIf="ProdutoSelcionado">
+      <div class="card-header">
+        # {{ProdutoSelecionado.id}}
+      </div>
+      <div class="card-block">
+        <h4 class="card-title">{{ProdutoSelecionado.name}}</h4>
+        <p class="card-text">
+          {{ProdutoSelecionado.Nome}}
+        </p>
+      </div>
+    </div>
+  </div>
