@@ -11,26 +11,29 @@
       <input [(ngModel)]="produto.descricao" pInputText type="text" name="descricao" class="form-control" id="descricao"
         aria-describedby="nameHelp" placeholder="Digite o Produto">
     </div>
-    <div class="p-col-12 p-fluid">
+    <div class="p-col-12 p-md-6 p-fluid">
       <label>Categoria</label>
-      <input [(ngModel)]="produto.categoria" pInputText type="text" name="categoria" class="form-control" id="categoria"
-        aria-describedby="categoriaHelp"placeholder="Selcione a categoria">
+      <p-dropdown name="categoria" [options]="categorias" placeholder="Selecione"></p-dropdown>
     </div>
+
     <div class="p-col-12 p-fluid">
       <label>Valor Compra</label>
-      <input [(ngModel)]="produto.valorCompra" pInputText type="text" name="valorCompra" class="form-control" id="valorCompra"
-        aria-describedby="valorCompraHelp" placeholder="Digite o valor de compra">
+      <input [(ngModel)]="produto.valorCompra" pInputText type="text" name="valorCompra" class="form-control" currencyMask
+      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
     </div>
+
     <div class="p-col-12 p-fluid">
       <label>Valor Venda</label>
-      <input [(ngModel)]="produto.valorVenda" pInputText type="text" name="valorVenda" class="form-control" id="valorVenda"
-        aria-describedby="vlrVendaHelp">
+      <input [(ngModel)]="produto.valorVenda" pInputText type="text" name="valorVenda" class="form-control" currencyMask
+      [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
     </div>
+
     <div class="p-col-12 p-fluid">
       <label>Quantidade</label>
-      <input [(ngModel)]="produto.quantidadeEstoque" pInputText type="text" name="quantidadeEstoque" class="form-control"
-        id="quantidadeEstoque" aria-describedby="estoqueHelp" placeholder="0">
+      <input [(ngModel)]="produto.quantidadeEstoque" pInputText type="text" name="quantidadeEstoque"
+        class="form-control" id="quantidadeEstoque" aria-describedby="estoqueHelp" placeholder="0">
     </div>
+
     <div class="p-col-12">
       <button pButton type="button" label="Salvar" (click)="criarProduto()"></button>
       <button pButton type="button" label="Novo" class="ui-button-info"></button>

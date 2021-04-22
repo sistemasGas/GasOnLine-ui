@@ -8,9 +8,18 @@ import { DataService } from '../data.service';
 })
 export class ProdutoCadastroComponent implements OnInit {
 
-  produto: { id, descricao, valorCompra, valorVenda, categoria, quantidadeEstoque } = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: "", quantidadeEstoque:0.00 };
+  produto: { id, descricao, valorCompra, valorVenda, categoria, quantidadeEstoque } = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: "", quantidadeEstoque: 0.00 };
 
-  constructor(public dataService: DataService) { }
+  categorias = [
+    { label: "Gas 13Kg", value: "P13" },
+    { label: "Água 5Lts", value: "5LT" },
+    { label: "Água 20Lts", value: "20LT" }
+  ]
+
+  constructor(
+    public dataService: DataService) {
+
+  }
 
   ngOnInit() {
   }
@@ -18,9 +27,8 @@ export class ProdutoCadastroComponent implements OnInit {
   criarProduto() {
     console.log(this.produto);
     this.dataService.saveProduto(this.produto).subscribe(resposta => {
-      this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: "", quantidadeEstoque:0.00 };
+      this.produto = { id: null, descricao: "", valorCompra: 0, valorVenda: 0, categoria: "", quantidadeEstoque: 0 };
     });
 
   }
-
 }

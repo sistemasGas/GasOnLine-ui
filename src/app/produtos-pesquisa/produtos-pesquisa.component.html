@@ -27,8 +27,8 @@
         <tr>
           <th>#</th>
           <th>descricao</th>
-          <th>Valor Compra</th>
-          <th>Valor Venda</th>
+          <th class="col-valor-header">Valor Compra</th>
+          <th class="col-valor-header">Valor Venda</th>
           <th>Categoria</th>
           <th>Estoque</th>
           <th>Ações</th>
@@ -38,11 +38,11 @@
         <tr *ngFor="let produto of produtos">
 
           <td>{{ produto.id }}</td>
-          <td> {{ produto.descricao }}</td>
-          <td> {{ produto.valorCompra }}</td>
-          <td> {{ produto.valorVenda }}</td>
-          <td> {{ produto.categoria }}</td>
-          <td> {{ produto.quantidadeEstoque }}</td>
+          <td>{{ produto.descricao }}</td>
+          <td class="col-valor"> {{ produto.valorCompra | number:'1.2-2'}}</td>
+          <td class="col-valor"> {{ produto.valorVenda | number:'1.2-2'}}</td>
+          <td>{{ produto.categoria }}</td>
+          <td>{{ produto.quantidadeEstoque }}</td>
           <td>
             <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
               [routerLink]="['/produtos', produto.codigo]"></a>

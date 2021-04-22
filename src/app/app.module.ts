@@ -13,7 +13,8 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import {DropdownModule} from 'primeng/dropdown';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
 
 
 @NgModule({
@@ -32,7 +33,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     ButtonModule,
     TabMenuModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DropdownModule,
+    CurrencyMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
