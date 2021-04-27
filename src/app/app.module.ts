@@ -15,6 +15,12 @@ import { MenuComponent } from './menu/menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import {DropdownModule} from 'primeng/dropdown';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { LoginComponent } from './login/login.component';
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { VendaCadastroComponent } from './venda-cadastro/venda-cadastro.component';
+import { CompraCadastroComponent } from './compra-cadastro/compra-cadastro.component';
+import { ComprasPesquisaComponent } from './compras-pesquisa/compras-pesquisa.component';
+import { VendasPesquisaComponent } from './vendas-pesquisa/vendas-pesquisa.component';
 
 
 @NgModule({
@@ -22,9 +28,17 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     AppComponent,
     ProdutosPesquisaComponent,
     ProdutoCadastroComponent,
+    CompraCadastroComponent,
     FooterComponent,
     MenuComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent,
+    PessoaCadastroComponent,
+    VendaCadastroComponent,
+    CompraCadastroComponent,
+    ComprasPesquisaComponent,
+    VendasPesquisaComponent,
+
   ],
   imports: [
     BrowserModule,

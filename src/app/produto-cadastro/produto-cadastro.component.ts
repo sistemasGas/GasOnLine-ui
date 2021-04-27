@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { ProdutoService } from '../produto.service';
 
 @Component({
   selector: 'app-produto-cadastro',
@@ -17,7 +17,7 @@ export class ProdutoCadastroComponent implements OnInit {
   ]
 
   constructor(
-    public dataService: DataService) {
+    public produtoService: ProdutoService) {
 
   }
 
@@ -26,7 +26,7 @@ export class ProdutoCadastroComponent implements OnInit {
 
   criarProduto() {
     console.log(this.produto);
-    this.dataService.saveProduto(this.produto).subscribe(resposta => {
+    this.produtoService.saveProduto(this.produto).subscribe(resposta => {
       this.produto = { id: null, descricao: "", valorCompra: 0, valorVenda: 0, categoria: "", quantidadeEstoque: 0 };
     });
 

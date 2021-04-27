@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { ProdutoService } from '../produto.service';
 
 @Component({
   selector: 'app-produtos-pesquisa',
@@ -10,7 +10,7 @@ export class ProdutosPesquisaComponent implements OnInit {
   produtos;
   ProdutoSelcionado;
   edicao = false;
-  constructor(public dataService: DataService) { }
+  constructor(public produtoService: ProdutoService) { }
 
   ngOnInit(){
     this.listar();
@@ -18,7 +18,7 @@ export class ProdutosPesquisaComponent implements OnInit {
 
 
     public listar() {
-      this.dataService.getProdutos().subscribe(resposta => {
+      this.produtoService.getProdutos().subscribe(resposta => {
         this.produtos = resposta;
       });
     }
@@ -35,14 +35,14 @@ export class ProdutosPesquisaComponent implements OnInit {
     }
 
     public salvar() {
-      this.dataService.saveProduto(this.ProdutoSelcionado).subscribe(r => {
+      this.produtoService.saveProduto(this.ProdutoSelcionado).subscribe(r => {
         this.edicao = false;
         this.listar();
       });
     }
 
     public deleteProduto(produto) {
-      this.dataService.deleteProduto(produto.id).subscribe(r => {
+      this.produtoService.deleteProduto(produto.id).subscribe(r => {
         this.listar();
       });
     }
