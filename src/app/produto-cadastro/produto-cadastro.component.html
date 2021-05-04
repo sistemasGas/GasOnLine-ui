@@ -9,18 +9,22 @@
     <div>
       <div class="p-col-12 p-fluid">
         <label>Descrição</label>
-        <input [(ngModel)]="produto.descricao" pInputText type="text" name="descricao" class="form-control"
+        <input [(ngModel)]="product.descricao" pInputText type="text" name="descricao" class="form-control"
           id="descricao" aria-describedby="nameHelp" placeholder="Digite o Produto">
       </div>
       <div class="row">
 
         <div class="p-col-12 col-md-8 p-fluid">
           <label>Categoria</label>
-          <p-dropdown name="categoria" [options]="categorias" placeholder="Selecione"></p-dropdown>
+          <p-dropdown placeholder="Selecione Categoria"
+          [filter]="true" [options]="categorias"
+          [(ngModel)]="product.categoria.codigo" optionLabel="descricao" name="categoriaSelecionada" optionValue="codigo"
+          ></p-dropdown>
         </div>
+
         <div class="p-col-4 col-md-4 p-fluid">
           <label>Quantidade</label>
-          <input [(ngModel)]="produto.quantidadeEstoque" pInputText type="text" name="quantidadeEstoque"
+          <input [(ngModel)]="product.quantidadeEstoque" pInputText type="text" name="quantidadeEstoque"
             class="form-control" id="quantidadeEstoque" aria-describedby="estoqueHelp" placeholder="0">
         </div>
       </div>
@@ -30,20 +34,22 @@
     <div class="row">
       <div class="col-md-4 p-fluid">
         <label>Valor Compra</label>
-        <input [(ngModel)]="produto.valorCompra" pInputText type="text" name="valorCompra" class="form-control"
+        <input [(ngModel)]="product.valorCompra" pInputText type="text" name="valorCompra" class="form-control"
           currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
       </div>
 
       <div class="col-md-4 p-fluid">
         <label>Valor Venda</label>
-        <input [(ngModel)]="produto.valorVenda" pInputText type="text" name="valorVenda" class="form-control"
+        <input [(ngModel)]="product.valorVenda" pInputText type="text" name="valorVenda" class="form-control"
           currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
       </div>
     </div>
 
-    <div style="margin-top: 14px;">
-        <a href="http://localhost:4200/produtos/pesquisa">Voltar para Listagem</a>
-          <button pButton type="button" label="Salvar" (click)="criarProduto()"></button>
+    <div class="row">
+      <div style="margin-top: 14px;">
+          <button pButton pRipple type="button" icon ="pi pi-arrow-left" label="Voltar" class="p-button-outlined" routerLink="/produtos/pesquisa"></button>
+          <button pButton type="button" icon="pi pi-check" label="Salvar" style="margin-left: 20px;" (click)="criarProduto()"></button>
+      </div>
     </div>
 
   </form>

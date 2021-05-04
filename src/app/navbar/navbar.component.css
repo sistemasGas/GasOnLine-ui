@@ -48,3 +48,8 @@
 .navbar-menuitem.ativo {
   background-color: #494541;
 }
+
+.navbar-botton-user{
+  position: fixed;
+     right: 15%;
+}

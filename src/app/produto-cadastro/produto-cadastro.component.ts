@@ -1,5 +1,8 @@
+import { MessageService } from 'primeng/api';
+import { Produto } from './../core/model';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../produto.service';
+
 
 @Component({
   selector: 'app-produto-cadastro',
@@ -8,27 +11,29 @@ import { ProdutoService } from '../produto.service';
 })
 export class ProdutoCadastroComponent implements OnInit {
 
-  produto: { id, descricao, valorCompra, valorVenda, categoria, quantidadeEstoque } = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: "", quantidadeEstoque: 0.00 };
-
-  categorias = [
-    { label: "Gas 13Kg", value: "P13" },
-    { label: "Água 5Lts", value: "5LT" },
-    { label: "Água 20Lts", value: "20LT" }
-  ]
+  categorias = [];
+  product = new Produto();
 
   constructor(
-    public produtoService: ProdutoService) {
+    public produtoService: ProdutoService,
+    private messageService: MessageService) {
 
   }
 
   ngOnInit() {
+    this.listarCategorias();
   }
 
   criarProduto() {
-    console.log(this.produto);
-    this.produtoService.saveProduto(this.produto).subscribe(resposta => {
-      this.produto = { id: null, descricao: "", valorCompra: 0, valorVenda: 0, categoria: "", quantidadeEstoque: 0 };
+    this.produtoService.saveProduto(this.product).subscribe(resposta => {
+      this.product = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0 };
     });
 
+  }
+
+  public listarCategorias() {
+    this.produtoService.getCategorias().subscribe(resposta => {
+      this.categorias = resposta;
+    });
   }
 }

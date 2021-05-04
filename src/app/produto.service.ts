@@ -1,7 +1,9 @@
+import { Categoria } from './app.module';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+
 
 
 @Injectable({
@@ -15,12 +17,24 @@ export class ProdutoService {
       return this.http.get(`${environment.url}/produtos`);
     }
 
+    public buscarValorEstoque():Observable <any> {
+      return this.http.get(`${environment.url}/produtos/valorestoque`);
+    }
+
     public saveProduto(produto): Observable<any> {
       return this.http.post(`${environment.url}/produtos`, produto);
     }
 
     public deleteProduto(id): Observable<any> {
       return this.http.delete(`${environment.url}/produtos/${id}`);
+    }
+
+    public getClientes(): Observable <any>{
+      return this.http.get(`${environment.url}/clientes/quantidade`)
+    }
+
+    public getCategorias(): Observable <any>{
+      return this.http.get(`${environment.url}/categorias`)
     }
 
    }
