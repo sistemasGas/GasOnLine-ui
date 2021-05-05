@@ -31,7 +31,7 @@
           </div>
           <!-- /.description-block -->
         </div>
-        </div>
+      </div>
       <!-- /.row -->
     </div>
 
@@ -39,61 +39,51 @@
       <div class="card-header">
         <h3 class="card-title">Preencha os dados</h3>
       </div>
-      <div class="card-body">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">@</span>
+      <div class="row">
+        <div class="card-body">
+          <div class="input-group col-sm-12 mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Cliente">
           </div>
-          <input type="text" class="form-control" placeholder="Cliente">
-        </div>
 
-        <div class="input-group mb-3">
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <span class="input-group-text">.00</span>
-          </div>
-        </div>
-
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">$</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <span class="input-group-text">.00</span>
-          </div>
-        </div>
-
-        <h4></h4>
-
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-          </div>
-          <input type="email" class="form-control" placeholder="Email">
-        </div>
-
-        <div class="input-group mb-3">
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <span class="input-group-text"><i class="fas fa-check"></i></span>
-          </div>
-        </div>
-
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <i class="fas fa-dollar-sign"></i>
-            </span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <div class="input-group-text"><i class="fas fa-ambulance"></i></div>
+          <div class="input-group col-sm-6 mb-2">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-dollar-sign"></i>
+              </span>
+            </div>
+            <input type="text" class="form-control" placeholder="Frete">
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fas fa-ambulance"></i></div>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
 
-</form>
+    <p-pickList [source]="produtosDisponiveis" [target]="produtosSelecionados" sourceHeader="Disponíveis"
+      targetHeader="Selecionados" dragdrop="true" [responsive]="true" [sourceStyle]="{'height':'300px'}"
+      [targetStyle]="{'height':'300px'}" filterBy="descricao" sourceFilterPlaceholder="Buscar por nome"
+      targetFilterPlaceholder="Busca por nome">
+      <ng-template let-produto pTemplate="item">
+        <div class="protudo-item">
+          <div class="product-list-detail">
+            <h5 class="p-mb-2">{{produto.descricao}}</h5>
+            <h4></h4>
+            <i class="pi pi-tag product-category-icon"></i>
+            <span class="product-category">{{produto.categoria.descricao}}</span>
+            <div>
+              <span [class]="'product-badge status-'">Disponíveis: {{produto.quantidadeEstoque}}</span>
+            </div>
+          </div>
+          <div class="product-list-action" style="font-size:14px;float:right;margin:15px 5px 0 0">
+            <h6 class="p-mb-2">Valor R${{produto.valorVenda}}</h6>
+          </div>
+        </div>
+      </ng-template>
+    </p-pickList>
+
+  </form>
 </div>

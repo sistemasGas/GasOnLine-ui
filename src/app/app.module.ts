@@ -30,6 +30,7 @@ import { VendasPesquisaComponent } from './vendas-pesquisa/vendas-pesquisa.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreComponent } from './core/core.component';
+import {PickListModule} from 'primeng/picklist';
 
 
 
@@ -67,7 +68,8 @@ import { CoreComponent } from './core/core.component';
     ListboxModule,
     BrowserAnimationsModule,
     ConfirmDialogModule,
-    MessagesModule
+    MessagesModule,
+    PickListModule
   ],
   providers: [
     ConfirmationService,
