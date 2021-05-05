@@ -6,6 +6,7 @@ import {ListboxModule} from 'primeng/listbox';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {MessagesModule} from 'primeng/messages';
+import {ToastModule} from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -69,7 +70,8 @@ import {PickListModule} from 'primeng/picklist';
     BrowserAnimationsModule,
     ConfirmDialogModule,
     MessagesModule,
-    PickListModule
+    PickListModule,
+    ToastModule
   ],
   providers: [
     ConfirmationService,

@@ -1,4 +1,4 @@
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../produto.service';
 
@@ -14,10 +14,12 @@ export class ProdutosPesquisaComponent implements OnInit {
 
   constructor(public produtoService: ProdutoService,
               private confirmationService: ConfirmationService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private primengConfig: PrimeNGConfig) { }
 
   ngOnInit(){
     this.listar();
+    this.primengConfig.ripple = true;
     }
 
 
@@ -32,17 +34,11 @@ export class ProdutosPesquisaComponent implements OnInit {
     }
     public editar() {
       this.edicao = true;
+      this.messageService.add({severity:'success', summary: 'Editado com sucesso', detail: ''});
     }
 
     public cancelar() {
       this.edicao = false;
-    }
-
-    public salvar() {
-      this.produtoService.saveProduto(this.ProdutoSelcionado).subscribe(r => {
-        this.edicao = false;
-        this.listar();
-      });
     }
 
     public deleteProduto(produto) {
@@ -50,7 +46,7 @@ export class ProdutosPesquisaComponent implements OnInit {
       accept: () => {
         this.produtoService.deleteProduto(produto.id).subscribe(r => {
           this.listar();
-          this.messageService.add({severity:'success', summary:'Excluído com sucesso!', detail:''});
+          this.messageService.add({severity:'success', summary: 'Excluído com sucesso', detail: ''});
         });
       }})
 
