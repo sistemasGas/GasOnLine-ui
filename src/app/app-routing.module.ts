@@ -1,3 +1,5 @@
+import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
+import { VendasPesquisaComponent } from './vendas-pesquisa/vendas-pesquisa.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VendaCadastroComponent } from './venda-cadastro/venda-cadastro.component';
 import { LoginComponent } from './login/login.component';
@@ -12,8 +14,10 @@ const routes: Routes = [
   { path: "", component: DashboardComponent},
   { path: "produto/cadastro", component: ProdutoCadastroComponent },
   { path: "produtos/pesquisa", component: ProdutosPesquisaComponent },
+  { path: "pessoa/cadastro", component: PessoaCadastroComponent},
   { path: "compra/cadastro", component: CompraCadastroComponent},
   { path: "venda/cadastro", component: VendaCadastroComponent},
+  { path: "venda/pesquisa", component: VendasPesquisaComponent},
   { path: "login", component: LoginComponent}
 ];
 

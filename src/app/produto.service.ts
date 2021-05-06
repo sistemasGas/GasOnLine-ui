@@ -37,5 +37,9 @@ export class ProdutoService {
       return this.http.get(`${environment.url}/categorias`)
     }
 
+    public getPessoas(): Observable <any>{
+      return this.http.get(`${environment.url}/pessoas`)
+    }
+
    }
 

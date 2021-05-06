@@ -12,7 +12,7 @@ import { ProdutoService } from '../produto.service';
 export class ProdutoCadastroComponent implements OnInit {
 
   categorias = [];
-  product = new Produto();
+  produto = new Produto();
 
   constructor(
     public produtoService: ProdutoService,
@@ -27,9 +27,9 @@ export class ProdutoCadastroComponent implements OnInit {
   }
 
   criarProduto() {
-    this.produtoService.saveProduto(this.product).subscribe(resposta => {
+    this.produtoService.saveProduto(this.produto).subscribe(resposta => {
       this.messageService.add({severity:'success', summary: 'Produto Cadastrado!', detail: ''});
-      this.product = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0 };
+      this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0 };
     });
 
   }

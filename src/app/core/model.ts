@@ -12,3 +12,39 @@ export class Produto{
   quantidadeEstoque: number;
   categoria = new Categoria();
 }
+
+export class Venda{
+  codigo: number;
+  data_venda: Date;
+  pessoa: Pessoa;
+  codigo_usuario: number;
+  valor_desconto: number;
+  valor_total: number;
+  observacao: string;
+}
+
+export class ItemVenda{
+  codigo: number;
+  quantidade: number;
+  valor_unitario: number;
+  codigo_venda: number;
+}
+
+export class ItemCompra{
+  codigo: number;
+  quantidade: number;
+  valor_unitario: number;
+  codigo_compra: number;
+}
+
+export class Pessoa{
+  id: number;
+  nome: string;
+  telefone: string;
+  email: string;
+  tipo: string;
+  cpf: string;
+  cnpj: string;
+  categoria: string;
+  cargo: string;
+}
