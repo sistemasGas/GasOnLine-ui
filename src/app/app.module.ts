@@ -32,7 +32,9 @@ import { VendasPesquisaComponent } from './vendas-pesquisa/vendas-pesquisa.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreComponent } from './core/core.component';
-import {PickListModule} from 'primeng/picklist';
+import { PickListModule} from 'primeng/picklist';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { CreateComponent } from './usuario/create/create.component';
 
 
 
@@ -52,7 +54,9 @@ import {PickListModule} from 'primeng/picklist';
     ComprasPesquisaComponent,
     VendasPesquisaComponent,
     DashboardComponent,
-    CoreComponent
+    CoreComponent,
+    UsuarioComponent,
+    CreateComponent
 
   ],
   imports: [

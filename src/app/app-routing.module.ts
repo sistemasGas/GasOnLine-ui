@@ -8,6 +8,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProdutoCadastroComponent } from './produto-cadastro/produto-cadastro.component';
 import { ProdutosPesquisaComponent } from './produtos-pesquisa/produtos-pesquisa.component';
 import { CompraCadastroComponent } from './compra-cadastro/compra-cadastro.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { CreateComponent } from './usuario/create/create.component';
+
+
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "dashboard" },
@@ -18,7 +22,11 @@ const routes: Routes = [
   { path: "compra/cadastro", component: CompraCadastroComponent},
   { path: "venda/cadastro", component: VendaCadastroComponent},
   { path: "venda/pesquisa", component: VendasPesquisaComponent},
-  { path: "login", component: LoginComponent}
+  { path: "login", component: LoginComponent},
+  { path: "usuario", component: UsuarioComponent},
+  { path: "usuario/create", component: CreateComponent}
+
+  
 ];
 
 @NgModule({
