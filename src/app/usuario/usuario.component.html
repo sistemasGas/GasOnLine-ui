@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="p-grid">
+        <form>
+            <div class="p-col-12">
+                <h1>Pesquisa Usuários</h1>
+            </div>
+
+            <div class="p-col-12 p-fluid">
+                <label>Pesquisa por usuário</label>
+                <input pInputText type="text" name="nome">
+            </div>
+
+            <div class="p-col-4" style="margin-top: 4px;">
+                <!-- <button pButton type="submit" label="Pesquisar"></button> -->
+
+                <p-button label="Pesquisa" icon="pi pi-search"></p-button>&nbsp;
+                <a pButton label="Novo Usuário" icon="pi pi-user-plus" routerLink="/usuario/create"></a>
+                <!-- <button pButton type="button " label="Pesquisar " icon="pi pi-check " [loading]="listar "></button> -->
+                <!-- <p-button label="Search " icon="pi pi-search " [loading]="isLoading "></p-button> -->
+
+                <!-- <a pButton label="Novo Usuário " routerLink="/pessoa-cadastro"></a> -->
+            </div>
+        </form>
+    </div>
+    <div class="container " style="margin-top: 20px; ">
+        <table class="table table-hover ">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>CPF</th>
+                    <th>Endereço</th>
+                    <th>Telefone</th>
+                    <th>Cargo</th>
+                    <th class="centro ">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios ">
+                    <td> {{ usuario.id }}</td>
+                    <td> {{ usuario.nome }}</td>
+                    <td> {{ usuario.email }}</td>
+                    <td> {{ usuario.telefone }}</td>
+                    <td> {{ usuario.cpf }}</td>
+                    <td> {{ usuario.endereco }}</td>
+                    <td> {{ usuario.categoria }}</td>
+                    <td> {{ usuario.cargo }}</td>
+
+                    <td>
+                        <!-- <button class="btn btn-primary " (click)="selectPessoa(pessoa) "> Detalhes</button> -->
+                        <!-- <button class="btn btn-primary " (click)="deletePessoa(pessoa) "> Excluir</button> -->
+                        <!-- <button class="btn btn-primary " (click)="selectPessoa(pessoa) "> Editar</button> -->
+                        <!-- <button class="pi pi-pencil " style="font-size: 2rem " (click)="selectPessoa(pessoa) "></button> -->
+                        <!-- <i class="pi pi-pencil " (click)="selectPessoa(pessoa) "></i> -->
+                        <button pButton pRipple type="button " icon="pi pi-search-plus " class="p-button-rounded p-button-success p-button-outlined " (click)="selectUsuario(usuario) "></button>&nbsp;
+                        <button pButton pRipple type="button " icon="pi pi-pencil " class="p-button-rounded "></button>&nbsp;
+                        <button pButton pRipple type="button " icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-outlined " (click)="deleteUsuario(usuario) "></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <span class="p-buttonset">
+            <button pButton type="button" label="Save" icon="pi pi-check"></button>
+            <button pButton type="button" label="Delete" icon="pi pi-trash"></button>
+            <button pButton type="button" label="Cancel" icon="pi pi-times"></button>
+        </span> -->
+    </div>
+
+</div>
