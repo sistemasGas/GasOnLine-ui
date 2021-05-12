@@ -36,7 +36,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   public editar(){
-    this.edicao = false;
+    this.edicao = true;
   }
 
   public cancelar(){
@@ -45,6 +45,7 @@ export class UsuarioComponent implements OnInit {
 
   public salvar(){
     this.usuarioService.salvarUsuario(this.selectedUsuario).subscribe( r => {
+      this.edicao = false;
       this.listar();
     })
   }
