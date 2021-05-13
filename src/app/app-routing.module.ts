@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: "venda/pesquisa", component: VendasPesquisaComponent},
   { path: "usuario", component: UsuarioComponent},
   { path: "usuario/create", component: CreateComponent},
+  { path: "usuario/create/:id", component: CreateComponent},
   { path: "login", component: LoginComponent}
 ];
 
