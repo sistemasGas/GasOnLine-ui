@@ -1,6 +1,7 @@
 import { UsuarioService } from './../../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { Pessoa } from 'src/app/core/model';
 
 
 @Component({
@@ -10,8 +11,7 @@ import { MessageService, PrimeNGConfig } from 'primeng/api';
 })
 export class CreateComponent implements OnInit {
 
-  usuario: { id, nome, telefone, email, cpf, endereco, categoria, cargo } =
-    { id: null, nome: "", telefone: "", email: "", cpf: "", endereco: "", categoria: "", cargo: "" };
+usuario = new Pessoa();
 
     cargos = [
       { label: "Administrador", value: "Administrador" },
@@ -29,7 +29,7 @@ export class CreateComponent implements OnInit {
     console.log(this.usuario);
     this.usuarioService.salvarUsuario(this.usuario).subscribe(resposta => {
       this.messageService.add({ severity: 'success', summary: 'Usuario Cadastrado', detail: '' });
-      this.usuario = { id: null, nome: "", telefone: "", email: "", cpf: "", endereco: "", categoria: "", cargo: "" };
+      this.usuario = { id: null, nome: "", telefone: "", email: "", cpf: "", cnpj:"", endereco: null, categoria: "", cargo: "", tipo:"" };
     });
   }
 

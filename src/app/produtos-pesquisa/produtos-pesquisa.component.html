@@ -45,8 +45,8 @@
                 <td>{{produto.quantidadeEstoque}}</td>
                 <td>
                   <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
-                    [routerLink]="['/produtos', produto.codigo]"></a>
-                  <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                    [routerLink]="['/produto/cadastro', produto.id]"></a>
+                  <button pButton icon="pi pi-trash" style="margin-left: 1px;" pTooltip="Excluir" tooltipPosition="top"
                     (click)="deleteProduto(produto)"></button>
                 </td>
             </tr>

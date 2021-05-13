@@ -1,4 +1,3 @@
-import { Categoria } from './app.module';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -15,6 +14,10 @@ export class ProdutoService {
 
     public getProdutos(): Observable <any> {
       return this.http.get(`${environment.url}/produtos`);
+    }
+
+    public getProdutosPorId(id): Observable <any> {
+      return this.http.get(`${environment.url}/produtos/${id}`);
     }
 
     public buscarValorEstoque():Observable <any> {

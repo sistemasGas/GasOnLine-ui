@@ -86,9 +86,3 @@ import { CreateComponent } from './usuario/create/create.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-export class Categoria {
-  descricao: String;
-  codigo: Number;
-  sigla: String
-}
