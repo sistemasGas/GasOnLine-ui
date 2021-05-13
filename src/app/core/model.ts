@@ -47,4 +47,27 @@ export class Pessoa{
   cnpj: string;
   categoria: string;
   cargo: string;
+  endereco: Endereco;
+}
+
+export class Endereco{
+  codigo: number;
+  logradouro: string;
+  numero: number;
+  complemento: string;
+  setor: string;
+  cidade: Cidade;
+  CEP: string;
+}
+
+export class Cidade{
+  codigo: number;
+  nome: string;
+  estado: Estado;
+}
+
+export class Estado{
+  codigo: number;
+  nome: string;
+  UF: string;
 }

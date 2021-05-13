@@ -2,7 +2,7 @@
   <form>
     <div class="ui-g">
       <div>
-        <h1>Novo Produto</h1>
+        <h1>{{ edicao ? 'Edição de ' : 'Novo '}}Produto</h1>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
     <div class="row">
       <div style="margin-top: 14px;">
           <button pButton pRipple type="button" icon ="pi pi-arrow-left" label="Voltar" class="p-button-outlined" routerLink="/produtos/pesquisa"></button>
-          <button pButton type="button" icon="pi pi-check" label="Salvar" style="margin-left: 20px;" (click)="criarProduto()"></button>
+          <button pButton type="button" icon="pi pi-check" label="Salvar" style="margin-left: 20px;" (click)="criarProduto()" routerLink="/produtos/pesquisa"></button>
       </div>
     </div>
 

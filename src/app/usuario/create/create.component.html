@@ -1,0 +1,50 @@
+<div class="container" style="margin-top: 20px;">
+    <form>
+        <div class="ui-g">
+            <div>
+                <h1>Cadastro de Usuário</h1>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="p-col-12 col-md-8 p-fluid">
+                    <label for="nome">Nome *</label>
+                    <input [(ngModel)]="usuario.nome" type="text" name="nome" class="form-control" id="nome" aria-describedby="nameHelp" placeholder="Digite o nome"><br>
+                </div>
+                <div class="p-col-4 col-md-4 p-fluid">
+                    <label for="cpf">CPF *</label>
+                    <input [(ngModel)]="usuario.cpf" type="text" name="cpf" class="form-control" id="cpf" aria-describedby="cpfHelp" placeholder="Digite o cpf">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="p-col-12 col-md-8 p-fluid">
+                    <label for="email">E-mail</label>
+                    <input [(ngModel)]="usuario.email" type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Digite o e-mail">
+                </div>
+                <div class="p-col-4 col-md-4 p-fluid">
+                    <label for="telefone">Telefone</label>
+                    <input [(ngModel)]="usuario.telefone" type="text" name="telefone" class="form-control" id="telefone" aria-describedby="telefoneHelp" placeholder="Digite o telefone"><br>
+                </div>
+                <div class="p-col-12 col-md-8 p-fluid">
+                    <label for="endereco">Endereço</label>
+                    <input [(ngModel)]="usuario.endereco" type="text" name="endereco" class="form-control" id="endereco" aria-describedby="enderecoHelp" placeholder="Digite o endereco">
+                </div>
+                <!-- <div class="p-col-4 col-md-4 p-fluid">
+                    <label for="cargo">Cargo</label>
+                    <input [(ngModel)]="pessoa.cargo" type="text" name="cargo" class="form-control" id="cargo" aria-describedby="cargoHelp" placeholder="Digite o cargo"><br>
+                </div> -->
+                <div class="p-col-12 col-md-4 p-fluid">
+                    <label>Cargos</label>
+                    <p-dropdown name="cargo" [options]="cargos" placeholder="Selecione"></p-dropdown>
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <a pButton label="Novo Usuário" class="btn btn-primary" icon="pi pi-user-plus" routerLink="/usuario/create" (click)="createUsuario()"></a>&nbsp;
+        <!-- <button class="btn btn-primary" icon="pi pi-user-plus" (click)="createPessoa()">Criar Contato</button>&nbsp; -->
+        <!-- <button class="btn btn-primary" icon="pi pi-times" routerLink="/pessoa-pesquisa">Cancelar</button> -->
+        <a pButton class="btn btn-primary" label="Cancelar" icon="pi pi-times" routerLink="/usuario"></a>
+    </form>
+</div>
