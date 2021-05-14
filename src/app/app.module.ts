@@ -35,7 +35,7 @@ import { CoreComponent } from './core/core.component';
 import { PickListModule} from 'primeng/picklist';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { CreateComponent } from './usuario/create/create.component';
-
+import {InputMaskModule} from 'primeng/inputmask';
 
 
 @NgModule({
@@ -56,7 +56,8 @@ import { CreateComponent } from './usuario/create/create.component';
     DashboardComponent,
     CoreComponent,
     UsuarioComponent,
-    CreateComponent
+    CreateComponent,
+    
 
   ],
   imports: [
@@ -77,7 +78,8 @@ import { CreateComponent } from './usuario/create/create.component';
     MessagesModule,
     PickListModule,
     ToastModule,
-    CardModule
+    CardModule,
+    InputMaskModule
   ],
   providers: [
     ConfirmationService,
