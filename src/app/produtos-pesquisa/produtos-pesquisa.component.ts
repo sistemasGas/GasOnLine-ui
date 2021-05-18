@@ -32,10 +32,6 @@ export class ProdutosPesquisaComponent implements OnInit {
     public selecionarProduto(produto) {
       this.ProdutoSelcionado = produto;
     }
-    public editar() {
-      this.edicao = true;
-      this.messageService.add({severity:'success', summary: 'Editado com sucesso', detail: ''});
-    }
 
     public cancelar() {
       this.edicao = false;

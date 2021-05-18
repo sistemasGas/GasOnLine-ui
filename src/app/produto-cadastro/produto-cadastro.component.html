@@ -14,7 +14,7 @@
       </div>
       <div class="row">
 
-        <div class="p-col-12 col-md-8 p-fluid">
+        <div class="p-col-12 col-md-6 p-fluid">
           <label>Categoria</label>
           <p-dropdown placeholder="Selecione Categoria"
           [filter]="true" [options]="categorias"
@@ -22,7 +22,13 @@
           ></p-dropdown>
         </div>
 
-        <div class="p-col-4 col-md-4 p-fluid">
+        <div>
+          <button pButton icon="pi pi-plus" label="Nova" type="button" class="p-button-outlined" style="margin-top: 35%;" (click)="chamaNovaCategoria()">
+          </button>
+
+        </div>
+
+        <div class="p-col-12 col-md-4 p-fluid">
           <label>Quantidade</label>
           <input [(ngModel)]="produto.quantidadeEstoque" pInputText type="text" name="quantidadeEstoque"
             class="form-control" id="quantidadeEstoque" aria-describedby="estoqueHelp" placeholder="0">
@@ -54,3 +60,8 @@
 
   </form>
 </div>
+
+<p-dialog header="Nova Categoria" [(visible)]="exibiNovaCategoria">
+  <label>Descrição</label>
+  <input>
+</p-dialog>

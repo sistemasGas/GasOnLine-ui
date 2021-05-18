@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./produto-cadastro.component.css']
 })
 export class ProdutoCadastroComponent implements OnInit {
-
+  exibiNovaCategoria=false;
   categorias = [];
   produto = new Produto();
 
@@ -47,6 +47,10 @@ export class ProdutoCadastroComponent implements OnInit {
       this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0 };
     });
 
+  }
+
+  chamaNovaCategoria(){
+    this.exibiNovaCategoria=true;
   }
 
   public listarCategorias() {

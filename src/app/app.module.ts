@@ -8,6 +8,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {MessagesModule} from 'primeng/messages';
 import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
+import {DialogModule} from 'primeng/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -77,7 +78,8 @@ import { CreateComponent } from './usuario/create/create.component';
     MessagesModule,
     PickListModule,
     ToastModule,
-    CardModule
+    CardModule,
+    DialogModule
   ],
   providers: [
     ConfirmationService,
