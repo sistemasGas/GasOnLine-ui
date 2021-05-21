@@ -8,6 +8,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {MessagesModule} from 'primeng/messages';
 import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
+import {DialogModule} from 'primeng/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -79,7 +80,8 @@ import {InputMaskModule} from 'primeng/inputmask';
     PickListModule,
     ToastModule,
     CardModule,
-    InputMaskModule
+    InputMaskModule,
+    DialogModule
   ],
   providers: [
     ConfirmationService,

@@ -32,8 +32,12 @@ export class ProdutoService {
       return this.http.delete(`${environment.url}/produtos/${id}`);
     }
 
-    public getClientes(): Observable <any>{
-      return this.http.get(`${environment.url}/clientes/quantidade`)
+    public salvarCategoria(categoria):Observable<any> {
+      return this.http.post(`${environment.url}/categorias`, categoria);
+    }
+
+    public deleteCategoria(id): Observable<any> {
+      return this.http.delete(`${environment.url}/categorias/${id}`);
     }
 
     public getCategorias(): Observable <any>{
