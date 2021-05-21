@@ -71,3 +71,8 @@ export class Estado{
   nome: string;
   UF: string;
 }
+
+export class Login{
+  login: string;
+  senha: string;
+}

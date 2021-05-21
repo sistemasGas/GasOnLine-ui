@@ -1,3 +1,4 @@
+import { Login } from './../../core/model';
 import { UsuarioService } from './../../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PrimeNGConfig, ConfirmationService} from 'primeng/api';
@@ -18,6 +19,7 @@ export class CreateComponent implements OnInit {
   // activeIndex: number = 1;
 
   usuario = new Pessoa();
+  login = new Login();
   cargos = [
     { label: "Administrador", value: "Administrador" },
     { label: "Vendedor", value: "Vendedor" }
@@ -31,6 +33,7 @@ export class CreateComponent implements OnInit {
     { label: "Física", value: "FISICA" },
     { label: "Jurídica", value: "JURIDICA" }
   ]
+  
 
   constructor(public usuarioService: UsuarioService,
     private messageService: MessageService,
@@ -42,16 +45,7 @@ export class CreateComponent implements OnInit {
     
     const idPessoa = this.route.snapshot.params['id'];
     this.readById(idPessoa);
-    
-    // this.items = [{
-    //   label: 'nome',
-    //   command: (event: any) => {
-    //     this.activeIndex = 0;
-    //     this.messageService.add({severity:'info',
-    //     summary:'First Step', detail: event.item.label});
-    //   }
-    // }]
-  }
+     }
 
   get edicao() {
     return Boolean(this.usuario.id);
@@ -76,5 +70,7 @@ export class CreateComponent implements OnInit {
       this.usuario = resposta;
     })
   }
+  
+
   
 }

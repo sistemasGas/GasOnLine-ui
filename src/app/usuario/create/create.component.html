@@ -48,8 +48,11 @@
                 <div class="p-col-12 col-md-4 p-fluid ">
                     <label>Tipo de Pessoa *</label>
                     <p-dropdown name="tipoPessoa " [options]="tipoPessoas" [(ngModel)]="usuario.tipo" placeholder=" Selecione "></p-dropdown>
-                </div>
-
+                </div>  
+                <div class="p-col-12 col-md-4 p-fluid">
+                    <label for="nome">Senha *</label>
+                    <input [(ngModel)]="usuario.nome" type="text" name="nome" class="form-control" id="nome" aria-describedby="nameHelp" placeholder="Digite o nome"><br>
+                </div>                              
             </div>
         </div>
         <br>
