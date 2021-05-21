@@ -15,7 +15,7 @@ export class ProdutoCadastroComponent implements OnInit {
   exibiNovaCategoria=false;
   categorias = [];
   produto = new Produto();
-  categoria = new Categoria;
+  categoria = new Categoria();
 
   constructor(
     public produtoService: ProdutoService,
@@ -58,8 +58,6 @@ export class ProdutoCadastroComponent implements OnInit {
     }})
 
   }
-
-
 
   criarProduto() {
     this.produtoService.saveProduto(this.produto).subscribe(resposta => {

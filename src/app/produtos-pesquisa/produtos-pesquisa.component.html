@@ -39,8 +39,8 @@
             <tr>
                 <td>{{produto.id}}</td>
                 <td>{{produto.descricao}}</td>
-                <td>{{produto.valorCompra | number:'1.2-2'}}</td>
-                <td>{{produto.valorVenda | number:'1.2-2'}}</td>
+                <td >{{produto.valorCompra | currency: 'R$ '}}</td>
+                <td>{{produto.valorVenda | currency: 'R$ '}}</td>
                 <td>{{produto.categoria.descricao}}</td>
                 <td>{{produto.quantidadeEstoque}}</td>
                 <td>

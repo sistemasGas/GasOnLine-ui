@@ -1,5 +1,6 @@
+import { UsuarioService } from './../usuario.service';
 import { ProdutoService } from './../produto.service';
-import { Produto } from './../core/model';
+import { Pessoa, Produto, Venda } from './../core/model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VendaCadastroComponent implements OnInit {
 
+  pessoas = [];
   produtosDisponiveis: Produto[];
   produtosSelecionados: Produto[];
-  constructor(private produtoService: ProdutoService) { }
+  venda = new Venda();
 
-  ngOnInit(): void {
+  constructor(private produtoService: ProdutoService,
+              private usuarioService: UsuarioService) { }
+
+  ngOnInit() {
+    this.listarProdutos();
+    this.listarClientes();
+  }
+
+  private listarProdutos(){
     this.produtoService.getProdutos().subscribe(produto => this.produtosDisponiveis = produto);
         this.produtosSelecionados = [];
+  }
+
+  public listarClientes() {
+    this.usuarioService.getUsuarios().subscribe(resposta => {
+      this.pessoas = resposta;
+    });
   }
 
 }

@@ -41,20 +41,22 @@
       </div>
       <div class="row">
         <div class="card-body">
-          <div class="input-group col-sm-12 mb-2">
-            <div class="input-group-prepend">
-              <span class="input-group-text">@</span>
-            </div>
-            <input type="text" class="form-control" placeholder="Cliente">
+
+          <div class="p-col-12 col-md-8 p-fluid">
+            <label>Cliente</label>
+            <p-dropdown placeholder="Selecione Cliente" [filter]="true" [options]="pessoas"
+              (ngModel)="venda.pessoa.id" optionLabel="nome" name="pessoaSelecionada"
+              optionValue="id">
+            </p-dropdown>
           </div>
 
-          <div class="input-group col-sm-6 mb-2">
+          <div class="input-group col-sm-3 mb-2">
             <div class="input-group-prepend">
               <span class="input-group-text">
-                <i class="fas fa-dollar-sign"></i>
+                <i class="pi pi-dollar"></i>
               </span>
             </div>
-            <input type="text" class="form-control" placeholder="Frete">
+            <input type="text" class="form-control" placeholder="Frete" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
             <div class="input-group-append">
               <div class="input-group-text"><i class="fas fa-ambulance"></i></div>
             </div>
