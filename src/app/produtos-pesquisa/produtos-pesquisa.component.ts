@@ -45,7 +45,6 @@ export class ProdutosPesquisaComponent implements OnInit {
           this.messageService.add({severity:'success', summary: 'Excluído com sucesso', detail: ''});
         });
       }})
-
     }
 
   }

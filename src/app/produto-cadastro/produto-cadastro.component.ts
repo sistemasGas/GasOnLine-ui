@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
-import { Produto } from './../core/model';
+import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
+import { Produto, Categoria } from './../core/model';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../produto.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,10 +15,12 @@ export class ProdutoCadastroComponent implements OnInit {
   exibiNovaCategoria=false;
   categorias = [];
   produto = new Produto();
+  categoria = new Categoria;
 
   constructor(
     public produtoService: ProdutoService,
     private messageService: MessageService,
+    private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
     private route: ActivatedRoute) {
 
@@ -36,6 +38,29 @@ export class ProdutoCadastroComponent implements OnInit {
     return Boolean(this.produto.id);
   }
 
+  criarCategoria(){
+    this.produtoService.salvarCategoria(this.categoria).subscribe(resposta => {
+      this.messageService.add({ severity: 'success', summary: 'Nova categoria cadastrada!', detail: ''});
+      this.fechaNovaCategoria();
+      this.listarCategorias();
+      this.categoria = {codigo: null, descricao:'', sigla:''}
+    })
+  }
+
+  public deleteCategoria(codigo) {
+    console.log(codigo)
+    this.confirmationService.confirm({message: 'Confirma exclusão?',
+    accept: () => {
+      this.produtoService.deleteCategoria(codigo).subscribe(r => {
+        this.listarCategorias();
+        this.messageService.add({severity:'success', summary: 'Categoria excluída com sucesso!', detail: ''});
+      });
+    }})
+
+  }
+
+
+
   criarProduto() {
     this.produtoService.saveProduto(this.produto).subscribe(resposta => {
       if (this.produto.id) {
@@ -51,6 +76,10 @@ export class ProdutoCadastroComponent implements OnInit {
 
   chamaNovaCategoria(){
     this.exibiNovaCategoria=true;
+  }
+
+  fechaNovaCategoria(){
+    this.exibiNovaCategoria=false;
   }
 
   public listarCategorias() {
