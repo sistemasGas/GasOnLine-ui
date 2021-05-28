@@ -37,6 +37,7 @@ import { PickListModule} from 'primeng/picklist';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { CreateComponent } from './usuario/create/create.component';
 import {InputMaskModule} from 'primeng/inputmask';
+import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {InputMaskModule} from 'primeng/inputmask';
     CoreComponent,
     UsuarioComponent,
     CreateComponent,
+    UsuarioLoginComponent,
     
 
   ],

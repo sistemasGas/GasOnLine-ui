@@ -9,7 +9,9 @@ import { ProdutoCadastroComponent } from './produto-cadastro/produto-cadastro.co
 import { ProdutosPesquisaComponent } from './produtos-pesquisa/produtos-pesquisa.component';
 import { CompraCadastroComponent } from './compra-cadastro/compra-cadastro.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
 import { CreateComponent } from './usuario/create/create.component';
+
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "dashboard" },
@@ -24,6 +26,7 @@ const routes: Routes = [
   { path: "usuario", component: UsuarioComponent},
   { path: "usuario/create", component: CreateComponent},
   { path: "usuario/create/:id", component: CreateComponent},
+  { path: "usuario/usuario-login", component: UsuarioLoginComponent},
   { path: "login", component: LoginComponent}
 ];
 

@@ -48,6 +48,7 @@ export class Pessoa{
   categoria: string;
   cargo: string;
   endereco: Endereco;
+  login: Login;  
 }
 
 export class Endereco{
@@ -73,6 +74,7 @@ export class Estado{
 }
 
 export class Login{
+  id: number;
   login: string;
   senha: string;
 }

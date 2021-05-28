@@ -11,7 +11,7 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
 
-  public getUsuarios(): Observable <any> {
+  public getUsuarios(): Observable<any> {
     return this.http.get(`${environment.url}/pessoa`);
   }
 
@@ -19,9 +19,9 @@ export class UsuarioService {
     return this.http.delete(`${environment.url}/pessoa/${id}`);
   }
 
-  readById(id: string): Observable<any>{
+  readById(id: string): Observable<any> {
     return this.http.get(`${environment.url}/pessoa/${id}`);
-   }
+  }
 
   public salvarUsuario(usuario): Observable<any> {
     return this.http.post(`${environment.url}/pessoa`, usuario);
@@ -29,6 +29,5 @@ export class UsuarioService {
 
   public buscarQuantidadeClientes(): Observable<any> {
     return this.http.get(`${environment.url}/pessoa/qntClientes`);
-  }
-
+  }  
 }
