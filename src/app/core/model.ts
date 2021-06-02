@@ -48,7 +48,7 @@ export class Pessoa{
   categoria: string;
   cargo: string;
   endereco: Endereco;
-  login: Login;  
+  login: Login;
 }
 
 export class Endereco{
@@ -56,9 +56,10 @@ export class Endereco{
   logradouro: string;
   numero: number;
   complemento: string;
-  setor: string;
-  cidade: Cidade;
-  CEP: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  cep: string;
 }
 
 export class Cidade{

@@ -6,86 +6,29 @@
       </div>
     </div>
 
-    <div class="card-footer">
-      <div class="row">
-        <div class="col-sm-4 col-6">
-          <div class="description-block border-right">
-            <h5 class="description-header">R$ 210.43</h5>
-            <span class="description-text">Soma Produtos</span>
-          </div>
-          <!-- /.description-block -->
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 col-6">
-          <div class="description-block border-right">
-            <h5 class="description-header">R$ 5.00</h5>
-            <span class="description-text">Frete</span>
-          </div>
-          <!-- /.description-block -->
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 col-6">
-          <div class="description-block border-right">
-            <h5 class="description-header">R$ 215.43</h5>
-            <span class="description-text">valor total</span>
-          </div>
-          <!-- /.description-block -->
-        </div>
-      </div>
-      <!-- /.row -->
-    </div>
 
-    <div class="card card-primary">
-      <div class="card-header">
-        <h3 class="card-title">Preencha os dados</h3>
-      </div>
-      <div class="row">
-        <div class="card-body">
-
-          <div class="p-col-12 col-md-8 p-fluid">
-            <label>Cliente</label>
-            <p-dropdown placeholder="Selecione Cliente" [filter]="true" [options]="pessoas"
-              (ngModel)="venda.pessoa.id" optionLabel="nome" name="pessoaSelecionada"
-              optionValue="id">
-            </p-dropdown>
-          </div>
-
-          <div class="input-group col-sm-3 mb-2">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="pi pi-dollar"></i>
-              </span>
-            </div>
-            <input type="text" class="form-control" placeholder="Frete" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
-            <div class="input-group-append">
-              <div class="input-group-text"><i class="fas fa-ambulance"></i></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p-pickList [source]="produtosDisponiveis" [target]="produtosSelecionados" sourceHeader="Disponíveis"
-      targetHeader="Selecionados" dragdrop="true" [responsive]="true" [sourceStyle]="{'height':'300px'}"
-      [targetStyle]="{'height':'300px'}" filterBy="descricao" sourceFilterPlaceholder="Buscar por nome"
-      targetFilterPlaceholder="Busca por nome">
+    <p-orderList [value]="produtosDisponiveis" [listStyle]="{'height':'auto'}" header="Lista de Produtos"
+      filterBy="nome" filterPlaceholder="Filtro por nome" dragdrop="true">
       <ng-template let-produto pTemplate="item">
-        <div class="protudo-item">
+        <div class="product-item">
           <div class="product-list-detail">
             <h5 class="p-mb-2">{{produto.descricao}}</h5>
-            <h4></h4>
             <i class="pi pi-tag product-category-icon"></i>
-            <span class="product-category">{{produto.categoria.descricao}}</span>
-            <div>
-              <span [class]="'product-badge status-'">Disponíveis: {{produto.quantidadeEstoque}}</span>
-            </div>
+            <span class="product-category">{{produto.categoria.sigla}}</span>
           </div>
-          <div class="product-list-action" style="font-size:14px;float:right;margin:15px 5px 0 0">
-            <h6 class="p-mb-2">Valor R$ {{produto.valorVenda}}</h6>
+          <div class="product-list-action">
+            <h6 class="p-mb-2">R$ {{produto.valorVenda}}</h6>
+            <span [class]="'product-badge status-'">{{produto.quantidadeEstoque ? 'DISPONÍVEL' : 'INDISPONÍVEL'
+              }}</span>
           </div>
         </div>
       </ng-template>
-    </p-pickList>
+    </p-orderList>
 
   </form>
+
+  <span class="p-buttonset" style="float:right">
+    <button pButton pRipple type="button" icon="pi pi-times" label="Cancelar" class="p-button-outlined"></button>
+    <button pButton pRipple label="Salvar" icon="pi pi-check"></button>
+  </span>
 </div>

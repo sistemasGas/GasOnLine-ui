@@ -29,5 +29,5 @@ export class UsuarioService {
 
   public buscarQuantidadeClientes(): Observable<any> {
     return this.http.get(`${environment.url}/pessoa/qntClientes`);
-  }  
+  }
 }

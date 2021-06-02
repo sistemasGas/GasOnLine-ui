@@ -16,6 +16,7 @@ import { CreateComponent } from './usuario/create/create.component';
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "dashboard" },
   { path: "", component: DashboardComponent},
+  { path: "home", component: DashboardComponent},
   { path: "produto/cadastro", component: ProdutoCadastroComponent },
   { path: "produtos/pesquisa", component: ProdutosPesquisaComponent },
   { path: "produto/cadastro/:id", component: ProdutoCadastroComponent },

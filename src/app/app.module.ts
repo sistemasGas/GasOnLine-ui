@@ -33,7 +33,7 @@ import { VendasPesquisaComponent } from './vendas-pesquisa/vendas-pesquisa.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreComponent } from './core/core.component';
-import { PickListModule} from 'primeng/picklist';
+import {OrderListModule} from 'primeng/orderlist';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { CreateComponent } from './usuario/create/create.component';
 import {InputMaskModule} from 'primeng/inputmask';
@@ -60,7 +60,7 @@ import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.com
     UsuarioComponent,
     CreateComponent,
     UsuarioLoginComponent,
-    
+
 
   ],
   imports: [
@@ -79,7 +79,7 @@ import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.com
     BrowserAnimationsModule,
     ConfirmDialogModule,
     MessagesModule,
-    PickListModule,
+    OrderListModule,
     ToastModule,
     CardModule,
     InputMaskModule,
