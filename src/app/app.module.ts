@@ -38,6 +38,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { CreateComponent } from './usuario/create/create.component';
 import {InputMaskModule} from 'primeng/inputmask';
 import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
+import {DragDropModule} from 'primeng/dragdrop';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.com
     ToastModule,
     CardModule,
     InputMaskModule,
-    DialogModule
+    DialogModule,
+    DragDropModule
   ],
   providers: [
     ConfirmationService,

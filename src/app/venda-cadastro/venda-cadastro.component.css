@@ -34,8 +34,8 @@
 @media screen and (max-width: 576px) {
   .product-item {
       flex-wrap: wrap;
-  }
-      .image-container {
+
+  }.image-container {
           width: 100%;
           text-align: center;
       }
@@ -44,5 +44,4 @@
           margin: 0 0 1rem 0;
           width: 100px;
       }
-
-}
+  }

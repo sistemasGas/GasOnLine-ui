@@ -1,6 +1,6 @@
 import { UsuarioService } from './../usuario.service';
 import { ProdutoService } from './../produto.service';
-import { Pessoa, Produto, Venda } from './../core/model';
+import { Pessoa, Produto, Venda, ItemVenda } from './../core/model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,19 +13,21 @@ export class VendaCadastroComponent implements OnInit {
   pessoas = [];
   produtosDisponiveis: Produto[];
   produtosSelecionados: Produto[];
+  produtoArrastado: Produto;
+
   venda = new Venda();
 
   constructor(private produtoService: ProdutoService,
-              private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.listarProdutos();
     this.listarClientes();
   }
 
-  private listarProdutos(){
+  private listarProdutos() {
     this.produtoService.getProdutos().subscribe(produto => this.produtosDisponiveis = produto);
-        this.produtosSelecionados = [];
+    this.produtosSelecionados = [];
   }
 
   public listarClientes() {
@@ -33,5 +35,33 @@ export class VendaCadastroComponent implements OnInit {
       this.pessoas = resposta;
     });
   }
+
+  dragStart(produto: Produto) {
+    this.produtoArrastado = produto;
+  }
+
+  drop() {
+    if (this.produtoArrastado) {
+      let draggedProductIndex = this.findIndex(this.produtoArrastado);
+      this.produtosSelecionados = [...this.produtosSelecionados, this.produtoArrastado];
+      this.produtosDisponiveis = this.produtosDisponiveis.filter((val, i) => i != draggedProductIndex);
+      this.produtoArrastado = null;
+    }
+  }
+
+  dragEnd() {
+    this.produtoArrastado = null;
+}
+
+  findIndex(produto: Produto) {
+    let index = -1;
+    for(let i = 0; i < this.produtosDisponiveis.length; i++) {
+        if (produto.id === this.produtosDisponiveis[i].id) {
+            index = i;
+            break;
+        }
+    }
+    return index;
+}
 
 }
