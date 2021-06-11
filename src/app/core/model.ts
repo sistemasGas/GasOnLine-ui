@@ -15,18 +15,19 @@ export class Produto{
 
 export class Venda{
   codigo: number;
-  data_venda: Date;
+  data: Date;
   pessoa: Pessoa;
   codigo_usuario: number;
+  itensVenda: ItemVenda[];
   valor_desconto: number;
-  valor_total: number;
+  valorTotal: number;
   observacao: string;
 }
 
 export class ItemVenda{
   codigo: number;
+  produto: Produto;
   quantidade: number;
-  valor_unitario: number;
   codigo_venda: number;
 }
 

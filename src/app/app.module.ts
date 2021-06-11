@@ -39,6 +39,7 @@ import { CreateComponent } from './usuario/create/create.component';
 import {InputMaskModule} from 'primeng/inputmask';
 import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
 import {DragDropModule} from 'primeng/dragdrop';
+import {CalendarModule} from 'primeng/calendar';
 
 
 @NgModule({
@@ -85,7 +86,8 @@ import {DragDropModule} from 'primeng/dragdrop';
     CardModule,
     InputMaskModule,
     DialogModule,
-    DragDropModule
+    DragDropModule,
+    CalendarModule
   ],
   providers: [
     ConfirmationService,
