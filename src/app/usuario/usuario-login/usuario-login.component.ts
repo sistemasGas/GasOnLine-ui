@@ -35,18 +35,18 @@ export class UsuarioLoginComponent implements OnInit {
     return Boolean(this.login.id);
   }
 
-  // createLogin() {
-  //   console.log(this.login);
-  //   this.loginService.salvarLogin(this.login).subscribe(resposta => {
-  //     if (this.login.id) {
-  //       this.messageService.add({ severity: 'success', summary: 'Login Atualizado!', detail: '' });
-  //     }
-  //     else {
-  //       this.messageService.add({ severity: 'success', summary: 'Login Cadastrado!', detail: '' });
-  //     }
-  //     this.login = { id: null, login: "", senha: "" };
-  //   });
-  // }
+  createLogin() {
+    console.log(this.login);
+    this.loginService.salvarLogin(this.login).subscribe(resposta => {
+      if (this.login.id) {
+        this.messageService.add({ severity: 'success', summary: 'Login Atualizado!', detail: '' });
+      }
+      else {
+        this.messageService.add({ severity: 'success', summary: 'Login Cadastrado!', detail: '' });
+      }
+      this.login = { id: null, login: "", senha: "" };
+    });
+  }
 
   
 
