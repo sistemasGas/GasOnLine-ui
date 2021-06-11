@@ -50,11 +50,11 @@ export class Pessoa{
   cnpj: string;
   categoria: string;
   cargo: string;
-  // endereco: Endereco;
+  //endereco: Endereco;
   // endereco: Endereco = new Endereco;
   //login: Login;
-  //  login: Login = new Login;
-  usuario: Edivan = new Edivan;
+  usuario: Login;
+
 }
 
 export class Endereco{
@@ -84,11 +84,4 @@ export class Login{
   id: any; 
   login: string;
   senha: string; 
-}
-
-export class Edivan{
-  id: string; 
-  login: string;
-  senha: string; 
-  
 }
