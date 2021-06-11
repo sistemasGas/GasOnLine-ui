@@ -1,3 +1,4 @@
+import { InputNumber } from "primeng/inputnumber";
 
 export class Categoria {
   codigo: number;
@@ -48,12 +49,11 @@ export class Pessoa{
   cnpj: string;
   categoria: string;
   cargo: string;
-<<<<<<< HEAD
-  endereco: Endereco; 
-=======
-  endereco: Endereco;
->>>>>>> 37fa2f124927dfbc2fd5f3c105f259ee246f81c6
-  login: Login;
+  // endereco: Endereco;
+  // endereco: Endereco = new Endereco;
+  //login: Login;
+  //  login: Login = new Login;
+  usuario: Edivan = new Edivan;
 }
 
 export class Endereco{
@@ -81,6 +81,12 @@ export class Estado{
 
 export class Login{
   id: any; 
+  login: string;
+  senha: string; 
+}
+
+export class Edivan{
+  id: string; 
   login: string;
   senha: string; 
 }

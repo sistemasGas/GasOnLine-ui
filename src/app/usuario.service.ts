@@ -25,8 +25,8 @@ export class UsuarioService {
     return this.http.get(`${environment.url}/pessoa/${id}`);
   }
   
-  public salvarUsuario(usuario): Observable<any> {
-    return this.http.post(`${environment.url}/pessoa`, usuario);
+  public salvarUsuario(pessoa): Observable<any> {
+    return this.http.post(`${environment.url}/pessoa`, pessoa);
   }
 
   public buscarQuantidadeClientes(): Observable<any> {
