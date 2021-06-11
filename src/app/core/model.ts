@@ -1,3 +1,4 @@
+
 export class Categoria {
   codigo: number;
   sigla: string;
@@ -38,7 +39,7 @@ export class ItemCompra{
 }
 
 export class Pessoa{
-  id: number;
+  id: any;
   nome: string;
   telefone: string;
   email: string;
@@ -47,8 +48,8 @@ export class Pessoa{
   cnpj: string;
   categoria: string;
   cargo: string;
-  endereco: Endereco;
-  login: Login;  
+  endereco: Endereco; 
+  login: Login;
 }
 
 export class Endereco{
@@ -74,7 +75,7 @@ export class Estado{
 }
 
 export class Login{
-  id: number;
+  id: any; 
   login: string;
-  senha: string;
+  senha: string; 
 }

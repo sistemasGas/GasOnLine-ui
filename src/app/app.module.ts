@@ -38,6 +38,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { CreateComponent } from './usuario/create/create.component';
 import {InputMaskModule} from 'primeng/inputmask';
 import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
+// import { ModelComponent } from './model/model.component'
+
 
 
 @NgModule({
@@ -59,9 +61,7 @@ import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.com
     CoreComponent,
     UsuarioComponent,
     CreateComponent,
-    UsuarioLoginComponent,
-    
-
+    UsuarioLoginComponent 
   ],
   imports: [
     BrowserModule,

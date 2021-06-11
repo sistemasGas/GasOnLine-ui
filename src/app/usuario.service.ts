@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs-compat/operator/map';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +24,7 @@ export class UsuarioService {
   readById(id: string): Observable<any> {
     return this.http.get(`${environment.url}/pessoa/${id}`);
   }
-
+  
   public salvarUsuario(usuario): Observable<any> {
     return this.http.post(`${environment.url}/pessoa`, usuario);
   }

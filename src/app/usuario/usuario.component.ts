@@ -1,3 +1,4 @@
+import { LoginService } from './../login.service';
 
 import { UsuarioService } from './../usuario.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,9 +13,11 @@ import {MenuItem} from 'primeng/api';
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
+  [x: string]: any;
 
   usuarios;
   selectedUsuario;
+  login;
   edicao = false; 
 
   val1: string;
@@ -28,12 +31,18 @@ export class UsuarioComponent implements OnInit {
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.listar();
+    
     const idUsuario = this.route.snapshot.params['id'];   
   }
  // Listar usuarios
   public listar() {
     this.usuarioService.getUsuarios().subscribe(resposta => {
       this.usuarios = resposta;
+    })
+  }
+  public listarLogin() {
+    this.LoginService.getLogin().subscribe(resposta => {
+      this.login = resposta;
     })
   }
 

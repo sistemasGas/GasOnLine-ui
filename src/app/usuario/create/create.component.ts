@@ -1,12 +1,12 @@
+import { UsuarioLoginComponent } from './../usuario-login/usuario-login.component';
 import { LoginService } from './../../login.service';
-import { Login } from './../../core/model';
+import { Endereco, Login } from './../../core/model';
 import { UsuarioService } from './../../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PrimeNGConfig, ConfirmationService } from 'primeng/api';
 import { Pessoa } from 'src/app/core/model';
 import { ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
-
 
 
 @Component({
@@ -16,13 +16,55 @@ import { from } from 'rxjs';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  [x: string]: any;
+
+  // credencial: Credencial = {
+  //   id:'',
+  //   pass:'',
+  //   senha:''
+  // }
+  
+  // novoUsuario: UsuarioFuncionario = {
+  //   id: '',
+  //   nome: '',
+  //   telefone: '',
+  //   email: '',
+  //   tipo: '', 
+  //   cpf: '',
+  //   cnpj: '',
+  //   categoria: '',
+  //   cargo: '',
+  //   credencial: this.credencial,
+  // }
+
+  // [x: string]: any;
 
   // items: MenuItem[];
   // activeIndex: number = 1;
 
   usuario = new Pessoa();
-  login = new Login();
+
+  // usuario: Pessoa = {
+  //   id: '',
+  //   nome: '',
+  //   telefone: '',
+  //   email: '',
+  //   tipo: '',
+  //   cpf: '',
+  //   cnpj: '',
+  //   categoria: '',
+  //   cargo: '',
+  //   endereco: this.Endereco,
+  //   login: this.Login
+
+  // }
+  // login: Login = {
+  //   id: '',
+  //   login: '',
+  //   senha: '',
+  // }
+
+  endereco: Endereco;
+
   cargos = [
     { label: "Administrador", value: "Administrador" },
     { label: "Vendedor", value: "Vendedor" }
@@ -65,37 +107,22 @@ export class CreateComponent implements OnInit {
       }
       this.usuario = {
         id: null, nome: "", telefone: "", email: "", cpf: "",
-        cnpj: "", endereco: null, categoria: "", cargo: "", tipo: "", login: { id: null, login: "", senha: "" }
+        cnpj: "", endereco: null, categoria: "", cargo: "", tipo: "", login: null
       };
-
+      // location.reload;
 
     });
   }
-  // createLogin() {
-  //   console.log(this.login);
-  //   this.loginService.salvarLogin(this.login).subscribe(resposta => {
-  //     if (this.login.id) {
-  //       this.messageService.add({ severity: 'success', summary: 'Login Atualizado!', detail: '' });
-  //     }
-  //     else {
-  //       this.messageService.add({ severity: 'success', summary: 'Login Cadastrado!', detail: '' });
-  //     }
-  //     this.login = { id: null, login: "", senha: "" };
-  //   });
-  // }
 
-  // createPessoaLogin() {
-  //   this.createUsuario();
-  //   this.createLogin();
-  // }
   readById(idPessoa) {
     this.usuarioService.readById(idPessoa).subscribe(resposta => {
       this.usuario = resposta;
-    })
+    });
   }
 
-  // login
-
-
-
+  // create(): void {
+  //   this.usuarioService.salvarUsuario(this.novoUsuario).subscribe((resposta) => {
+  //     location.reload;
+  //   });
+  // }
 }
