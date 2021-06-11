@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./produto-cadastro.component.css']
 })
 export class ProdutoCadastroComponent implements OnInit {
-  exibiNovaCategoria=false;
+  exibiNovaCategoria = false;
   categorias = [];
   produto = new Produto();
   categoria = new Categoria();
@@ -30,32 +30,35 @@ export class ProdutoCadastroComponent implements OnInit {
     this.primengConfig.ripple = true;
     this.listarCategorias();
     const idProduto = this.route.snapshot.params['id'];
-    this.buscarProdutoPorId(idProduto);
-
+    if (idProduto) {
+      this.buscarProdutoPorId(idProduto);
+    }
   }
 
   get edicao() {
     return Boolean(this.produto.id);
   }
 
-  criarCategoria(){
+  criarCategoria() {
     this.produtoService.salvarCategoria(this.categoria).subscribe(resposta => {
-      this.messageService.add({ severity: 'success', summary: 'Nova categoria cadastrada!', detail: ''});
+      this.messageService.add({ severity: 'success', summary: 'Nova categoria cadastrada!', detail: '' });
       this.fechaNovaCategoria();
       this.listarCategorias();
-      this.categoria = {codigo: null, descricao:'', sigla:''}
+      this.categoria = { codigo: null, descricao: '', sigla: '' }
     })
   }
 
   public deleteCategoria(codigo) {
     console.log(codigo)
-    this.confirmationService.confirm({message: 'Confirma exclusão?',
-    accept: () => {
-      this.produtoService.deleteCategoria(codigo).subscribe(r => {
-        this.listarCategorias();
-        this.messageService.add({severity:'success', summary: 'Categoria excluída com sucesso!', detail: ''});
-      });
-    }})
+    this.confirmationService.confirm({
+      message: 'Confirma exclusão?',
+      accept: () => {
+        this.produtoService.deleteCategoria(codigo).subscribe(r => {
+          this.listarCategorias();
+          this.messageService.add({ severity: 'success', summary: 'Categoria excluída com sucesso!', detail: '' });
+        });
+      }
+    })
 
   }
 
@@ -72,12 +75,12 @@ export class ProdutoCadastroComponent implements OnInit {
 
   }
 
-  chamaNovaCategoria(){
-    this.exibiNovaCategoria=true;
+  chamaNovaCategoria() {
+    this.exibiNovaCategoria = true;
   }
 
-  fechaNovaCategoria(){
-    this.exibiNovaCategoria=false;
+  fechaNovaCategoria() {
+    this.exibiNovaCategoria = false;
   }
 
   public listarCategorias() {

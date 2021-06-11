@@ -48,7 +48,11 @@ export class Pessoa{
   cnpj: string;
   categoria: string;
   cargo: string;
+<<<<<<< HEAD
   endereco: Endereco; 
+=======
+  endereco: Endereco;
+>>>>>>> 37fa2f124927dfbc2fd5f3c105f259ee246f81c6
   login: Login;
 }
 
@@ -57,9 +61,10 @@ export class Endereco{
   logradouro: string;
   numero: number;
   complemento: string;
-  setor: string;
-  cidade: Cidade;
-  CEP: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+  cep: string;
 }
 
 export class Cidade{

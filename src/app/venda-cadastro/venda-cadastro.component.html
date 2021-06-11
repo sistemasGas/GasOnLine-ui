@@ -6,86 +6,56 @@
       </div>
     </div>
 
-    <div class="card-footer">
-      <div class="row">
-        <div class="col-sm-4 col-6">
-          <div class="description-block border-right">
-            <h5 class="description-header">R$ 210.43</h5>
-            <span class="description-text">Soma Produtos</span>
-          </div>
-          <!-- /.description-block -->
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 col-6">
-          <div class="description-block border-right">
-            <h5 class="description-header">R$ 5.00</h5>
-            <span class="description-text">Frete</span>
-          </div>
-          <!-- /.description-block -->
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 col-6">
-          <div class="description-block border-right">
-            <h5 class="description-header">R$ 215.43</h5>
-            <span class="description-text">valor total</span>
-          </div>
-          <!-- /.description-block -->
-        </div>
+
+      <p-orderList [value]="produtosDisponiveis" [listStyle]="{'height':'auto'}" filterBy="nome" header="Produtos Disponíveis"
+        filterPlaceholder="Filtro por nome" dragdrop="true">
+        <ng-template let-produto pTemplate="item">
+          <div class="product-item" pDraggable="produtos" pDroppable="produto.descricao" (onDragStart)="dragStart(produto)"
+            (onDragEnd)="dragEnd()">
+            <div class="image-container">
+              <img src="https://cdn.pixabay.com/photo/2014/03/25/16/58/fire-297747_960_720.png" class="product-image"/>
       </div>
-      <!-- /.row -->
-    </div>
-
-    <div class="card card-primary">
-      <div class="card-header">
-        <h3 class="card-title">Preencha os dados</h3>
-      </div>
-      <div class="row">
-        <div class="card-body">
-
-          <div class="p-col-12 col-md-8 p-fluid">
-            <label>Cliente</label>
-            <p-dropdown placeholder="Selecione Cliente" [filter]="true" [options]="pessoas"
-              (ngModel)="venda.pessoa.id" optionLabel="nome" name="pessoaSelecionada"
-              optionValue="id">
-            </p-dropdown>
-          </div>
-
-          <div class="input-group col-sm-3 mb-2">
-            <div class="input-group-prepend">
-              <span class="input-group-text">
-                <i class="pi pi-dollar"></i>
-              </span>
+            <div class="product-list-detail">
+              <h5 class="p-mb-2">{{produto.descricao}}</h5>
+              <i class="pi pi-tag product-category-icon"></i>
+              <span class="product-category">{{produto.categoria.sigla}}</span>
             </div>
-            <input type="text" class="form-control" placeholder="Frete" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
-            <div class="input-group-append">
-              <div class="input-group-text"><i class="fas fa-ambulance"></i></div>
+            <div class="product-list-action">
+              <h6 class="p-mb-2">R$ {{produto.valorVenda}}</h6>
+              <span [class]="'product-badge status-'">{{produto.quantidadeEstoque ? 'DISPONÍVEL' : 'INDISPONÍVEL'
+                }}</span>
             </div>
           </div>
-        </div>
+        </ng-template>
+      </p-orderList>
+
+      <div class="p-col-6 p-md-6 " pDroppable="produtos" pDraggable="produtos" (onDrop)="drop()">
+        <p-table [value]="produtosSelecionados" styleClass="p-datatable-sm">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID</th>
+              <th>Categoria</th>
+              <th>Nome</th>
+              <th>Quantidade</th>
+              <th>Valor</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-produto>
+            <tr>
+              <td>{{produto.id}}</td>
+              <td>{{produto.categoria.sigla}}</td>
+              <td>{{produto.descricao}}</td>
+              <input>
+              <td>{{produto.valorVenda}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
       </div>
-    </div>
 
-    <p-pickList [source]="produtosDisponiveis" [target]="produtosSelecionados" sourceHeader="Disponíveis"
-      targetHeader="Selecionados" dragdrop="true" [responsive]="true" [sourceStyle]="{'height':'300px'}"
-      [targetStyle]="{'height':'300px'}" filterBy="descricao" sourceFilterPlaceholder="Buscar por nome"
-      targetFilterPlaceholder="Busca por nome">
-      <ng-template let-produto pTemplate="item">
-        <div class="protudo-item">
-          <div class="product-list-detail">
-            <h5 class="p-mb-2">{{produto.descricao}}</h5>
-            <h4></h4>
-            <i class="pi pi-tag product-category-icon"></i>
-            <span class="product-category">{{produto.categoria.descricao}}</span>
-            <div>
-              <span [class]="'product-badge status-'">Disponíveis: {{produto.quantidadeEstoque}}</span>
-            </div>
-          </div>
-          <div class="product-list-action" style="font-size:14px;float:right;margin:15px 5px 0 0">
-            <h6 class="p-mb-2">Valor R$ {{produto.valorVenda}}</h6>
-          </div>
-        </div>
-      </ng-template>
-    </p-pickList>
 
-  </form>
+  <span class="p-buttonset" style="float:right">
+    <button pButton pRipple type="button" icon="pi pi-times" label="Cancelar" class="p-button-outlined"></button>
+    <button pButton pRipple label="Salvar" icon="pi pi-check"></button>
+  </span>
+</form>
 </div>
