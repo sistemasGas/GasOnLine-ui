@@ -90,4 +90,5 @@ export class Edivan{
   id: string; 
   login: string;
   senha: string; 
+  
 }
