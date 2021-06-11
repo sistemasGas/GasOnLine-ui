@@ -1,6 +1,6 @@
 import { UsuarioLoginComponent } from './../usuario-login/usuario-login.component';
 import { LoginService } from './../../login.service';
-import { Endereco, Login, Edivan } from './../../core/model';
+import { Endereco, Login} from './../../core/model';
 import { UsuarioService } from './../../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PrimeNGConfig, ConfirmationService } from 'primeng/api';
@@ -19,35 +19,33 @@ export class CreateComponent implements OnInit {
 
   // login: Login = {
   //   id: '',
-  //   lUsuario: '',
+  //   usuario: '',
   //   senha: ''
   // }
-  usuario: Edivan = {
-    id: '',
-    login: '',
-    senha: '',
-  }
+  
 
-  novaPessoa: Pessoa = {
-    id: '',
-    nome: '',
-    telefone: '',
-    email: '',
-    tipo: '',
-    cpf: '',
-    cnpj: '',
-    categoria: '',
-    cargo: '',
-    // endereco: this.endereco,
-    //login: Login;
-    usuario: this.usuario,
-  }
+  // novaPessoa: Pessoa = {
+  //   id: '',
+  //   nome: '',
+  //   telefone: '',
+  //   email: '',
+  //   tipo: '',
+  //   cpf: '',
+  //   cnpj: '',
+  //   categoria: '',
+  //   cargo: '',
+  //   endereco: this.endereco,
+  //   login: Login;
+    
+  // }
   // [x: string]: any;
 
   // items: MenuItem[];
   // activeIndex: number = 1;
 
-  // usuario = new Pessoa();
+  usuario = new Pessoa();
+  user = new Login();
+
 
 
 
@@ -80,44 +78,43 @@ export class CreateComponent implements OnInit {
     this.readById(idPessoa);
   }
 
-  get edicao() {
-    return Boolean(this.novaPessoa.id);
-  }
-
-  // createUsuario() {
-  //   console.log(this.usuario);
-  //   this.usuarioService.salvarUsuario(this.usuario).subscribe(resposta => {
-  //     if (this.usuario.id) {
-  //       this.messageService.add({ severity: 'success', summary: 'Usuário Atualizado!', detail: '' });
-  //     }
-  //     else {
-  //       this.messageService.add({ severity: 'success', summary: 'Usuário Cadastrado!', detail: '' });
-  //     }
-  //     this.usuario = {
-  //       id: null, nome: "", telefone: "", email: "", cpf: "",
-  //       cnpj: "", categoria: "", cargo: "", tipo: "", login: null
-  //     };
-  //     // location.reload;
-
-  //   });
+  // get edicao() {
+  //   return Boolean(this.novaPessoa.id);
   // }
 
-  readById(idPessoa) {
-    this.usuarioService.readById(idPessoa).subscribe(resposta => {
-      this.novaPessoa = resposta;
-    });
-  }
-
-  create(): void {
-    console.log(this.novaPessoa);
-    this.usuarioService.salvarUsuario(this.novaPessoa).subscribe((resposta) => {
+  createUsuario() {
+ 
+    this.usuario.usuario = this.user;
+    console.log(this.usuario);
+    this.usuarioService.salvarUsuario(this.usuario).subscribe(resposta => {
       if (this.usuario.id) {
         this.messageService.add({ severity: 'success', summary: 'Usuário Atualizado!', detail: '' });
       }
       else {
         this.messageService.add({ severity: 'success', summary: 'Usuário Cadastrado!', detail: '' });
       }
-      location.reload;
+      this.usuario = new Pessoa();
+      // location.reload;
+
     });
   }
+
+  readById(idPessoa) {
+    this.usuarioService.readById(idPessoa).subscribe(resposta => {
+      this.usuario = resposta;
+    });
+  }
+
+  // create(): void {
+  //   console.log(this.novaPessoa);
+  //   this.usuarioService.salvarUsuario(this.novaPessoa).subscribe((resposta) => {
+  //     if (this.novaPessoa.id) {
+  //       this.messageService.add({ severity: 'success', summary: 'Usuário Atualizado!', detail: '' });
+  //     }
+  //     else {
+  //       this.messageService.add({ severity: 'success', summary: 'Usuário Cadastrado!', detail: '' });
+  //     }
+  //     location.reload;
+  //   });
+  // }
 }
