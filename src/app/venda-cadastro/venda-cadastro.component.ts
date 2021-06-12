@@ -38,12 +38,12 @@ export class VendaCadastroComponent implements OnInit {
 
     this.butons = [
       {
-        label: 'Orçamento', icon: 'pi pi-book', command: () => {
+        label: 'Orçamento', icon: 'pi pi-book', routerLink: ['/home'], command: () => {
           this.criarOrcamento();
         }
       },
       {
-        label: 'Venda', icon: 'pi pi-shopping-cart', command: () => {
+        label: 'Venda', icon: 'pi pi-shopping-cart', routerLink: ['/home'], command: () => {
           this.criarVenda();
         }
       },

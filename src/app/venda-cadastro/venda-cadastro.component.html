@@ -78,7 +78,7 @@
                 class="p-button-rounded p-button-danger p-button-text" (click)="removerItem(itemVenda)"></button>
               {{itemVenda.quantidade}}
               <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text"
-                (click)="adicionarItem(itemVenda)" routerLink="/home"></button>
+                (click)="adicionarItem(itemVenda)"></button>
             </td>
             <td>{{itemVenda.produto.valorVenda * itemVenda.quantidade | currency:'BRL'}}</td>
           </tr>
@@ -88,8 +88,8 @@
 
 
     <span class="p-buttonset" style="float:right">
-      <button pButton pRipple type="button" icon="pi pi-times" label="Cancelar" class="p-button-outlined"></button>
-      <p-splitButton label="Salvar" icon="pi pi-shopping-cart" (onClick)="criarVenda()" [model]="butons">
+      <button pButton pRipple type="button" icon="pi pi-times" label="Cancelar" routerLink="/home" class="p-button-outlined"></button>
+      <p-splitButton label="Salvar" icon="pi pi-shopping-cart" routerLink="/home" (onClick)="criarVenda()" [model]="butons">
       </p-splitButton>
     </span>
   </form>
