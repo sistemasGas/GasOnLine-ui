@@ -99,6 +99,7 @@
               <th pSortableColumn="valorTotal">Valor Venda <p-sortIcon field="valorTotal"></p-sortIcon></th>
               <th pSortableColumn="tipoPagamento">Pagamento <p-sortIcon field="tipoPagamento"></p-sortIcon></th>
               <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+              <th></th>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-venda let-expanded="expanded">
@@ -113,6 +114,11 @@
               <td>{{venda.valorTotal | currency:'BRL'}}</td>
               <td>{{venda.tipoPagamento}}</td>
               <td><span [class]="'product-badge-status-' + venda.status.toLowerCase()">{{venda.status}}</span></td>
+              <td>
+                <button pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="[]"></button>
+                <button pButton icon="pi pi-trash" style="margin-left: 1px;" pTooltip="Excluir" tooltipPosition="top"></button>
+              </td>
+
           </tr>
       </ng-template>
       <ng-template pTemplate="rowexpansion" let-venda>
