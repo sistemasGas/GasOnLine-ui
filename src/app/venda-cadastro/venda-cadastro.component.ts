@@ -3,7 +3,7 @@ import { UsuarioService } from './../usuario.service';
 import { ProdutoService } from './../produto.service';
 import { Pessoa, Produto, Venda, ItemVenda } from './../core/model';
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-venda-cadastro',
@@ -19,6 +19,11 @@ export class VendaCadastroComponent implements OnInit {
 
   itensVenda: ItemVenda[];
   venda = new Venda();
+  butons: MenuItem[];
+  tipoPagamento = [
+    { label: "Dinheiro", value: "DINHEIRO" },
+    { label: "Cartão", value: "CARTAO" }
+  ]
 
   constructor(private produtoService: ProdutoService,
     private usuarioService: UsuarioService,
@@ -28,6 +33,22 @@ export class VendaCadastroComponent implements OnInit {
   ngOnInit() {
     this.listarProdutos();
     this.listarClientes();
+
+    this.butons = [
+      {
+        label: 'Orçamento', icon: 'pi pi-book', command: () => {
+          this.criarOrcamento();
+        }
+      },
+      {
+        label: 'Venda', icon: 'pi pi-shopping-cart', command: () => {
+          this.criarVenda();
+        }
+      },
+          { separator: true },
+      { label: 'Opções', icon: 'pi pi-cog', routerLink: ['/setup'] }
+    ];
+
   }
 
   private listarProdutos() {
@@ -56,6 +77,7 @@ export class VendaCadastroComponent implements OnInit {
       const itemVendaArrastado = new ItemVenda();
       itemVendaArrastado.produto = this.produtoArrastado;
       itemVendaArrastado.quantidade = 1;
+      itemVendaArrastado.valorUnitario=this.produtoArrastado.valorVenda
       let draggedProductIndex = this.findIndex(this.produtoArrastado);
       this.itensVenda = [...this.itensVenda, itemVendaArrastado];
       this.produtosDisponiveis = this.produtosDisponiveis.filter((val, i) => i != draggedProductIndex);
@@ -102,20 +124,36 @@ export class VendaCadastroComponent implements OnInit {
     this.calculaValorTotal();
   }
 
-  calculaValorTotal(){
-    let total = this.itensVenda.reduce((total, valor)=> total + (valor.quantidade*valor.produto.valorVenda),0);
+  calculaValorTotal() {
+    let total = this.itensVenda.reduce((total, valor) => total + (valor.quantidade * valor.produto.valorVenda), 0);
     this.venda.valorTotal = total;
   }
 
 
   criarVenda() {
-    console.log(this.venda);
+    this.venda.itensVenda=this.itensVenda;
+    this.venda.status="EMITIDA"
     this.vendaService.post(this.venda).subscribe(resposta => {
       if (this.venda.codigo) {
         this.messageService.add({ severity: 'success', summary: 'Venda Atualizada!', detail: '' });
       }
       else {
         this.messageService.add({ severity: 'success', summary: 'Venda Cadastrada!', detail: '' });
+      }
+      this.venda = null;
+    });
+
+  }
+
+  criarOrcamento() {
+    this.venda.status="ORCAMENTO";
+    this.venda.itensVenda=this.itensVenda;
+    this.vendaService.post(this.venda).subscribe(resposta => {
+      if (this.venda.codigo) {
+        this.messageService.add({ severity: 'success', summary: 'Orçamento Atualizado!', detail: '' });
+      }
+      else {
+        this.messageService.add({ severity: 'success', summary: 'Orçamento Cadastrado!', detail: '' });
       }
       this.venda = null;
     });
