@@ -8,7 +8,6 @@ import { Pessoa } from 'src/app/core/model';
 import { ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
 
-
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -17,26 +16,6 @@ import { from } from 'rxjs';
 })
 export class CreateComponent implements OnInit {
 
-  // login: Login = {
-  //   id: '',
-  //   usuario: '',
-  //   senha: ''
-  // }
-  
-
-  // novaPessoa: Pessoa = {
-  //   id: '',
-  //   nome: '',
-  //   telefone: '',
-  //   email: '',
-  //   tipo: '',
-  //   cpf: '',
-  //   cnpj: '',
-  //   categoria: '',
-  //   cargo: '',
-  //   endereco: this.endereco,
-  //   login: Login;
-    
   // }
   // [x: string]: any;
 
@@ -45,9 +24,6 @@ export class CreateComponent implements OnInit {
 
   usuario = new Pessoa();
   user = new Login();
-
-
-
 
   endereco: Endereco;
 
@@ -64,8 +40,6 @@ export class CreateComponent implements OnInit {
     { label: "Física", value: "FISICA" },
     { label: "Jurídica", value: "JURIDICA" }
   ]
-
-
   constructor(public usuarioService: UsuarioService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -77,10 +51,6 @@ export class CreateComponent implements OnInit {
     const idPessoa = this.route.snapshot.params['id'];
     this.readById(idPessoa);
   }
-
-  // get edicao() {
-  //   return Boolean(this.novaPessoa.id);
-  // }
 
   createUsuario() {
  
@@ -95,7 +65,6 @@ export class CreateComponent implements OnInit {
       }
       this.usuario = new Pessoa();
       // location.reload;
-
     });
   }
 
@@ -104,17 +73,4 @@ export class CreateComponent implements OnInit {
       this.usuario = resposta;
     });
   }
-
-  // create(): void {
-  //   console.log(this.novaPessoa);
-  //   this.usuarioService.salvarUsuario(this.novaPessoa).subscribe((resposta) => {
-  //     if (this.novaPessoa.id) {
-  //       this.messageService.add({ severity: 'success', summary: 'Usuário Atualizado!', detail: '' });
-  //     }
-  //     else {
-  //       this.messageService.add({ severity: 'success', summary: 'Usuário Cadastrado!', detail: '' });
-  //     }
-  //     location.reload;
-  //   });
-  // }
 }
