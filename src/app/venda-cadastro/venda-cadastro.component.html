@@ -10,7 +10,7 @@
 
           <div class="info-box-content">
             <span class="info-box-text">Total da Venda</span>
-            <span class="info-box-number">{{venda.valorTotal}}</span>
+            <span class="info-box-number">{{venda.valorTotal | currency:'BRL'}}</span>
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -78,7 +78,7 @@
                 class="p-button-rounded p-button-danger p-button-text" (click)="removerItem(itemVenda)"></button>
               {{itemVenda.quantidade}}
               <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-text"
-                (click)="adicionarItem(itemVenda)"></button>
+                (click)="adicionarItem(itemVenda)" routerLink="/home"></button>
             </td>
             <td>{{itemVenda.produto.valorVenda * itemVenda.quantidade | currency:'BRL'}}</td>
           </tr>

@@ -4,6 +4,7 @@ import { ProdutoService } from './../produto.service';
 import { Pessoa, Produto, Venda, ItemVenda } from './../core/model';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-venda-cadastro',
@@ -28,7 +29,8 @@ export class VendaCadastroComponent implements OnInit {
   constructor(private produtoService: ProdutoService,
     private usuarioService: UsuarioService,
     private vendaService: VendaService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.listarProdutos();

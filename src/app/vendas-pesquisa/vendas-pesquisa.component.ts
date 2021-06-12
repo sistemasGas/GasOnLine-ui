@@ -6,6 +6,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Pessoa } from '../core/model';
 import { Router } from '@angular/router';
+import { VendaService } from '../venda.service';
 
 @Component({
   selector: 'app-vendas-pesquisa',
@@ -14,47 +15,22 @@ import { Router } from '@angular/router';
 
 })
 export class VendasPesquisaComponent implements OnInit {
-  items: MenuItem[];
-  subscription: Subscription;
-  activeIndex: number = 1;
-  clientes: Pessoa[];
-  venda = new Venda();
+  
+  vendas: Venda[];
 
   constructor(private messageService: MessageService,
     private produtoService: ProdutoService,
-    private router: Router) { }
+    private vendaService: VendaService) { }
 
   ngOnInit(): void {
-    this.items = [{
-      label: 'Personal',
-      routerLink: 'personal'
-      },
-      {
-      label: 'Seat',
-      routerLink: 'seat'
-      },
-      {
-      label: 'Payment',
-      routerLink: 'payment'
-      },
-      {
-      label: 'Confirmation',
-      routerLink: 'confirmation'
-      }
-    ];
-
-    this.listarClientes();
-
+    this.listarVendas()
   }
 
-  public listarClientes() {
-    this.produtoService.getPessoas().subscribe(resposta => {
-      this.clientes = resposta;
+  private listarVendas() {
+    this.vendaService.findAll().subscribe(resposta => {
+      this.vendas = resposta;
     });
   }
-
-  public proximaPagina(){
-    this.router.navigate(['steps/seat']);
-  }
+  
 }
 

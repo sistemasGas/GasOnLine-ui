@@ -25,4 +25,8 @@ export class VendaService {
   public delete(id): Observable<any> {
     return this.http.delete(`${environment.url}/vendas/${id}`);
   }
+
+  public buscarTotalVendas(){
+    return this.http.get(`${environment.url}/vendas/totalvendas`);
+  }
 }
