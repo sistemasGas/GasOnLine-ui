@@ -1,3 +1,5 @@
+import { InputNumber } from "primeng/inputnumber";
+
 export class Categoria {
   codigo: number;
   sigla: string;
@@ -82,4 +84,8 @@ export class Login{
   id: any; 
   login: string;
   senha: string; 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 89f57e3ff318576a3a70f8f2e09ce126fdbe1e58

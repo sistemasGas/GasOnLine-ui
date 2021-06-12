@@ -1,12 +1,12 @@
+import { UsuarioLoginComponent } from './../usuario-login/usuario-login.component';
 import { LoginService } from './../../login.service';
-import { Login } from './../../core/model';
+import { Endereco, Login} from './../../core/model';
 import { UsuarioService } from './../../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PrimeNGConfig, ConfirmationService } from 'primeng/api';
 import { Pessoa } from 'src/app/core/model';
 import { ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
-
 
 
 @Component({
@@ -16,13 +16,41 @@ import { from } from 'rxjs';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  [x: string]: any;
+
+  // login: Login = {
+  //   id: '',
+  //   usuario: '',
+  //   senha: ''
+  // }
+  
+
+  // novaPessoa: Pessoa = {
+  //   id: '',
+  //   nome: '',
+  //   telefone: '',
+  //   email: '',
+  //   tipo: '',
+  //   cpf: '',
+  //   cnpj: '',
+  //   categoria: '',
+  //   cargo: '',
+  //   endereco: this.endereco,
+  //   login: Login;
+    
+  // }
+  // [x: string]: any;
 
   // items: MenuItem[];
   // activeIndex: number = 1;
 
   usuario = new Pessoa();
-  login = new Login();
+  user = new Login();
+
+
+
+
+  endereco: Endereco;
+
   cargos = [
     { label: "Administrador", value: "Administrador" },
     { label: "Vendedor", value: "Vendedor" }
@@ -50,11 +78,13 @@ export class CreateComponent implements OnInit {
     this.readById(idPessoa);
   }
 
-  get edicao() {
-    return Boolean(this.usuario.id);
-  }
+  // get edicao() {
+  //   return Boolean(this.novaPessoa.id);
+  // }
 
   createUsuario() {
+ 
+    this.usuario.usuario = this.user;
     console.log(this.usuario);
     this.usuarioService.salvarUsuario(this.usuario).subscribe(resposta => {
       if (this.usuario.id) {
@@ -63,39 +93,28 @@ export class CreateComponent implements OnInit {
       else {
         this.messageService.add({ severity: 'success', summary: 'Usuário Cadastrado!', detail: '' });
       }
-      this.usuario = {
-        id: null, nome: "", telefone: "", email: "", cpf: "",
-        cnpj: "", endereco: null, categoria: "", cargo: "", tipo: "", login: { id: null, login: "", senha: "" }
-      };
-
+      this.usuario = new Pessoa();
+      // location.reload;
 
     });
   }
-  // createLogin() {
-  //   console.log(this.login);
-  //   this.loginService.salvarLogin(this.login).subscribe(resposta => {
-  //     if (this.login.id) {
-  //       this.messageService.add({ severity: 'success', summary: 'Login Atualizado!', detail: '' });
-  //     }
-  //     else {
-  //       this.messageService.add({ severity: 'success', summary: 'Login Cadastrado!', detail: '' });
-  //     }
-  //     this.login = { id: null, login: "", senha: "" };
-  //   });
-  // }
 
-  // createPessoaLogin() {
-  //   this.createUsuario();
-  //   this.createLogin();
-  // }
   readById(idPessoa) {
     this.usuarioService.readById(idPessoa).subscribe(resposta => {
       this.usuario = resposta;
-    })
+    });
   }
 
-  // login
-
-
-
+  // create(): void {
+  //   console.log(this.novaPessoa);
+  //   this.usuarioService.salvarUsuario(this.novaPessoa).subscribe((resposta) => {
+  //     if (this.novaPessoa.id) {
+  //       this.messageService.add({ severity: 'success', summary: 'Usuário Atualizado!', detail: '' });
+  //     }
+  //     else {
+  //       this.messageService.add({ severity: 'success', summary: 'Usuário Cadastrado!', detail: '' });
+  //     }
+  //     location.reload;
+  //   });
+  // }
 }

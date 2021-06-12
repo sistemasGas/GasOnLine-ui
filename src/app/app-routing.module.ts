@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: "usuario/create", component: CreateComponent},
   { path: "usuario/create/:id", component: CreateComponent},
   { path: "usuario/usuario-login", component: UsuarioLoginComponent},
-  { path: "login", component: LoginComponent}
+  { path: "login", component: LoginComponent},
+ 
 ];
 
 @NgModule({
