@@ -66,8 +66,6 @@ export class UsuarioComponent implements OnInit {
     }})
 
   }
-    
- 
 
   public editar(){
     this.edicao = true;    
@@ -82,8 +80,5 @@ export class UsuarioComponent implements OnInit {
       this.listar();
       this.edicao = false;      
     })
-  }
-
-  
-
+  } 
 }
