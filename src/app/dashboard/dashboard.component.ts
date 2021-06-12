@@ -1,6 +1,7 @@
 import { UsuarioService } from './../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../produto.service';
+import { VendaService } from '../venda.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,8 @@ export class DashboardComponent implements OnInit {
   clientes;
 
   constructor(public produtoService: ProdutoService,
-              public usuarioService: UsuarioService) { }
+              public usuarioService: UsuarioService,
+              public vendaService: VendaService) { }
 
   ngOnInit(){
     this.buscarValorEstoque();
@@ -29,6 +31,10 @@ export class DashboardComponent implements OnInit {
     this.usuarioService.buscarQuantidadeClientes().subscribe(resposta => {
       this.clientes = resposta;
     });
+  }
+
+  public buscarVendas(){
+
   }
 
 }
