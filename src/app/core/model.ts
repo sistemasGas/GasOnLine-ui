@@ -1,5 +1,3 @@
-import { InputNumber } from "primeng/inputnumber";
-
 export class Categoria {
   codigo: number;
   sigla: string;
@@ -17,12 +15,14 @@ export class Produto{
 
 export class Venda{
   codigo: number;
-  data: Date;
-  pessoa: Pessoa;
+  dataVenda = new Date();
+  pessoa = new Pessoa();
   codigo_usuario: number;
   itensVenda: ItemVenda[];
   valor_desconto: number;
   valorTotal: number;
+  status: string;
+  tipoPagamento: string;
   observacao: string;
 }
 
@@ -30,6 +30,7 @@ export class ItemVenda{
   codigo: number;
   produto: Produto;
   quantidade: number;
+  valorUnitario: number;
   codigo_venda: number;
 }
 

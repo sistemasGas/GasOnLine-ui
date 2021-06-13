@@ -1,0 +1,11 @@
+.product-badge-status-emitida{
+    background-color: rgb(176, 213, 238);
+}
+
+.product-badge-status-orcamento{
+    background-color: rgb(252, 244, 143);
+}
+
+.some-custom-class-name::ng-deep th {
+    background-color: blue !important;
+}

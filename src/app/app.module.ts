@@ -40,6 +40,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
 import {DragDropModule} from 'primeng/dragdrop';
 import {CalendarModule} from 'primeng/calendar';
+import {SplitButtonModule} from 'primeng/splitbutton';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import {CalendarModule} from 'primeng/calendar';
     InputMaskModule,
     DialogModule,
     DragDropModule,
-    CalendarModule
+    CalendarModule,
+    SplitButtonModule
   ],
   providers: [
     ConfirmationService,
