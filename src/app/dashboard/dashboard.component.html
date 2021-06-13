@@ -94,12 +94,12 @@
           <tr>
               <th style="width: 3rem"></th>
               <th style="width: 3rem" pSortableColumn="codigo">ID <p-sortIcon field="codigo"></p-sortIcon></th>
-              <th style="width: 30rem"pSortableColumn="pessoa.nome">Cliente <p-sortIcon field="pessoa.nome"></p-sortIcon></th>
+              <th style="width: 15rem"pSortableColumn="pessoa.nome">Cliente <p-sortIcon field="pessoa.nome"></p-sortIcon></th>
               <th pSortableColumn="dataVenda">Data Venda <p-sortIcon field="dataVenda"></p-sortIcon></th>
               <th pSortableColumn="valorTotal">Valor Venda <p-sortIcon field="valorTotal"></p-sortIcon></th>
               <th pSortableColumn="tipoPagamento">Pagamento <p-sortIcon field="tipoPagamento"></p-sortIcon></th>
               <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
-              <th></th>
+              <th style="width: 6rem"></th>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-venda let-expanded="expanded">
@@ -110,7 +110,7 @@
               <td>{{venda.codigo}}</td>
               <!-- <td><img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.name" width="100" class="p-shadow-4" /></td> -->
               <td>{{venda.pessoa.nome}}</td>
-              <td>{{venda.dataVenda}}</td>
+              <td>{{venda.dataVenda | date:"dd/MM/yyyy"}}</td>
               <td>{{venda.valorTotal | currency:'BRL'}}</td>
               <td>{{venda.tipoPagamento}}</td>
               <td><span [class]="'product-badge-status-' + venda.status.toLowerCase()">{{venda.status}}</span></td>
@@ -130,7 +130,7 @@
                               <tr>
                                   <th style="width: 10rem"></th>
                                   <th style="width: 3rem" pSortableColumn="itemVenda.codigo">ID <p-sortIcon field="itemVenda.codigo"></p-sortIcon></th>
-                                  <th style="width: 30rem" pSortableColumn="itemVenda.produto.descricao">produto <p-sortIcon field="itemVenda.produto.descricao"></p-sortIcon></th>
+                                  <th style="width: 25rem" pSortableColumn="itemVenda.produto.descricao">produto <p-sortIcon field="itemVenda.produto.descricao"></p-sortIcon></th>
                                   <th pSortableColumn="itemVenda.quantidade">Quantidade <p-sortIcon field="itemVenda.quantidade"></p-sortIcon></th>
                                   <th pSortableColumn="itemVenda.valorTotal">Valor do Item <p-sortIcon field="itemVenda.valorTotal"></p-sortIcon></th>
                                   <th style="width: 4rem"></th>
@@ -138,7 +138,7 @@
                           </ng-template>
                           <ng-template pTemplate="body" let-itemVenda>
                               <tr>
-                                <th style="width: 10rem"></th>
+                                  <th></th>
                                   <td>{{itemVenda.codigo}}</td>
                                   <td style="width: 30rem">{{itemVenda.produto.descricao}}</td>
                                   <td>{{itemVenda.quantidade}}</td>
