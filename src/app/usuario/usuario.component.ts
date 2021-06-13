@@ -21,7 +21,7 @@ export class UsuarioComponent implements OnInit {
   edicao = false; 
 
   val1: string;
-
+  
   constructor(public usuarioService: UsuarioService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService, 
@@ -36,10 +36,13 @@ export class UsuarioComponent implements OnInit {
   }
  // Listar usuarios
   public listar() {
+    
     this.usuarioService.getUsuarios().subscribe(resposta => {
       this.usuarios = resposta;
     })
   }
+
+
   public listarLogin() {
     this.LoginService.getLogin().subscribe(resposta => {
       this.login = resposta;
@@ -50,12 +53,6 @@ export class UsuarioComponent implements OnInit {
     this.selectedUsuario = usuario;
   }
 
-  // public deleteUsuario(usuario) {
-  //   this.usuarioService.deleteUsuarios(usuario.id).subscribe(r => {
-  //     this.listar();
-  //   })
-  // }
-
   public deleteUsuario(usuario) {
     this.confirmationService.confirm({message: 'Confirma exclusão?',
     accept: () => {
@@ -64,7 +61,6 @@ export class UsuarioComponent implements OnInit {
         this.messageService.add({severity:'success', summary: 'Excluído com sucesso', detail: ''});
       });
     }})
-
   }
 
   public editar(){
