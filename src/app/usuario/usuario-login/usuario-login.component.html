@@ -1,0 +1,28 @@
+<div class="container" style="margin-top: 20px;">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <form class="form-sample">
+                    <div class="p-col-4 col-md-4 p-fluid">
+                        <label for="lcpf">Login</label>
+                        <!-- <input [(ngModel)]="login.login" type="text" name="lcpf" class="form-control" id="cpf"> -->
+                        <p-inputMask mask="999.999.999-99" [(ngModel)]="login.login" name="cpf"></p-inputMask>
+                    </div>
+                    <div class="p-col-12 col-md-4 p-fluid">
+                        <label for="senha">Senha </label>
+                        <input [(ngModel)]="login.senha" type="password" name="senha" class="form-control" id="senha"
+                            aria-describedby="nameHelp" placeholder="Digite a senha"><br>
+                    </div>
+                    <div class="p-col-12 col-md-4 p-fluid">
+                      <label>Perfil </label>
+                      <p-dropdown name="perfil" [options]="perfil" [(ngModel)]="login.perfil" placeholder="Selecione"></p-dropdown>
+                  </div>
+                </form>
+            </div>
+        </div>
+        <a pButton label="Cadastrar Login " class="btn btn-primary " icon="pi pi-user-plus " routerLink="/usuario"
+            (click)="createLogin() "></a>&nbsp;
+        <button pButton pRipple type="button" icon="pi pi-arrow-left" label="Voltar" class="p-button-outlined"
+            routerLink="/usuario"></button>
+    </div>
+</div>

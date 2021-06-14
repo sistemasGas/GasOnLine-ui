@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="p-grid">
+
+    <form>
+
+      <div class="p-col-12">
+        <h1>Produtos</h1>
+      </div>
+
+      <div class="p-col-12 p-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" name="Descrição">
+      </div>
+
+      <div class="p-col-4" style="margin-top: 4px;">
+        <p-button label="Procurar" icon="pi pi-search"></p-button>
+
+        <a pButton icon="pi pi-plus" label="Novo Produto" style="float:right" routerLink="/produto/cadastro"></a>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="ui-g" style="margin-top: 20px;">
+    <div class="ui-g-12">
+      <p-table [value]="produtos" styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:6%">Cod</th>
+                <th style="width:30%">Descrição</th>
+                <th>Valor Compra</th>
+                <th>Valor Venda</th>
+                <th>Categoria</th>
+                <th>Estoque</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-produto>
+            <tr>
+                <td>{{produto.id}}</td>
+                <td>{{produto.descricao}}</td>
+                <td >{{produto.valorCompra | currency: 'R$ '}}</td>
+                <td>{{produto.valorVenda | currency: 'R$ '}}</td>
+                <td>{{produto.categoria.descricao}}</td>
+                <td>{{produto.quantidadeEstoque}}</td>
+                <td>
+                  <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                    [routerLink]="['/produto/cadastro', produto.id]"></a>
+                  <button pButton icon="pi pi-trash" style="margin-left: 1px;" pTooltip="Excluir" tooltipPosition="top"
+                    (click)="deleteProduto(produto)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    </div>
+  </div>
+</div>

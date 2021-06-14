@@ -1,0 +1,84 @@
+<div class="container" style="margin-top: 20px;">
+  <form>
+    <div class="ui-g">
+      <div>
+        <h1>{{ edicao ? 'Edição de ' : 'Novo '}}Produto</h1>
+      </div>
+    </div>
+
+    <div>
+      <div class="p-col-12 p-fluid">
+        <label>Descrição</label>
+        <input [(ngModel)]="produto.descricao" pInputText type="text" name="descricao" class="form-control"
+          id="descricao" aria-describedby="nameHelp" placeholder="Digite o Produto">
+      </div>
+
+      <div class="row">
+        <div class="p-col-12 col-md-6 p-fluid">
+          <label>Categoria</label>
+          <p-dropdown placeholder="Selecione Categoria" [filter]="true" [options]="categorias"
+            [(ngModel)]="produto.categoria.codigo" optionLabel="descricao" name="categoriaSelecionada"
+            optionValue="codigo"></p-dropdown>
+        </div>
+
+        <div class="p-col-1 col-md-1 p-fluid">
+          <label>Adc | Del</label>
+          <button pButton icon="pi pi-plus" type="button" class="p-button-outlined" (click)="chamaNovaCategoria()">
+          </button>
+          <button pButton icon="pi pi-trash" type="button" class="p-button-outlined" (click)="deleteCategoria(produto.categoria.codigo)">
+          </button>
+        </div>
+
+        <div class="p-col-12 col-md-3 col-lg-5 p-fluid">
+          <label>Quantidade</label>
+          <input [(ngModel)]="produto.quantidadeEstoque" pInputText type="text" name="quantidadeEstoque"
+            class="form-control" id="quantidadeEstoque" aria-describedby="estoqueHelp" placeholder="0">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-4 p-fluid">
+        <label>Valor Compra</label>
+        <input [(ngModel)]="produto.valorCompra" pInputText type="text" name="valorCompra" class="form-control"
+          currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
+      </div>
+
+      <div class="col-md-4 p-fluid">
+        <label>Valor Venda</label>
+        <input [(ngModel)]="produto.valorVenda" pInputText type="text" name="valorVenda" class="form-control"
+          currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
+      </div>
+    </div>
+
+    <div class="row">
+      <div style="margin-top: 14px;">
+        <button pButton pRipple type="button" icon="pi pi-arrow-left" label="Voltar" class="p-button-outlined"
+          routerLink="/produtos/pesquisa"></button>
+        <button pButton type="button" icon="pi pi-check" label="Salvar" style="margin-left: 20px;"
+          (click)="criarProduto()" routerLink="/produtos/pesquisa"></button>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<p-dialog header="Nova Categoria" [(visible)]="exibiNovaCategoria">
+  <div class="p-col-3 col-md-2 p-fluid">
+    <label>Descrição</label>
+    <input [(ngModel)]="categoria.descricao" name="descricao">
+  </div>
+  <div class="p-col-3 col-md-2 p-fluid">
+    <label>Sigla</label>
+    <input [(ngModel)]="categoria.sigla" name="sigla">
+  </div>
+
+  <div style="margin-top: 14px;">
+    <button pButton pRipple type="button" icon="pi pi-times" label="Cancelar" class="p-button-outlined"
+    (click)="fechaNovaCategoria()"></button>
+    <button pButton type="button" icon="pi pi-check" label="Salvar" style="margin-left: 20px;"
+      (click)="criarCategoria()" ></button>
+  </div>
+</p-dialog>
+

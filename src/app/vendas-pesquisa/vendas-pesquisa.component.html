@@ -1,0 +1,46 @@
+<div class="container" style="margin-top: 20px;">
+  <form>
+    <div class="ui-g">
+      <div>
+        <h2>Cadastro de Venda</h2>
+      </div>
+    </div>
+
+    <div class="content-section implementation">
+      <div class="card">
+        <p-toast></p-toast>
+        <p-steps [model]="items" [readonly]="true"></p-steps>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+
+    <div class="stepsdemo-content">
+      <p-card>
+        <ng-template pTemplate="title">
+          Informação do Cliente
+        </ng-template>
+        <ng-template pTemplate="subtitle">
+          Selecione um cliente para a venda:
+        </ng-template>
+        <ng-template pTemplate="content">
+
+          <div class="p-col-12 p-fluid">
+            <p-dropdown placeholder="Selecione um cliente"
+            [filter]="true"
+            [options]="clientes" (ngModel)="venda.pessoa.id" optionLabel="nome" name="pessoaSelecionada" optionValue="id"
+            >
+          </p-dropdown>
+          </div>
+
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <div class="p-grid p-nogutter p-justify-end">
+            <p-button label="Próximo" (onClick)="proximaPagina()" icon="pi pi-angle-right" iconPos="right"></p-button>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+
+
+  </form>
+</div>

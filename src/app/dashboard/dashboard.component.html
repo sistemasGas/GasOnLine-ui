@@ -1,0 +1,146 @@
+<div class="container">
+  <div class="p-grid">
+
+    <form>
+
+      <div class="p-col-12">
+        <h1>Painel</h1>
+      </div>
+    </form>
+  </div>
+
+<!-- Painel de Itens -->
+
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>150</h3>
+
+          <p>Vendas no Mês</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="#" class="small-box-footer">Consultar Vendas <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>580<sup style="font-size: 20px">R$</sup></h3>
+
+          <p>Valor das vendas</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-stats-bars"></i>
+        </div>
+        <a href="#" class="small-box-footer">Consulta Vendas<i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3>{{clientes}}</h3>
+
+          <p>Clientes Cadastrados</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add"></i>
+        </div>
+        <a href="http://localhost:4200/usuario" class="small-box-footer">Consultar Clientes <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{valorEstoque | number:'1.2-2' }}</h3>
+
+          <p>Valor do Estoque</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph"></i>
+        </div>
+        <a href="http://localhost:4200/produtos/pesquisa" class="small-box-footer">Consultar Estoque <i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+<!-- tabela de ultimas vendas  -->
+
+  <div class="card">
+    <div class="card-header border-transparent">
+      <h3 class="card-title">Ultimas Vendas</h3>
+
+      <div class="card-tools">
+        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-tool" data-card-widget="remove">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table m-0">
+          <thead>
+          <tr>
+            <th>Código</th>
+            <th>Cliente</th>
+            <th>Status</th>
+            <th>Valor</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><a href="pages/examples/invoice.html">OR9842</a></td>
+            <td>Zezin dos Anzois</td>
+            <td><span class="badge badge-success">Emitida</span></td>
+            <td>
+              <div class="sparkbar" data-color="#00a65a" data-height="20">100,00</div>
+            </td>
+          </tr>
+          <tr>
+            <td><a href="pages/examples/invoice.html">OR1848</a></td>
+            <td>Jose das Cove</td>
+            <td><span class="badge badge-warning">Orçamento</span></td>
+            <td>
+              <div class="sparkbar" data-color="#f39c12" data-height="20">90,80</div>
+            </td>
+          </tr>
+          <tr>
+            <td><a href="pages/examples/invoice.html">OR7429</a></td>
+            <td>Maria Sem credito</td>
+            <td><span class="badge badge-danger">Cancelada</span></td>
+            <td>
+              <div class="sparkbar" data-color="#f56954" data-height="20">83,63</div>
+            </td>
+          </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+      <!-- /.table-responsive -->
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer clearfix">
+      <a href="http://localhost:4200/venda/cadastro" class="btn btn-sm btn-info float-left">Cadastrar Nova Venda</a>
+      <a href="http://localhost:4200/vendas" class="btn btn-sm btn-secondary float-right">Consultar todas Vendas</a>
+    </div>
+    <!-- /.card-footer -->
+  </div>
+
+
+
+</div>
