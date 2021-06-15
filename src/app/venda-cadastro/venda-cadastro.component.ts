@@ -3,7 +3,7 @@ import { UsuarioService } from './../usuario.service';
 import { ProdutoService } from './../produto.service';
 import { Pessoa, Produto, Venda, ItemVenda } from './../core/model';
 import { Component, OnInit } from '@angular/core';
-import { MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,7 +17,7 @@ export class VendaCadastroComponent implements OnInit {
   produtosDisponiveis: Produto[];
   produtosSelecionados: Produto[];
   produtoArrastado: Produto;
-
+  itemVenda: ItemVenda;
   itensVenda: ItemVenda[];
   venda = new Venda();
   butons: MenuItem[];
@@ -30,6 +30,7 @@ export class VendaCadastroComponent implements OnInit {
     private usuarioService: UsuarioService,
     private vendaService: VendaService,
     private messageService: MessageService,
+    private confirmationService: ConfirmationService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -43,14 +44,26 @@ export class VendaCadastroComponent implements OnInit {
         }
       },
       {
-        label: 'Venda', icon: 'pi pi-shopping-cart', routerLink: ['/home'], command: () => {
+        label: 'Emitir Venda', icon: 'pi pi-shopping-cart', routerLink: ['/home'], command: () => {
           this.criarVenda();
         }
       },
-          { separator: true },
-      { label: 'Opções', icon: 'pi pi-cog', routerLink: ['/setup'] }
+      { separator: true },
+      {
+        label: 'Cancelar', icon: 'pi pi-times', routerLink: ['/home'], command: () => {
+          this.cancelarVenda();
+        }
+      }
     ];
 
+    const vendaID = this.route.snapshot.params['id'];
+    if (vendaID) {
+      this.buscarVendaPorId(vendaID);
+    }
+  }
+
+  get edicao() {
+    return Boolean(this.venda.codigo);
   }
 
   private listarProdutos() {
@@ -61,6 +74,13 @@ export class VendaCadastroComponent implements OnInit {
   public listarClientes() {
     this.usuarioService.getUsuarios().subscribe(resposta => {
       this.pessoas = resposta;
+    });
+  }
+
+  public buscarVendaPorId(vendaID) {
+    this.vendaService.findById(vendaID).subscribe(resposta => {
+      this.venda = resposta;
+      this.itensVenda = this.venda.itensVenda;
     });
   }
 
@@ -79,7 +99,7 @@ export class VendaCadastroComponent implements OnInit {
       const itemVendaArrastado = new ItemVenda();
       itemVendaArrastado.produto = this.produtoArrastado;
       itemVendaArrastado.quantidade = 1;
-      itemVendaArrastado.valorUnitario=this.produtoArrastado.valorVenda
+      itemVendaArrastado.valorUnitario = this.produtoArrastado.valorVenda
       let draggedProductIndex = this.findIndex(this.produtoArrastado);
       this.itensVenda = [...this.itensVenda, itemVendaArrastado];
       this.produtosDisponiveis = this.produtosDisponiveis.filter((val, i) => i != draggedProductIndex);
@@ -127,14 +147,14 @@ export class VendaCadastroComponent implements OnInit {
   }
 
   calculaValorTotal() {
-    let total = this.itensVenda.reduce((total, valor) => total + (valor.quantidade * valor.produto.valorVenda), 0);
+    let total = this.itensVenda.reduce((total, valor) => total + (valor.quantidade * valor.valorUnitario), 0);
     this.venda.valorTotal = total;
   }
 
 
   criarVenda() {
-    this.venda.itensVenda=this.itensVenda;
-    this.venda.status="EMITIDA"
+    this.venda.itensVenda = this.itensVenda;
+    this.venda.status = "EMITIDA"
     this.vendaService.post(this.venda).subscribe(resposta => {
       if (this.venda.codigo) {
         this.messageService.add({ severity: 'success', summary: 'Venda Atualizada!', detail: '' });
@@ -148,17 +168,34 @@ export class VendaCadastroComponent implements OnInit {
   }
 
   criarOrcamento() {
-    this.venda.status="ORCAMENTO";
-    this.venda.itensVenda=this.itensVenda;
-    this.vendaService.post(this.venda).subscribe(resposta => {
-      if (this.venda.codigo) {
-        this.messageService.add({ severity: 'success', summary: 'Orçamento Atualizado!', detail: '' });
-      }
-      else {
-        this.messageService.add({ severity: 'success', summary: 'Orçamento Cadastrado!', detail: '' });
-      }
-      this.venda = null;
-    });
+    if (this.venda.status === "ORCAMENTO") {
+      this.messageService.add({ severity: 'error', summary: 'Item já é um Orçamento, Efetive ou cancele!!!', detail: '' });
+    }
+    else {
+      this.venda.status = "ORCAMENTO";
+      this.venda.itensVenda = this.itensVenda;
+      this.vendaService.post(this.venda).subscribe(resposta => {
+        if (this.venda.codigo) {
+          this.messageService.add({ severity: 'info', summary: 'Orçamento Atualizado!', detail: '' });
+        }
+        else {
+          this.messageService.add({ severity: 'info', summary: 'Orçamento Cadastrado!', detail: '' });
+        }
+        this.venda = null;
+      });
+    }
+  }
 
+  cancelarVenda() {
+    if (this.venda.status === "CANCELADA") {
+      this.messageService.add({ severity: 'error', summary: 'Venda ja cancelada!!!', detail: '' });
+    }
+    else {
+      this.venda.status = "CANCELADA";
+      this.vendaService.post(this.venda).subscribe(resposta => {
+        this.messageService.add({ severity: 'success', summary: 'Cancelado com Sucesso', detail: '' });
+        this.venda = null;
+      });
+    }
   }
 }
