@@ -16,6 +16,7 @@ export class ProdutoCadastroComponent implements OnInit {
   categorias = [];
   produto = new Produto();
   categoria = new Categoria();
+  uploadedFiles: any[] = [];
 
   constructor(
     public produtoService: ProdutoService,
@@ -70,7 +71,7 @@ export class ProdutoCadastroComponent implements OnInit {
       else {
         this.messageService.add({ severity: 'success', summary: 'Produto Cadastrado!', detail: '' });
       }
-      this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0 };
+      this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0, imagem: "" };
     });
 
   }
@@ -93,5 +94,13 @@ export class ProdutoCadastroComponent implements OnInit {
     this.produtoService.getProdutosPorId(id).subscribe(resposta => {
       this.produto = resposta;
     })
+  }
+
+  onUpload(event) {
+    for(let file of event.files) {
+      this.uploadedFiles.push(file);
+      this.produto.imagem = this.uploadedFiles[0].base64;
+  }
+    this.messageService.add({ severity: 'info', summary: 'Imagem Adicionada', detail: '' });
   }
 }

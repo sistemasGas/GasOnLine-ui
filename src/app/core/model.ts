@@ -11,6 +11,7 @@ export class Produto{
   valorVenda: number;
   quantidadeEstoque: number;
   categoria = new Categoria();
+  imagem: string;
 }
 
 export class Venda{
