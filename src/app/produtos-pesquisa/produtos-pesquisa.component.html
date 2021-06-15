@@ -27,6 +27,7 @@
         <ng-template pTemplate="header">
             <tr>
                 <th style="width:6%">Cod</th>
+                <th>Imagem</th>
                 <th style="width:30%">Descrição</th>
                 <th>Valor Compra</th>
                 <th>Valor Venda</th>
@@ -38,6 +39,9 @@
         <ng-template pTemplate="body" let-produto>
             <tr>
                 <td>{{produto.id}}</td>
+                <div class="image-container">
+                  <img class="img-responsive" src="/assets/images/{{produto.categoria.sigla}}.png" class="product-image" />
+                </div>
                 <td>{{produto.descricao}}</td>
                 <td >{{produto.valorCompra | currency: 'R$ '}}</td>
                 <td>{{produto.valorVenda | currency: 'R$ '}}</td>

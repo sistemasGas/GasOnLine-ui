@@ -16,7 +16,14 @@ export class ProdutoCadastroComponent implements OnInit {
   categorias = [];
   produto = new Produto();
   categoria = new Categoria();
-  uploadedFiles: any[] = [];
+  imagens = [
+    {label:"AL", valor:"https://i.ibb.co/JpVptjv/AL.png"},
+    {label:"P5", valor:"https://i.ibb.co/cD3VkPW/P5.png"},
+    {label:"P10", valor:"https://i.ibb.co/gJVVcxB/P10.png"},
+    {label:"P13", valor:"https://i.ibb.co/dW53ywf/P13.png"},
+    {label:"P45", valor:"https://i.ibb.co/nwQ7QWX/P20.png"},
+    {label:"P90", valor:"https://i.ibb.co/YPM3cFd/P90.png"},
+  ];
 
   constructor(
     public produtoService: ProdutoService,
@@ -94,13 +101,5 @@ export class ProdutoCadastroComponent implements OnInit {
     this.produtoService.getProdutosPorId(id).subscribe(resposta => {
       this.produto = resposta;
     })
-  }
-
-  onUpload(event) {
-    for(let file of event.files) {
-      this.uploadedFiles.push(file);
-      this.produto.imagem = this.uploadedFiles[0].base64;
-  }
-    this.messageService.add({ severity: 'info', summary: 'Imagem Adicionada', detail: '' });
   }
 }

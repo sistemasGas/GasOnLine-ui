@@ -44,7 +44,7 @@
         <div class="product-item" pDraggable="produtos" pDroppable="produtos" (onDragStart)="dragStart(produto)"
           (onDragEnd)="dragEnd()" (dblclick)="addProduto(produto)">
           <div class="image-container">
-            <img src="https://cdn.pixabay.com/photo/2014/03/25/16/58/fire-297747_960_720.png" class="product-image" />
+            <img class="img-responsive" src="/assets/images/{{produto.categoria.sigla}}.png" class="product-image" />
           </div>
           <div class="product-list-detail">
             <h5 class="p-mb-2">{{produto.descricao}}</h5>

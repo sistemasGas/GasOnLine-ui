@@ -51,17 +51,6 @@
           currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
       </div>
 
-      <div class="col-md-6 p-fluid">
-        <label>Imagem</label>
-        <p-fileUpload name="demo[]" (onUpload)="onUpload($event)"
-          accept="image/*" maxFileSize="1000000">
-          <ng-template pTemplate="content">
-            <ul *ngIf="uploadedFiles.length">
-              <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li></ul>
-          </ng-template>
-        </p-fileUpload>
-      </div>
-
     </div>
 
     <div class="row">
