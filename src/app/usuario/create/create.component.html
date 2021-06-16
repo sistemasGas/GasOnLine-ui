@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-12 grid-margin">
-        
+
         <div class="card">
             <div class="card-body">
                 <div class="ui-g">
@@ -9,23 +9,24 @@
                         <h1>Cadastro de Usuario</h1>
                     </div>
                 </div>
-                <form class="form-sample">
-                    <div #loginCpf>
+                <form class="form-sample form-group">
+                    <div>
                         <div class="row">
+                            <!-- <div class="row"> -->
                             <div class="p-col-12 col-md-8 p-fluid">
                                 <label for="nome">Nome *</label>
                                 <input [(ngModel)]="usuario.nome" type="text" name="nome" class="form-control" id="nome"
-                                    aria-describedby="nameHelp" placeholder="Digite o nome"><br>
+                                    aria-describedby="nameHelp" placeholder="Digite o nome">
                                 <!-- <p-inputMask mask="99-999999" [(ngModel)]="usuario.nome" placeholder="99-999999"></p-inputMask> -->
                             </div>
+                                                   
                             <div class="p-col-4 col-md-4 p-fluid">
-                                <label for="cpf">CPF *</label>
-                                <!-- <input [(ngModel)]="usuario.cpf" type="text" name="cpf" class="form-control" id="cpf" aria-describedby="cpfHelp" placeholder="Digite o cpf"> -->
+                                <label for="cpf">CPF *</label>                                
                                 <p-inputMask mask="999.999.999-99" [(ngModel)]="usuario.cpf"
                                     placeholder="999.999.999-99" name="cpf"></p-inputMask>
                             </div>
-                        </div>
-                        <div class="row">
+                            <!-- </div> -->
+
                             <div class="p-col-12 col-md-8 p-fluid">
                                 <label for="email">E-mail</label>
                                 <input [(ngModel)]="usuario.email" type="text" name="email" class="form-control"
@@ -37,7 +38,6 @@
                                 <p-inputMask mask="(99) 99999-9999" [(ngModel)]="usuario.telefone"
                                     placeholder="(99) 99999-9999" name="telefone"></p-inputMask>
                             </div>
-
                             <!-- <div class="p-col-12 col-md-8 p-fluid">
                                 <label for="endereco">Endereço</label>
                                 <input [(ngModel)]="usuario.endereco" type="text" name="endereco" class="form-control" id="endereco" aria-describedby="enderecoHelp" placeholder="Digite o endereco">
@@ -63,12 +63,16 @@
                                 <p-inputMask mask="999.999.999-99" [(ngModel)]="user.login" placeholder="999.999.999-99"
                                     name="cpf"></p-inputMask>
                                 <!-- <input [(ngModel)]="cpf" type="text" name="lcpf" class="form-control" id="cpf" readonly> -->
-
                             </div>
                             <div class="p-col-12 col-md-4 p-fluid">
                                 <label for="senha">Senha *</label>
                                 <input [(ngModel)]="user.senha" type="text" name="senha" class="form-control" id="senha"
-                                    aria-describedby="nameHelp" placeholder="Digite a senha"><br>
+                                    aria-describedby="nameHelp" placeholder="Digite a senha">
+                            </div>
+                            <div class="p-col-4 col-md-4 p-fluid">
+                                <label for="cnpj">CNPJ</label>
+                                <p-inputMask mask="99.999.999/9999-99" [(ngModel)]="usuario.cnpj"
+                                    placeholder="99.999.999/9999-99" name="cpnj"></p-inputMask>
                             </div>
                         </div>
                     </div>
@@ -76,7 +80,7 @@
             </div>
         </div>
         <a pButton label="Salvar Usuário " class="btn btn-primary " icon="pi pi-user-plus " routerLink="/usuario"
-            (click)="createUsuario()"></a>&nbsp;
+            (click)="createUsuario()"></a> &nbsp;
         <button pButton pRipple type="button" icon="pi pi-arrow-left" label="Voltar" class="p-button-outlined"
             routerLink="/usuario"></button>
     </div>

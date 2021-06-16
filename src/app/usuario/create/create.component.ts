@@ -7,25 +7,25 @@ import { MessageService, PrimeNGConfig, ConfirmationService } from 'primeng/api'
 import { Pessoa } from 'src/app/core/model';
 import { ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
+import { MASKS, NgBrazilValidators } from 'ng-brazil';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  // providers: [MessageService],
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
 
-  // }
-  // [x: string]: any;
-
-  // items: MenuItem[];
-  // activeIndex: number = 1;
-
   usuario = new Pessoa();
   user = new Login();
-
   endereco: Endereco;
+
+// ↓ em teste
+formResult: string = '';
+// MASKS = ultisBr.MASKS;
+  
 
   cargos = [
     { label: "Administrador", value: "Administrador" },
@@ -40,16 +40,27 @@ export class CreateComponent implements OnInit {
     { label: "Física", value: "FISICA" },
     { label: "Jurídica", value: "JURIDICA" }
   ]
+   cadastroForm: FormGroup;
+   fb: any;
+  
   constructor(public usuarioService: UsuarioService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    // private fb: FormBuilder
+    ) { }
 
   ngOnInit(): void {
-
     const idPessoa = this.route.snapshot.params['id'];
     this.readById(idPessoa);
+    
+    this.cadastroForm = this.fb.group({
+      nome: ['', Validators.required],
+      // cpf: ['', [Validators.required, NgBrazilValidators.cpf]]
+    });
+
+    
   }
 
   createUsuario() {
@@ -72,5 +83,5 @@ export class CreateComponent implements OnInit {
     this.usuarioService.readById(idPessoa).subscribe(resposta => {
       this.usuario = resposta;
     });
-  }
+  }  
 }
