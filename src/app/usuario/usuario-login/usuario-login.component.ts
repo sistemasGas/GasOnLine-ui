@@ -44,7 +44,7 @@ export class UsuarioLoginComponent implements OnInit {
       else {
         this.messageService.add({ severity: 'success', summary: 'Login Cadastrado!', detail: '' });
       }
-      this.login = { id: null, login: "", senha: "" };
+      this.login = { id: null, login: "", senha: "",perfil:"" };
     });
   }
 

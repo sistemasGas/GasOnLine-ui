@@ -21,12 +21,12 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class CreateComponent implements OnInit {
   exibindoCNPJ = false;
   exibindoCPF = true;
+  exibindoCargo = false;
+
   usuario = new Pessoa();
   user = new Login();
   endereco: Endereco;
 
-
-// ↓ em teste
 formResult: string = '';
 public MASKS = MASKS;
 
@@ -38,6 +38,10 @@ public MASKS = MASKS;
   categorias = [
     { label: "Cliente | Fornecedor", value: "CLIFOR" },
     { label: "Funcionário", value: "FUNC" }
+  ]
+  perfis = [
+    { label: "Admin", value: "admin" },
+    { label: "Atendente", value: "atendente" }
   ]
 
   tipoPessoas = [
@@ -94,10 +98,17 @@ public MASKS = MASKS;
     if(change.value === 'FISICA'){
       this.exibindoCPF=true;
       this.exibindoCNPJ=false;
+      this.exibindoCargo=true;
+      this.categorias= [
+        { label: "Cliente | Fornecedor", value: "CLIFOR" },
+        { label: "Funcionário", value: "FUNC" }
+      ]
     }
     if(change.value === 'JURIDICA'){
       this.exibindoCNPJ=true;
       this.exibindoCPF=false;
+      this.exibindoCargo=false;
+      this.categorias.splice(1,1);
     }
   }
 }

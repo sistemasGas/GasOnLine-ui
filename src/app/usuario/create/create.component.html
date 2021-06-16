@@ -1,6 +1,5 @@
 <div class="container">
     <div class="col-12 grid-margin">
-
         <div class="card">
             <div class="card-body">
                 <div class="ui-g">
@@ -21,12 +20,10 @@
                             </div>
 
                             <div class="p-col-12 col-md-4 p-fluid ">
-                              <label>Tipo de Pessoa *</label>
-                              <p-selectButton [options]="tipoPessoas" [(ngModel)]="usuario.tipo" optionLabel="label" optionValue="value" (onChange)="onChange($event)"></p-selectButton>
+                                <label>Tipo de Pessoa *</label>
+                                <p-selectButton [options]="tipoPessoas" [(ngModel)]="usuario.tipo" optionLabel="label"
+                                    optionValue="value" (onChange)="onChange($event)"></p-selectButton>
                             </div><br>
-
-                            <!-- </div> -->
-
                             <div class="p-col-12 col-md-8 p-fluid">
                                 <label for="email">E-mail</label>
                                 <input [(ngModel)]="usuario.email" type="text" name="email" class="form-control"
@@ -42,7 +39,7 @@
                                 <label for="endereco">Endereço</label>
                                 <input [(ngModel)]="usuario.endereco" type="text" name="endereco" class="form-control" id="endereco" aria-describedby="enderecoHelp" placeholder="Digite o endereco">
                             </div> -->
-                            <div class="p-col-12 col-md-4 p-fluid">
+                            <div class="p-col-12 col-md-4 p-fluid" [hidden]="!exibindoCargo">
                                 <label>Cargos</label>
                                 <p-dropdown name="cargo" [options]="cargos" [(ngModel)]="usuario.cargo"
                                     placeholder="Selecione"></p-dropdown>
@@ -54,16 +51,16 @@
                             </div>
 
                             <div class="p-col-4 col-md-4 p-fluid" [hidden]="!exibindoCPF">
-                              <label for="cpf">CPF *</label>
-                              <p-inputMask mask="999.999.999-99" [(ngModel)]="usuario.cpf"
-                                  placeholder="999.999.999-99" name="cpf"></p-inputMask>
+                                <label for="cpf">CPF *</label>
+                                <p-inputMask mask="999.999.999-99" [(ngModel)]="usuario.cpf"
+                                    placeholder="999.999.999-99" name="cpf"></p-inputMask>
                             </div>
 
                             <div class="p-col-4 col-md-4 p-fluid" [hidden]="!exibindoCNPJ">
-                              <label for="cnpj">CNPJ</label>
-                              <p-inputMask mask="99.999.999/9999-99" [(ngModel)]="usuario.cnpj"
-                                  placeholder="99.999.999/9999-99" name="cpnj"></p-inputMask>
-                          </div>
+                                <label for="cnpj">CNPJ</label>
+                                <p-inputMask mask="99.999.999/9999-99" [(ngModel)]="usuario.cnpj"
+                                    placeholder="99.999.999/9999-99" name="cpnj"></p-inputMask>
+                            </div>
 
                             <div class="p-col-4 col-md-4 p-fluid">
                                 <label for="cpf">Login</label>
@@ -74,7 +71,13 @@
                             </div>
                             <div class="p-col-12 col-md-4 p-fluid">
                                 <label for="senha">Senha *</label>
-                                <p-password [(ngModel)]="user.senha" name="senha" placeholder="Digite a senha"></p-password>
+                                <p-password [(ngModel)]="user.senha" name="senha" placeholder="Digite a senha">
+                                </p-password>
+                            </div>
+                            <div class="p-col-12 col-md-4 p-fluid">
+                                <label>Perfil</label>
+                                <p-dropdown name="perfil" [options]="perfis" [(ngModel)]="user.perfil"
+                                    placeholder="Selecione "></p-dropdown>
                             </div>
                         </div>
                     </div>
