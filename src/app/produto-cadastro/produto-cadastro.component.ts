@@ -16,6 +16,14 @@ export class ProdutoCadastroComponent implements OnInit {
   categorias = [];
   produto = new Produto();
   categoria = new Categoria();
+  imagens = [
+    {label:"AL", valor:"https://i.ibb.co/JpVptjv/AL.png"},
+    {label:"P5", valor:"https://i.ibb.co/cD3VkPW/P5.png"},
+    {label:"P10", valor:"https://i.ibb.co/gJVVcxB/P10.png"},
+    {label:"P13", valor:"https://i.ibb.co/dW53ywf/P13.png"},
+    {label:"P45", valor:"https://i.ibb.co/nwQ7QWX/P20.png"},
+    {label:"P90", valor:"https://i.ibb.co/YPM3cFd/P90.png"},
+  ];
 
   constructor(
     public produtoService: ProdutoService,
@@ -70,7 +78,7 @@ export class ProdutoCadastroComponent implements OnInit {
       else {
         this.messageService.add({ severity: 'success', summary: 'Produto Cadastrado!', detail: '' });
       }
-      this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0 };
+      this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0, imagem: "" };
     });
 
   }

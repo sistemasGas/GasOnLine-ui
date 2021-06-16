@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: "pessoa/cadastro", component: PessoaCadastroComponent},
   { path: "compra/cadastro", component: CompraCadastroComponent},
   { path: "venda/cadastro", component: VendaCadastroComponent},
+  { path: "venda/cadastro/:id", component: VendaCadastroComponent},
   { path: "venda/pesquisa", component: VendasPesquisaComponent},
   { path: "usuario", component: UsuarioComponent},
   { path: "usuario/create", component: CreateComponent},

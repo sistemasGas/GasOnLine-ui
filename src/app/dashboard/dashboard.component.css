@@ -6,6 +6,6 @@
     background-color: rgb(252, 244, 143);
 }
 
-.some-custom-class-name::ng-deep th {
-    background-color: blue !important;
+.product-badge-status-cancelada{
+    background-color: rgb(247, 164, 158);
 }

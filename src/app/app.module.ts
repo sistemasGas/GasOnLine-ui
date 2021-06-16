@@ -9,6 +9,7 @@ import {MessagesModule} from 'primeng/messages';
 import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
 import {DialogModule} from 'primeng/dialog';
+import {FileUploadModule} from 'primeng/fileupload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -89,7 +90,8 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     DialogModule,
     DragDropModule,
     CalendarModule,
-    SplitButtonModule
+    SplitButtonModule,
+    FileUploadModule
   ],
   providers: [
     ConfirmationService,
