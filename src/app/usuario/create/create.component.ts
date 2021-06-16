@@ -90,6 +90,7 @@ public MASKS = MASKS;
   }
 
   onChange(change:any){
+    this.usuario.tipo=change.value;
     if(change.value === 'FISICA'){
       this.exibindoCPF=true;
       this.exibindoCNPJ=false;
