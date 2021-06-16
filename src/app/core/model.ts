@@ -86,4 +86,5 @@ export class Login{
   id: any; 
   login: string;
   senha: string; 
+  perfil: string;
 }
