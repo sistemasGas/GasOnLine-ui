@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { from } from 'rxjs';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { utils } from 'protractor';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -17,15 +19,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-
+  exibindoCNPJ = false;
+  exibindoCPF = true;
   usuario = new Pessoa();
   user = new Login();
   endereco: Endereco;
 
+
 // ↓ em teste
 formResult: string = '';
-// MASKS = ultisBr.MASKS;
-  
+public MASKS = MASKS;
+
 
   cargos = [
     { label: "Administrador", value: "Administrador" },
@@ -42,7 +46,7 @@ formResult: string = '';
   ]
    cadastroForm: FormGroup;
    fb: any;
-  
+
   constructor(public usuarioService: UsuarioService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
@@ -54,17 +58,17 @@ formResult: string = '';
   ngOnInit(): void {
     const idPessoa = this.route.snapshot.params['id'];
     this.readById(idPessoa);
-    
+
     this.cadastroForm = this.fb.group({
       nome: ['', Validators.required],
-      // cpf: ['', [Validators.required, NgBrazilValidators.cpf]]
+      cpf: ['', [Validators.required, NgBrazilValidators.cpf]]
     });
 
-    
+
   }
 
   createUsuario() {
- 
+
     this.usuario.usuario = this.user;
     console.log(this.usuario);
     this.usuarioService.salvarUsuario(this.usuario).subscribe(resposta => {
@@ -83,5 +87,16 @@ formResult: string = '';
     this.usuarioService.readById(idPessoa).subscribe(resposta => {
       this.usuario = resposta;
     });
-  }  
+  }
+
+  onChange(change:any){
+    if(change.value === 'FISICA'){
+      this.exibindoCPF=true;
+      this.exibindoCNPJ=false;
+    }
+    if(change.value === 'JURIDICA'){
+      this.exibindoCNPJ=true;
+      this.exibindoCPF=false;
+    }
+  }
 }

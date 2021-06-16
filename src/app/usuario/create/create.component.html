@@ -19,12 +19,12 @@
                                     aria-describedby="nameHelp" placeholder="Digite o nome">
                                 <!-- <p-inputMask mask="99-999999" [(ngModel)]="usuario.nome" placeholder="99-999999"></p-inputMask> -->
                             </div>
-                                                   
-                            <div class="p-col-4 col-md-4 p-fluid">
-                                <label for="cpf">CPF *</label>                                
-                                <p-inputMask mask="999.999.999-99" [(ngModel)]="usuario.cpf"
-                                    placeholder="999.999.999-99" name="cpf"></p-inputMask>
-                            </div>
+
+                            <div class="p-col-12 col-md-4 p-fluid ">
+                              <label>Tipo de Pessoa *</label>
+                              <p-selectButton [options]="tipoPessoas" [(ngModel)]="usuario.tipo" optionLabel="label" optionValue="value" (onChange)="onChange($event)"></p-selectButton>
+                            </div><br>
+
                             <!-- </div> -->
 
                             <div class="p-col-12 col-md-8 p-fluid">
@@ -52,11 +52,19 @@
                                 <p-dropdown name="categoria" [options]="categorias" [(ngModel)]="usuario.categoria"
                                     placeholder="Selecione "></p-dropdown>
                             </div>
-                            <div class="p-col-12 col-md-4 p-fluid ">
-                                <label>Tipo de Pessoa *</label>
-                                <p-dropdown name="tipoPessoa " [options]="tipoPessoas" [(ngModel)]="usuario.tipo"
-                                    placeholder=" Selecione "></p-dropdown>
-                            </div><br>
+
+                            <div class="p-col-4 col-md-4 p-fluid" [hidden]="!exibindoCPF">
+                              <label for="cpf">CPF *</label>
+                              <p-inputMask mask="999.999.999-99" [(ngModel)]="usuario.cpf"
+                                  placeholder="999.999.999-99" name="cpf"></p-inputMask>
+                            </div>
+
+                            <div class="p-col-4 col-md-4 p-fluid" [hidden]="!exibindoCNPJ">
+                              <label for="cnpj">CNPJ</label>
+                              <p-inputMask mask="99.999.999/9999-99" [(ngModel)]="usuario.cnpj"
+                                  placeholder="99.999.999/9999-99" name="cpnj"></p-inputMask>
+                          </div>
+
                             <div class="p-col-4 col-md-4 p-fluid">
                                 <label for="cpf">Login</label>
                                 <!-- <input [(ngModel)]="user.login" type="text" name="cpf" class="form-control" id="cpf"> -->
@@ -68,11 +76,6 @@
                                 <label for="senha">Senha *</label>
                                 <input [(ngModel)]="user.senha" type="text" name="senha" class="form-control" id="senha"
                                     aria-describedby="nameHelp" placeholder="Digite a senha">
-                            </div>
-                            <div class="p-col-4 col-md-4 p-fluid">
-                                <label for="cnpj">CNPJ</label>
-                                <p-inputMask mask="99.999.999/9999-99" [(ngModel)]="usuario.cnpj"
-                                    placeholder="99.999.999/9999-99" name="cpnj"></p-inputMask>
                             </div>
                         </div>
                     </div>

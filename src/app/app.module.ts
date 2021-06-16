@@ -42,6 +42,11 @@ import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.com
 import {DragDropModule} from 'primeng/dragdrop';
 import {CalendarModule} from 'primeng/calendar';
 import {SplitButtonModule} from 'primeng/splitbutton';
+import { NgBrazil } from 'ng-brazil'
+import { TextMaskModule } from 'angular2-text-mask';
+
+import {SelectButtonModule} from 'primeng/selectbutton';
+
 
 
 @NgModule({
@@ -91,7 +96,10 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     DragDropModule,
     CalendarModule,
     SplitButtonModule,
-    FileUploadModule
+    FileUploadModule,
+    TextMaskModule,
+    NgBrazil,
+    SelectButtonModule
   ],
   providers: [
     ConfirmationService,
