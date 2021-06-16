@@ -130,7 +130,7 @@ export class VendaCadastroComponent implements OnInit {
         this.itensVenda[i].produto.quantidadeEstoque++;
         this.produtosDisponiveis = [...this.produtosDisponiveis, this.itensVenda[i].produto];
         this.itensVenda.splice(i, 1);
-      } else if(id === this.itensVenda[i].produto.id) {
+      } else if (id === this.itensVenda[i].produto.id) {
         this.itensVenda[i].produto.quantidadeEstoque++;
         this.itensVenda[i].quantidade--;
       }
@@ -138,15 +138,14 @@ export class VendaCadastroComponent implements OnInit {
     this.messageService.add({ severity: 'warn', summary: 'Item Removido!', detail: '' });
     this.calculaValorTotal();
   }
-
   adicionarItem(itemVenda) {
     let id = itemVenda.produto.id;
     itemVenda.produto.quantidadeEstoque--;
     for (let i = 0; i < this.itensVenda.length; i++) {
-      if (id === this.itensVenda[i].produto.id && this.itensVenda[i].produto.quantidadeEstoque>0) {
+      if (id === this.itensVenda[i].produto.id && this.itensVenda[i].produto.quantidadeEstoque > 0) {
         this.itensVenda[i].quantidade++;
         this.messageService.add({ severity: 'success', summary: 'Item Adicionado!', detail: '' });
-      }else if (id === this.itensVenda[i].produto.id){
+      } else if (id === this.itensVenda[i].produto.id) {
         this.messageService.add({ severity: 'error', summary: 'Item Esgotado!!!', detail: '' });
       }
     }
@@ -157,7 +156,6 @@ export class VendaCadastroComponent implements OnInit {
     let total = this.itensVenda.reduce((total, valor) => total + (valor.quantidade * valor.valorUnitario), 0);
     this.venda.valorTotal = total;
   }
-
 
   criarVenda() {
     this.venda.itensVenda = this.itensVenda;
@@ -171,8 +169,8 @@ export class VendaCadastroComponent implements OnInit {
       }
       this.venda = null;
     });
-
   }
+
 
   criarOrcamento() {
     if (this.venda.status === "ORCAMENTO") {
