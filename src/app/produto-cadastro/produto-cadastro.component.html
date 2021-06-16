@@ -9,7 +9,7 @@
     <div>
       <div class="p-col-12 p-fluid">
         <label>Descrição</label>
-        <input [(ngModel)]="produto.descricao" pInputText type="text" for="descricao" name="descricao" class="form-control"
+        <input [(ngModel)]="produto.descricao" pInputText type="text" name="descricao" class="form-control"
           id="descricao" aria-describedby="nameHelp" placeholder="Digite o Produto">
       </div>
 
@@ -32,8 +32,8 @@
 
         <div class="p-col-12 col-md-3 col-lg-5 p-fluid">
           <label>Quantidade</label>
-          <input [(ngModel)]="produto.quantidadeEstoque" pInputText type="text" name="quantidadeEstoque"
-            class="form-control" id="quantidadeEstoque" aria-describedby="estoqueHelp" placeholder="0">
+          <p-inputNumber min="0" [(ngModel)]="produto.quantidadeEstoque" name="quantidadeEstoque"
+           id="quantidadeEstoque" aria-describedby="estoqueHelp" placeholder="0"></p-inputNumber>
         </div>
       </div>
     </div>

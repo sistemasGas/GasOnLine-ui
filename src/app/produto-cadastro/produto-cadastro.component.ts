@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../produto.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { utilsBr, fakerBr } from 'js-brasil';
 
 
 @Component({
@@ -17,13 +18,16 @@ export class ProdutoCadastroComponent implements OnInit {
   categorias = [];
   produto = new Produto();
   categoria = new Categoria();
+  public MASKS = utilsBr.MASKS;
+  public formFields;
 
   constructor(
     public produtoService: ProdutoService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    public fb: FormBuilder) {
 
   }
 
@@ -34,6 +38,14 @@ export class ProdutoCadastroComponent implements OnInit {
     if (idProduto) {
       this.buscarProdutoPorId(idProduto);
     }
+
+    this.formFields = {
+      descricao: ['', Validators.required],
+      quantidadeEstoque: ['', Validators.required],
+      valorCompra: ['', Validators.required],
+      valorVenda: ['', Validators.required]
+    }
+
   }
 
   get edicao() {
