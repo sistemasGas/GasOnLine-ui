@@ -9,7 +9,7 @@
                 <div class="form-group">
                   <label class="label">Usuário</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Usuário">
+                    <input [(ngModel)]="login.email" type="text" class="form-control" placeholder="Usuário">
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
@@ -20,7 +20,7 @@
                 <div class="form-group">
                   <label class="label">Senha</label>
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="*********">
+                    <input [(ngModel)]="login.password" type="password" class="form-control" placeholder="*********">
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>

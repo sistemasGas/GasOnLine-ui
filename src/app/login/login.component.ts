@@ -20,6 +20,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+  fazerLogin(){
+    
+  }
 
   async onSubmit() {
     try {
