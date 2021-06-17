@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
- usuario = new Usuario();
+ usuario  = new Usuario();
 
   constructor(private authSevice: AuthService,
     private loginService: LoginService,

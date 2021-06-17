@@ -14,7 +14,7 @@ export class AuthService {
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
-  userteste = new Usuario();
+  userteste: Usuario={login:'',senha:''};
   //get isLoggedIn() {
   //  return this.loggedIn.asObservable();
   //}
@@ -32,22 +32,24 @@ export class AuthService {
   fazerLogin(usuario: Usuario){
     console.log (usuario);
     this.findByCPF(usuario.login);
-    var n = this.userteste.login.localeCompare(usuario.login+"")
-    if ( n === 0) {
+    //var n = this.userteste.login.localeCompare(usuario.login+"")
+    setTimeout(()=>{
+      if ( this.userteste.login === usuario.login) {
 
-      this.usuarioAutenticado = true;
+        this.usuarioAutenticado = true;
 
-      this.mostrarMenuEmitter.emit(true);
+        this.mostrarMenuEmitter.emit(true);
 
-      this.router.navigate(['/']);
-      console.log(usuario + "entrei no if");
+        this.router.navigate(['/']);
+        console.log(usuario + "entrei no if");
 
-    } else {
-      this.usuarioAutenticado = false;
+      } else {
+        this.usuarioAutenticado = false;
 
-      this.mostrarMenuEmitter.emit(false);
-      console.log(usuario + "entrei no else");
-    }
+        this.mostrarMenuEmitter.emit(false);
+        console.log(usuario + "entrei no else");
+      }
+    },1000)
   }
 
   //logout() {
