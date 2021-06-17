@@ -83,8 +83,12 @@ export class Estado{
 }
 
 export class Login{
-  id: any; 
+  id: any;
   login: string;
-  senha: string; 
+  senha: string;
   perfil: string;
+}
+export class Usuario{
+  login: string;
+  senha: string;
 }

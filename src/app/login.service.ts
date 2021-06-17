@@ -17,11 +17,14 @@ export class LoginService {
   public deleteLogin(id): Observable<any> {
     return this.http.delete(`${environment.url}/usuarios/${id}`);
   }
+  public findByCPF(cpf): Observable <any> {
+    return this.http.get(`${environment.url}/usuarios/${cpf}`);
+  }
 
   readById(id: string): Observable<any> {
     return this.http.get(`${environment.url}/usuarios/${id}`);
   }
-  
+
   public salvarLogin(login): Observable<any> {
     return this.http.post(`${environment.url}/usuarios`, login);
   }
