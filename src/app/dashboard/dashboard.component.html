@@ -89,12 +89,12 @@
       </div>
     </div>
     <!-- /.card-header -->
-    <p-table [value]="vendas" dataKey="codigo" styleClass="p-datatable-sm">
+    <p-table [value]="vendas" dataKey="codigo" styleClass="p-datatable-sm" [responsive]="true">
       <ng-template pTemplate="header">
           <tr>
-              <th style="width: 3rem"></th>
-              <th style="width: 5rem" pSortableColumn="codigo">ID <p-sortIcon field="codigo"></p-sortIcon></th>
-              <th style="width: 20rem"pSortableColumn="pessoa.nome">Cliente <p-sortIcon field="pessoa.nome"></p-sortIcon></th>
+              <th style="width: 5%"></th>
+              <th style="width: 6%" pSortableColumn="codigo">ID <p-sortIcon field="codigo"></p-sortIcon></th>
+              <th style="width: 25%"pSortableColumn="pessoa.nome">Cliente <p-sortIcon field="pessoa.nome"></p-sortIcon></th>
               <th pSortableColumn="dataVenda">Data Venda <p-sortIcon field="dataVenda"></p-sortIcon></th>
               <th pSortableColumn="valorTotal">Valor Venda <p-sortIcon field="valorTotal"></p-sortIcon></th>
               <th pSortableColumn="tipoPagamento">Pagamento <p-sortIcon field="tipoPagamento"></p-sortIcon></th>
@@ -119,14 +119,14 @@
           <tr>
               <td colspan="7">
                   <div class="p-p-3">
-                      <p-table [value]="venda.itensVenda" dataKey="codigo">
+                      <p-table [value]="venda.itensVenda" dataKey="codigo"  [responsive]="true">
                           <ng-template pTemplate="header">
                               <tr>
-                                  <th style="width: 40%rem"></th>
-                                  <th style="width: 5rem" pSortableColumn="itemVenda.codigo">ID <p-sortIcon field="itemVenda.codigo"></p-sortIcon></th>
-                                  <th style="width: 20%rem" pSortableColumn="itemVenda.produto.descricao">produto <p-sortIcon field="itemVenda.produto.descricao"></p-sortIcon></th>
-                                  <th pSortableColumn="itemVenda.quantidade">Quantidade <p-sortIcon field="itemVenda.quantidade"></p-sortIcon></th>
-                                  <th pSortableColumn="itemVenda.valorTotal">Total do Item <p-sortIcon field="itemVenda.valorTotal"></p-sortIcon></th>
+                                  <th style="width: 20%"></th>
+                                  <th style="width: 10%">ID</th>
+                                  <th style="width: 30%">produto</th>
+                                  <th style="width: 20%">Quantidade</th>
+                                  <th style="width: 20%">Total do Item</th>
                                   <!-- <th style="width: 4rem"></th> -->
                               </tr>
                           </ng-template>
@@ -134,7 +134,7 @@
                               <tr>
                                   <th></th>
                                   <td>{{itemVenda.codigo}}</td>
-                                  <td style="width: 30rem">{{itemVenda.produto.descricao}}</td>
+                                  <td>{{itemVenda.produto.descricao}}</td>
                                   <td>{{itemVenda.quantidade}}</td>
                                   <td>{{itemVenda.valorUnitario * itemVenda.quantidade | currency:'USD'}}</td>
                                   <!-- <td><p-button type="button" icon="pi pi-search"></p-button></td> -->

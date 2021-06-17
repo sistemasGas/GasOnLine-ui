@@ -1,9 +1,10 @@
+import { ProdutosPesquisaComponent } from './../produtos-pesquisa/produtos-pesquisa.component';
 import { Subscription } from 'rxjs';
 import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Produto, Categoria } from './../core/model';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../produto.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { utilsBr, fakerBr } from 'js-brasil';
 
@@ -20,6 +21,7 @@ export class ProdutoCadastroComponent implements OnInit {
   categoria = new Categoria();
   public MASKS = utilsBr.MASKS;
   public formFields;
+  router:Router;
 
   constructor(
     public produtoService: ProdutoService,
@@ -85,7 +87,6 @@ export class ProdutoCadastroComponent implements OnInit {
       }
       this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0, imagem: "" };
     });
-
   }
 
   chamaNovaCategoria() {
