@@ -29,7 +29,7 @@ export class VendaService {
   public delete(id): Promise<any> {
     return this.http.delete(`${environment.url}/vendas/${id}`)
     .toPromise()
-      .catch(erro => {return Promise.reject('Erro ao deleatar venda!')});
+    .catch(erro => {return Promise.reject('Erro ao deleatar venda!')});
   }
 
   public buscarTotalVendas(){

@@ -11,6 +11,8 @@ import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { utils } from 'protractor';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { EnderecoService } from 'src/app/endereco.service';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 
 @Component({
@@ -22,10 +24,11 @@ export class CreateComponent implements OnInit {
   exibindoCNPJ = false;
   exibindoCPF = true;
   exibindoCargo = false;
+  exibirEndereco = false;
 
+  endereco = new Endereco();
   usuario = new Pessoa();
   user = new Login();
-  endereco: Endereco;
 
 formResult: string = '';
 public MASKS = MASKS;
@@ -58,6 +61,8 @@ public MASKS = MASKS;
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
     private route: ActivatedRoute,
+    private enderecoService: EnderecoService,
+    private errorHandler: ErrorHandlerService
     // private fb: FormBuilder
     ) { }
 
@@ -115,5 +120,30 @@ public MASKS = MASKS;
       this.exibindoCargo=false;
       this.categorias.splice(3,4);
     }
+  }
+
+  adicionarEndereco(){
+    this.usuario.endereco=this.endereco;
+    this.fecharTelaEndereco();
+    console.log(this.usuario.endereco)
+  }
+
+  chamarTelaEndereco() {
+    this.exibirEndereco = true;
+  }
+
+  fecharTelaEndereco(){
+    this.exibirEndereco=false;
+  }
+
+  public buscarEnderecoPorCep(cep) {
+    this.enderecoService.getEndereco(cep).then(resposta => {
+      this.endereco.cep = resposta.cep
+      this.endereco.logradouro = resposta.logradouro
+      this.endereco.bairro = resposta.bairro
+      this.endereco.localidade = resposta.localidade
+      this.endereco.uf = resposta.uf
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 }

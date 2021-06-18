@@ -23,17 +23,20 @@
                                 <label>Tipo de Pessoa *</label>
                                 <p-selectButton [options]="tipoPessoas" [(ngModel)]="usuario.tipo" optionLabel="label"
                                     optionValue="value" (onChange)="onChange($event)"></p-selectButton>
-                            </div><br>
-                            <div class="p-col-12 col-md-8 p-fluid">
+                            </div>
+                            <div class="p-col-12 col-md-6 p-fluid">
                                 <label for="email">E-mail</label>
                                 <input [(ngModel)]="usuario.email" type="text" name="email" class="form-control"
                                     id="email" aria-describedby="emailHelp" placeholder="Digite o e-mail">
                             </div>
-                            <div class="p-col-4 col-md-4 p-fluid">
+                            <div class="p-col-4 col-md-3 p-fluid">
                                 <label for="telefone">Telefone *</label>
                                 <!-- <input [(ngModel)]="usuario.telefone" type="text" name="telefone" class="form-control" id="telefone" aria-describedby="telefoneHelp" placeholder="Digite o telefone"><br> -->
                                 <p-inputMask mask="(99) 99999-9999" [(ngModel)]="usuario.telefone"
                                     placeholder="(99) 99999-9999" name="telefone"></p-inputMask>
+                            </div>
+                            <div class="p-col-4 col-md-3 p-fluid" style="margin-top: 32px;">
+                                <p-button label="Add endereço" (click)="chamarTelaEndereco()"></p-button>
                             </div>
                             <!-- <div class="p-col-12 col-md-8 p-fluid">
                                 <label for="endereco">Endereço</label>
@@ -71,7 +74,8 @@
                             </div>
                             <div class="p-col-12 col-md-4 p-fluid">
                                 <label for="senha">Senha *</label>
-                                <p-password [(ngModel)]="user.senha" name="senha" placeholder="Digite a senha" [toggleMask]="true"></p-password>                                
+                                <p-password [(ngModel)]="user.senha" name="senha" placeholder="Digite a senha"
+                                    [toggleMask]="true"></p-password>
                             </div>
                             <div class="p-col-12 col-md-4 p-fluid">
                                 <label>Perfil</label>
@@ -84,8 +88,58 @@
             </div>
         </div>
         <a pButton label="Salvar Usuário " class="btn btn-primary " icon="pi pi-user-plus "
-            (click)="createUsuario()" ></a> &nbsp;
+            (click)="createUsuario()"></a> &nbsp;
         <button pButton pRipple type="button" icon="pi pi-arrow-left" label="Voltar" class="p-button-outlined"
             routerLink="/usuario"></button>
     </div>
 </div>
+
+<p-dialog header="Endereço" [(visible)]="exibirEndereco">
+    <div>
+        <label class="col-sm-5 col-form-label">Cep </label>
+        <p-inputMask mask="99999-999"class="col-md-4" [(ngModel)]="endereco.cep" name="cep" id="cep"
+            aria-describedby="cepHelp"></p-inputMask>
+        <p-button label="Buscar" (click)="buscarEnderecoPorCep(endereco.cep)"></p-button>
+    </div>
+    <br>
+    <div>
+        <label class="col-sm-2 col-form-label">Rua </label>
+        <input class="col-md-7" [(ngModel)]="endereco.logradouro" pInputText type="text" name="rua" id="rua"
+        aria-describedby="ruaHelp">
+        <label class="col-sm-1 col-form-label">Nº </label>
+        <input class="col-md-2" [(ngModel)]="endereco.numero" pInputText type="text" name="numero" id="numero"
+        aria-describedby="numHelp">
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Bairro</label>
+                <div class="col-sm-9">
+                    <input [(ngModel)]="endereco.bairro" type="text" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Estado</label>
+                <div class="col-sm-9">
+                    <input [(ngModel)]="endereco.uf" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Cidade</label>
+                <div class="col-sm-9">
+                    <input [(ngModel)]="endereco.localidade" type="text" class="form-control">
+                    
+                </div>
+            </div>
+        </div>
+        <p-button pButton type="button" label="Adicionar" (click)="adicionarEndereco()"></p-button>
+    </div>
+</p-dialog>

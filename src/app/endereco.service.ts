@@ -11,11 +11,15 @@ export class EnderecoService {
 
   constructor(private http: HttpClient) { }
 
-  public getEndereco(cep): Observable <any> {
-    return this.http.get(this.url+cep+'/json/');
+  public getEndereco(cep): Promise <any> {
+    return this.http.get(this.url+cep+'/json/')
+    .toPromise()
+    .catch(erro => {return Promise.reject('Verifique o CEP digitado')});
   }
 
-  public post(endereco): Observable<any> {
-    return this.http.post(`${environment.url}/vendas`, endereco);
+  public post(endereco): Promise<any> {
+    return this.http.post(`${environment.url}/vendas`, endereco)
+    .toPromise()
+    .catch(erro => {return Promise.reject('Erro ao cadastrar endereço!')});
   }
 }
