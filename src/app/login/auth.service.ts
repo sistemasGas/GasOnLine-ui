@@ -40,7 +40,7 @@ export class AuthService {
 
         this.mostrarMenuEmitter.emit(true);
 
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
         console.log(usuario + "entrei no if");
 
       } else {

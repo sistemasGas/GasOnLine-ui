@@ -53,7 +53,7 @@ export class Pessoa{
   categoria: string;
   cargo: string;
   //endereco: Endereco;
-  // endereco: Endereco = new Endereco;
+  endereco= new Endereco;
   //login: Login;
   usuario: Login;
 
