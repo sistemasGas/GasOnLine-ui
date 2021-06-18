@@ -40,8 +40,8 @@ public MASKS = MASKS;
     { label: "Funcionário", value: "FUNC" }
   ]
   perfis = [
-    { label: "Admin", value: "admin" },
-    { label: "Atendente", value: "atendente" }
+    { label: "Admin", value: "Admin" },
+    { label: "Atendente", value: "Func" }
   ]
 
   tipoPessoas = [
@@ -78,6 +78,7 @@ public MASKS = MASKS;
     this.usuarioService.salvarUsuario(this.usuario).subscribe(resposta => {
       if (this.usuario.id) {
         this.messageService.add({ severity: 'success', summary: 'Usuário Atualizado!', detail: '' });
+        window.location.href = '/usuario';
       }
       else {
         this.messageService.add({ severity: 'success', summary: 'Usuário Cadastrado!', detail: '' });

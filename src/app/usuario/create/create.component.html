@@ -71,15 +71,20 @@
                             </div>
                             <div class="p-col-12 col-md-4 p-fluid">
                                 <label for="senha">Senha *</label>
-                                <p-password [(ngModel)]="user.senha" name="senha" placeholder="Digite a senha" [toggleMask]="true"></p-password>
+                                <p-password [(ngModel)]="user.senha" name="senha" placeholder="Digite a senha" [toggleMask]="true"></p-password>                                
+                            </div>
+                            <div class="p-col-12 col-md-4 p-fluid">
+                                <label>Perfil</label>
+                                <p-dropdown name="perfil" [options]="perfis" [(ngModel)]="user.perfil"
+                                    placeholder="Selecione "></p-dropdown>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <a pButton label="Salvar Usuário " class="btn btn-primary " icon="pi pi-user-plus " routerLink="/usuario"
-            (click)="createUsuario()"></a> &nbsp;
+        <a pButton label="Salvar Usuário " class="btn btn-primary " icon="pi pi-user-plus "
+            (click)="createUsuario()" ></a> &nbsp;
         <button pButton pRipple type="button" icon="pi pi-arrow-left" label="Voltar" class="p-button-outlined"
             routerLink="/usuario"></button>
     </div>

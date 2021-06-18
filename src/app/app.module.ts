@@ -47,7 +47,9 @@ import { NgBrazil } from 'ng-brazil'
 import { TextMaskModule } from 'angular2-text-mask';
 import { PasswordModule } from 'primeng/password';
 import { SelectButtonModule } from 'primeng/selectbutton';
-
+import { AuthService } from './login/auth.service';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { AuthGuard } from './guards/auth.guards';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     UsuarioComponent,
     CreateComponent,
     UsuarioLoginComponent,
+
+    PaginaNaoEncontradaComponent,
 
 
   ],
@@ -103,9 +107,12 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     NgBrazil,
     SelectButtonModule,
     PasswordModule,
-    InputNumberModule
+    InputNumberModule,
+    AppRoutingModule
   ],
   providers: [
+    AuthService,
+    AuthGuard,
     ConfirmationService,
     MessageService,
   ],

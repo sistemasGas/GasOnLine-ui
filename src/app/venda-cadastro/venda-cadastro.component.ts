@@ -39,7 +39,7 @@ export class VendaCadastroComponent implements OnInit {
 
     this.butons = [
       {
-        label: 'Orçamento', icon: 'pi pi-book', routerLink: ['/home'], command: () => {
+        label: 'Orçamento', icon: 'pi pi-book', routerLink: ['/dashboard'], command: () => {
           this.criarOrcamento();
         }
       },
