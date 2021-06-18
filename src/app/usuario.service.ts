@@ -13,9 +13,16 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
 
-  public getUsuarios(): Observable<any> {
-    return this.http.get(`${environment.url}/pessoa`);
+  // public getUsuarios(): Observable<any> {
+  //   return this.http.get(`${environment.url}/pessoa`);
+  // }
+
+  public getUsuarios(): Promise<any> {
+    return this.http.get(`${environment.url}/pessoa`)
+    .toPromise()
+    .catch(erro => {return Promise.reject('Erro ao consultar Pessoa!')});
   }
+  
 
   public deleteUsuarios(id): Observable<any> {
     return this.http.delete(`${environment.url}/pessoa/${id}`);
@@ -25,8 +32,10 @@ export class UsuarioService {
     return this.http.get(`${environment.url}/pessoa/${id}`);
   }
   
-  public salvarUsuario(pessoa): Observable<any> {
-    return this.http.post(`${environment.url}/pessoa`, pessoa);
+  public salvarUsuario(pessoa): Promise<any> {
+    return this.http.post(`${environment.url}/pessoa`, pessoa)
+    .toPromise()
+    .catch(erro => {return Promise.reject('Erro ao salvar Pessoa!')});
   }
 
   public buscarQuantidadeClientes(): Observable<any> {

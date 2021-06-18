@@ -6,6 +6,7 @@ import {MessageService, ConfirmationService} from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import {MenuItem} from 'primeng/api';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Component({
   selector: 'app-usuario',
@@ -26,7 +27,8 @@ export class UsuarioComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService, 
     private primengConfig: PrimeNGConfig,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.primengConfig.ripple = true;
@@ -37,9 +39,10 @@ export class UsuarioComponent implements OnInit {
  // Listar usuarios
   public listar() {
     
-    this.usuarioService.getUsuarios().subscribe(resposta => {
+    this.usuarioService.getUsuarios().then(resposta => {
       this.usuarios = resposta;
     })
+    .catch(erro => this.errorHandler.handler(erro));;;
   }
 
 
@@ -72,9 +75,10 @@ export class UsuarioComponent implements OnInit {
   }
 
   public salvar(){
-    this.usuarioService.salvarUsuario(this.selectedUsuario).subscribe( r => {
+    this.usuarioService.salvarUsuario(this.selectedUsuario).then( r => {
       this.listar();
       this.edicao = false;      
     })
+    .catch(erro => this.errorHandler.handler(erro));
   } 
 }

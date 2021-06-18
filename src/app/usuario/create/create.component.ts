@@ -81,8 +81,9 @@ public MASKS = MASKS;
   createUsuario() {
 
     this.usuario.usuario = this.user;
+    this.usuario.endereco = this.endereco;
     console.log(this.usuario);
-    this.usuarioService.salvarUsuario(this.usuario).subscribe(resposta => {
+    this.usuarioService.salvarUsuario(this.usuario).then(resposta => {
       if (this.usuario.id) {
         this.messageService.add({ severity: 'success', summary: 'Usuário Atualizado!', detail: '' });
         window.location.href = '/usuario';
@@ -92,7 +93,8 @@ public MASKS = MASKS;
       }
       this.usuario = new Pessoa();
       // location.reload;
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   readById(idPessoa) {

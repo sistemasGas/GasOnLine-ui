@@ -74,10 +74,10 @@ export class VendaCadastroComponent implements OnInit {
   }
 
   public listarClientes() {
-    this.usuarioService.getUsuarios().subscribe(resposta => {
+    this.usuarioService.getUsuarios().then(resposta => {
       this.pessoas = resposta;
     })
-    //.catch(erro => this.errorHandler.handler(erro));
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   public buscarVendaPorId(vendaID) {
