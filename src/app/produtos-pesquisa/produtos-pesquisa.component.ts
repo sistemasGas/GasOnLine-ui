@@ -2,6 +2,7 @@ import { ConfirmationService, MessageService, PrimeNGConfig } from 'primeng/api'
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../produto.service';
 import { Produto } from '../core/model';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Component({
   selector: 'app-produtos-pesquisa',
@@ -16,7 +17,8 @@ export class ProdutosPesquisaComponent implements OnInit {
   constructor(public produtoService: ProdutoService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private primengConfig: PrimeNGConfig) { }
+    private primengConfig: PrimeNGConfig,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.listar();
@@ -42,7 +44,8 @@ export class ProdutosPesquisaComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Confirma exclusão?',
       accept: () => {
-        this.produtoService.deleteProduto(produto.id).subscribe(r => {
+        this.produtoService.deleteProduto(produto.id)
+        .then(r => {
           this.messageService.add({ severity: 'success', summary: 'Excluído com sucesso', detail: '' });
 
           for (let i = 0; i < this.produtos.length; i++) {
@@ -50,7 +53,8 @@ export class ProdutosPesquisaComponent implements OnInit {
               this.produtos.splice(i, 1)
             }
           }
-        });
+        })
+        .catch(erro => this.errorHandler.handler(erro));
       }
     });
   }
