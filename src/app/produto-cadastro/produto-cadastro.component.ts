@@ -72,10 +72,11 @@ export class ProdutoCadastroComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Confirma exclusão?',
       accept: () => {
-        this.produtoService.deleteCategoria(codigo).subscribe(r => {
+        this.produtoService.deleteCategoria(codigo).then(r => {
           this.listarCategorias();
           this.messageService.add({ severity: 'success', summary: 'Categoria excluída com sucesso!', detail: '' });
-        });
+        })
+        .catch(erro => this.errorHandler.handler(erro));
       }
     })
 

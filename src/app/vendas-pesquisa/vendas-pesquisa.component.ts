@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Pessoa } from '../core/model';
 import { Router } from '@angular/router';
 import { VendaService } from '../venda.service';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Component({
   selector: 'app-vendas-pesquisa',
@@ -20,16 +21,18 @@ export class VendasPesquisaComponent implements OnInit {
 
   constructor(private messageService: MessageService,
     private produtoService: ProdutoService,
-    private vendaService: VendaService) { }
+    private vendaService: VendaService,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit(): void {
     this.listarVendas()
   }
 
   private listarVendas() {
-    this.vendaService.findAll().subscribe(resposta => {
+    this.vendaService.findAll().then(resposta => {
       this.vendas = resposta;
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
   
 }

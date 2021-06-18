@@ -38,7 +38,7 @@ export class VendaCadastroComponent implements OnInit {
   ngOnInit() {
     this.listarProdutos();
     this.listarClientes();
-
+    this.itensVenda = [];
     this.butons = [
       {
         label: 'Orçamento', icon: 'pi pi-book', routerLink: ['/dashboard'], command: () => {
@@ -68,9 +68,11 @@ export class VendaCadastroComponent implements OnInit {
     return Boolean(this.venda.codigo);
   }
 
-  private listarProdutos() {
-    this.produtoService.getProdutos().subscribe(produto => this.produtosDisponiveis = produto);
-    this.itensVenda = [];
+  public listarProdutos() {
+    this.produtoService.getProdutos().then(resposta => {
+      this.produtosDisponiveis = resposta;
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   public listarClientes() {
@@ -173,7 +175,7 @@ export class VendaCadastroComponent implements OnInit {
       }
       this.venda = null;
     })
-    .catch(erro => this.errorHandler.handler(erro));;;
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
 

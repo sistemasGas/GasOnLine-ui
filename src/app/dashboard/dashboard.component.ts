@@ -3,6 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProdutoService } from '../produto.service';
 import { VendaService } from '../venda.service';
 import { Venda } from '../core/model';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(public produtoService: ProdutoService,
               public usuarioService: UsuarioService,
-              public vendaService: VendaService) { }
+              public vendaService: VendaService,
+              private errorHandler: ErrorHandlerService) { }
 
   ngOnInit(){
     this.buscarValorEstoque();
@@ -28,9 +30,10 @@ export class DashboardComponent implements OnInit {
     }
 
   public buscarValorEstoque(){
-    this.produtoService.buscarValorEstoque().subscribe(resposta => {
+    this.produtoService.buscarValorEstoque().then(resposta => {
       this.valorEstoque = resposta;
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   public buscarQuantidadeClientes(){
@@ -46,9 +49,8 @@ export class DashboardComponent implements OnInit {
   }
 
   public buscarVendas(){
-    this.vendaService.findAll().subscribe(resposta => {
-      this.vendas = resposta;
-    });
+    this.vendaService.findAll().then(resposta => {
+      this.vendas = resposta;}).catch(erro => this.errorHandler.handler(erro));
   }
 
 }

@@ -27,9 +27,10 @@ export class ProdutosPesquisaComponent implements OnInit {
 
 
   public listar() {
-    this.produtoService.getProdutos().subscribe(resposta => {
+    this.produtoService.getProdutos().then(resposta => {
       this.produtos = resposta;
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   public selecionarProduto(produto) {

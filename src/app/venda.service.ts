@@ -10,8 +10,10 @@ export class VendaService {
 
   constructor(private http: HttpClient) { }
 
-  public findAll(): Observable <any> {
-    return this.http.get(`${environment.url}/vendas`);
+  public findAll(): Promise <any> {
+    return this.http.get(`${environment.url}/vendas`)
+    .toPromise()
+    .catch(erro => {return Promise.reject('Erro ao consultar venda!')});
   }
 
   public findById(id): Promise<any> {
