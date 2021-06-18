@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
-
+import { MessageService } from 'primeng/api';
 import { Usuario } from '../core/model';
 import { LoginService } from '../login.service';
 import { userInfo } from 'node:os';
@@ -19,7 +19,7 @@ export class AuthService {
   //  return this.loggedIn.asObservable();
   //}
 
-  constructor(private router: Router, private loginService: LoginService) {
+  constructor(private router: Router, private loginService: LoginService, private messageService: MessageService) {
 
   }
   public findByCPF(login) {
@@ -39,7 +39,7 @@ export class AuthService {
         this.usuarioAutenticado = true;
 
         this.mostrarMenuEmitter.emit(true);
-
+        this.messageService.add({ severity: 'success', summary: 'Acesso Liberado!', detail: '' });
         this.router.navigate(['/home']);
         console.log(usuario + "entrei no if");
 
@@ -47,6 +47,7 @@ export class AuthService {
         this.usuarioAutenticado = false;
 
         this.mostrarMenuEmitter.emit(false);
+        this.messageService.add({ severity: 'success', summary: 'Login ou Senha Invalido!', detail: '' });
         console.log(usuario + "entrei no else");
       }
     },2000)
