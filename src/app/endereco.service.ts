@@ -17,9 +17,21 @@ export class EnderecoService {
     .catch(erro => {return Promise.reject('Verifique o CEP digitado')});
   }
 
-  public post(endereco): Promise<any> {
-    return this.http.post(`${environment.url}/vendas`, endereco)
+  public getAll(): Promise <any> {
+    return this.http.get(`${environment.url}/endereco`)
     .toPromise()
-    .catch(erro => {return Promise.reject('Erro ao cadastrar endereço!')});
+    .catch(erro => {return Promise.reject('Falha ao buscar endereços')});
+  }
+
+  public post(endereco): Promise<any> {
+    return this.http.post(`${environment.url}/endereco`, endereco)
+    .toPromise()
+    .catch(erro => {return Promise.reject('Falha ao cadastrar endereço!')});
+  }
+
+  public deleteEndereco(id): Promise<any> {
+    return this.http.delete(`${environment.url}/endereco/${id}`)
+    .toPromise()
+    .catch(erro => {return Promise.reject('Falha ao deletar o endereço {id}!')});
   }
 }
