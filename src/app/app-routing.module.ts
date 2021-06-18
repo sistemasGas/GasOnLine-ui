@@ -11,11 +11,11 @@ import { CompraCadastroComponent } from './compra-cadastro/compra-cadastro.compo
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
 import { CreateComponent } from './usuario/create/create.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "dashboard" },
-  { path: "", component: DashboardComponent},
+  { path: "", pathMatch: "full", redirectTo: "login" },
   { path: "home", component: DashboardComponent},
   { path: "produto/cadastro", component: ProdutoCadastroComponent },
   { path: "produtos/pesquisa", component: ProdutosPesquisaComponent },
@@ -30,6 +30,8 @@ const routes: Routes = [
   { path: "usuario/create/:id", component: CreateComponent},
   { path: "usuario/usuario-login", component: UsuarioLoginComponent},
   { path: "login", component: LoginComponent},
+  { path: "pagina-nao-encontrada", component: PaginaNaoEncontradaComponent },
+  { path: "**", redirectTo: 'pagina-nao-encontrada'},
  
 ];
 

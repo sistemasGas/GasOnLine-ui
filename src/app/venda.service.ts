@@ -23,7 +23,7 @@ export class VendaService {
   public post(venda): Promise<any> {
     return this.http.post(`${environment.url}/vendas`, venda)
     .toPromise()
-    .catch(erro => {return Promise.reject('Erro ao Cadastrar venda!')});
+    .catch(erro => {return Promise.reject('Erro ao cadastrar venda/orçamento!')});
   }
 
   public delete(id): Promise<any> {

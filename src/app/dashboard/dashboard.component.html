@@ -9,7 +9,7 @@
     </form>
   </div>
 
-<!-- Painel de Itens -->
+  <!-- Painel de Itens -->
 
   <div class="row">
     <!-- <div class="col-lg-4 col-6">
@@ -37,7 +37,8 @@
         <div class="icon">
           <i class="ion ion-stats-bars"></i>
         </div>
-        <a href="http://localhost:4200/vendas" class="small-box-footer">Consulta Vendas<i class="fas fa-arrow-circle-right"></i></a>
+        <a href="http://localhost:4200/vendas" class="small-box-footer">Consulta Vendas<i
+            class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -52,7 +53,8 @@
         <div class="icon">
           <i class="ion ion-person-add"></i>
         </div>
-        <a href="http://localhost:4200/usuario" class="small-box-footer">Consultar Clientes <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="http://localhost:4200/usuario" class="small-box-footer">Consultar Clientes <i
+            class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -67,13 +69,14 @@
         <div class="icon">
           <i class="ion ion-pie-graph"></i>
         </div>
-        <a href="http://localhost:4200/produtos/pesquisa" class="small-box-footer">Consultar Estoque <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="http://localhost:4200/produtos/pesquisa" class="small-box-footer">Consultar Estoque <i
+            class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
 
   </div>
 
-<!-- tabela de ultimas vendas  -->
+  <!-- tabela de ultimas vendas  -->
 
   <div class="card">
     <div class="card-header border-transparent">
@@ -91,73 +94,81 @@
     <!-- /.card-header -->
     <p-table [value]="vendas" dataKey="codigo" styleClass="p-datatable-sm" [responsive]="true">
       <ng-template pTemplate="header">
-          <tr>
-              <th style="width: 5%"></th>
-              <th style="width: 6%" pSortableColumn="codigo">ID <p-sortIcon field="codigo"></p-sortIcon></th>
-              <th style="width: 25%"pSortableColumn="pessoa.nome">Cliente <p-sortIcon field="pessoa.nome"></p-sortIcon></th>
-              <th pSortableColumn="dataVenda">Data Venda <p-sortIcon field="dataVenda"></p-sortIcon></th>
-              <th pSortableColumn="valorTotal">Valor Venda <p-sortIcon field="valorTotal"></p-sortIcon></th>
-              <th pSortableColumn="tipoPagamento">Pagamento <p-sortIcon field="tipoPagamento"></p-sortIcon></th>
-              <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
-          </tr>
+        <tr>
+          <th style="width: 5%"></th>
+          <th style="width: 6%" pSortableColumn="codigo">ID <p-sortIcon field="codigo"></p-sortIcon>
+          </th>
+          <th style="width: 25%" pSortableColumn="pessoa.nome">Cliente <p-sortIcon field="pessoa.nome"></p-sortIcon>
+          </th>
+          <th pSortableColumn="dataVenda">Data Venda <p-sortIcon field="dataVenda"></p-sortIcon>
+          </th>
+          <th pSortableColumn="valorTotal">Valor Venda <p-sortIcon field="valorTotal"></p-sortIcon>
+          </th>
+          <th pSortableColumn="tipoPagamento">Pagamento <p-sortIcon field="tipoPagamento"></p-sortIcon>
+          </th>
+          <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon>
+          </th>
+        </tr>
       </ng-template>
       <ng-template pTemplate="body" let-venda let-expanded="expanded">
-          <tr>
-              <td>
-                  <button type="button" pButton pRipple [pRowToggler]="venda" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-              </td>
-              <a routerLink="/venda/cadastro/{{venda.codigo}}">{{venda.codigo}}</a>
-              <!-- <td><img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.name" width="100" class="p-shadow-4" /></td> -->
-              <td>{{venda.pessoa.nome}}</td>
-              <td>{{venda.dataVenda | date:"dd/MM/yyyy"}}</td>
-              <td>{{venda.valorTotal | currency:'BRL'}}</td>
-              <td>{{venda.tipoPagamento}}</td>
-              <td><span [class]="'product-badge-status-' + venda.status.toLowerCase()">{{venda.status}}</span></td>
-          </tr>
+        <tr>
+          <td>
+            <button type="button" pButton pRipple [pRowToggler]="venda"
+              class="p-button-text p-button-rounded p-button-plain"
+              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+          </td>
+          <a routerLink="/venda/cadastro/{{venda.codigo}}">{{venda.codigo}}</a>
+          <!-- <td><img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.name" width="100" class="p-shadow-4" /></td> -->
+          <td>{{venda.pessoa.nome}}</td>
+          <td>{{venda.dataVenda | date:"dd/MM/yyyy"}}</td>
+          <td>{{venda.valorTotal | currency:'BRL'}}</td>
+          <td>{{venda.tipoPagamento}}</td>
+          <td><span [class]="'product-badge-status-' + venda.status.toLowerCase()">{{venda.status}}</span></td>
+        </tr>
       </ng-template>
       <ng-template pTemplate="rowexpansion" let-venda>
-          <tr>
-              <td colspan="7">
-                  <div class="p-p-3">
-                      <p-table [value]="venda.itensVenda" dataKey="codigo"  [responsive]="true">
-                          <ng-template pTemplate="header">
-                              <tr>
-                                  <th style="width: 20%"></th>
-                                  <th style="width: 10%">ID</th>
-                                  <th style="width: 30%">produto</th>
-                                  <th style="width: 20%">Quantidade</th>
-                                  <th style="width: 20%">Total do Item</th>
-                                  <!-- <th style="width: 4rem"></th> -->
-                              </tr>
-                          </ng-template>
-                          <ng-template pTemplate="body" let-itemVenda>
-                              <tr>
-                                  <th></th>
-                                  <td>{{itemVenda.codigo}}</td>
-                                  <td>{{itemVenda.produto.descricao}}</td>
-                                  <td>{{itemVenda.quantidade}}</td>
-                                  <td>{{itemVenda.valorUnitario * itemVenda.quantidade | currency:'USD'}}</td>
-                                  <!-- <td><p-button type="button" icon="pi pi-search"></p-button></td> -->
-                              </tr>
-                          </ng-template>
-                          <ng-template pTemplate="emptymessage">
-                              <tr>
-                                  <td colspan="6">Não há produtos para esta venda.</td>
-                              </tr>
-                          </ng-template>
-                      </p-table>
-                  </div>
-              </td>
-          </tr>
+        <tr>
+          <td colspan="7">
+            <div class="p-p-3">
+              <p-table [value]="venda.itensVenda" dataKey="codigo" [responsive]="true">
+                <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 20%"></th>
+          <th style="width: 10%">ID</th>
+          <th style="width: 30%">produto</th>
+          <th style="width: 20%">Quantidade</th>
+          <th style="width: 20%">Total do Item</th>
+          <!-- <th style="width: 4rem"></th> -->
+        </tr>
       </ng-template>
-  </p-table>
-    <!-- /.card-body -->
-    <div class="card-footer clearfix">
-      <a href="http://localhost:4200/venda/cadastro" class="btn btn-sm btn-info float-left">Cadastrar Nova Venda</a>
-      <a href="http://localhost:4200/vendas" class="btn btn-sm btn-secondary float-right">Consultar todas Vendas</a>
-    </div>
-    <!-- /.card-footer -->
+      <ng-template pTemplate="body" let-itemVenda>
+        <tr>
+          <th></th>
+          <td>{{itemVenda.codigo}}</td>
+          <td>{{itemVenda.produto.descricao}}</td>
+          <td>{{itemVenda.quantidade}}</td>
+          <td>{{itemVenda.valorUnitario * itemVenda.quantidade | currency:'USD'}}</td>
+          <!-- <td><p-button type="button" icon="pi pi-search"></p-button></td> -->
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6">Não há produtos para esta venda.</td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
+  </td>
+  </tr>
+  </ng-template>
+  </p-table>
+  <!-- /.card-body -->
+  <div class="card-footer clearfix">
+    <a href="http://localhost:4200/venda/cadastro" class="btn btn-sm btn-info float-left">Cadastrar Nova Venda</a>
+    <a href="http://localhost:4200/vendas" class="btn btn-sm btn-secondary float-right">Consultar todas Vendas</a>
+  </div>
+  <!-- /.card-footer -->
+</div>
 
 
 
