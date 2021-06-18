@@ -36,7 +36,8 @@ public MASKS = MASKS;
     { label: "Vendedor", value: "Vendedor" }
   ]
   categorias = [
-    { label: "Cliente | Fornecedor", value: "CLIFOR" },
+    { label: "Cliente", value: "CLIENT" },
+    { label: "Fornecedor", value: "FORN" },
     { label: "Funcionário", value: "FUNC" }
   ]
   perfis = [
