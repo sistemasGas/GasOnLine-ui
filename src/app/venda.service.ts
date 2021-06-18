@@ -14,16 +14,22 @@ export class VendaService {
     return this.http.get(`${environment.url}/vendas`);
   }
 
-  public findById(id): Observable <any> {
-    return this.http.get(`${environment.url}/vendas/${id}`);
+  public findById(id): Promise<any> {
+    return this.http.get(`${environment.url}/vendas/${id}`)
+    .toPromise()
+    .catch(erro => {return Promise.reject('Erro ao consultar venda!')});
   }
 
-  public post(venda): Observable<any> {
-    return this.http.post(`${environment.url}/vendas`, venda);
+  public post(venda): Promise<any> {
+    return this.http.post(`${environment.url}/vendas`, venda)
+    .toPromise()
+    .catch(erro => {return Promise.reject('Erro ao Cadastrar venda!')});
   }
 
-  public delete(id): Observable<any> {
-    return this.http.delete(`${environment.url}/vendas/${id}`);
+  public delete(id): Promise<any> {
+    return this.http.delete(`${environment.url}/vendas/${id}`)
+    .toPromise()
+      .catch(erro => {return Promise.reject('Erro ao deleatar venda!')});
   }
 
   public buscarTotalVendas(){

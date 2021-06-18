@@ -5,6 +5,7 @@ import { Pessoa, Produto, Venda, ItemVenda } from './../core/model';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Component({
   selector: 'app-venda-cadastro',
@@ -31,7 +32,8 @@ export class VendaCadastroComponent implements OnInit {
     private vendaService: VendaService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.listarProdutos();
@@ -74,14 +76,16 @@ export class VendaCadastroComponent implements OnInit {
   public listarClientes() {
     this.usuarioService.getUsuarios().subscribe(resposta => {
       this.pessoas = resposta;
-    });
+    })
+    //.catch(erro => this.errorHandler.handler(erro));
   }
 
   public buscarVendaPorId(vendaID) {
-    this.vendaService.findById(vendaID).subscribe(resposta => {
+    this.vendaService.findById(vendaID).then(resposta => {
       this.venda = resposta;
       this.itensVenda = this.venda.itensVenda;
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));;;
   }
 
   dragStart(produto: Produto) {
@@ -160,7 +164,7 @@ export class VendaCadastroComponent implements OnInit {
   criarVenda() {
     this.venda.itensVenda = this.itensVenda;
     this.venda.status = "EMITIDA"
-    this.vendaService.post(this.venda).subscribe(resposta => {
+    this.vendaService.post(this.venda).then(resposta => {
       if (this.venda.codigo) {
         this.messageService.add({ severity: 'success', summary: 'Venda Atualizada!', detail: '' });
       }
@@ -168,7 +172,8 @@ export class VendaCadastroComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Venda Cadastrada!', detail: '' });
       }
       this.venda = null;
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));;;
   }
 
 
@@ -179,7 +184,7 @@ export class VendaCadastroComponent implements OnInit {
     else {
       this.venda.status = "ORCAMENTO";
       this.venda.itensVenda = this.itensVenda;
-      this.vendaService.post(this.venda).subscribe(resposta => {
+      this.vendaService.post(this.venda).then(resposta => {
         if (this.venda.codigo) {
           this.messageService.add({ severity: 'info', summary: 'Orçamento Atualizado!', detail: '' });
         }
@@ -187,7 +192,8 @@ export class VendaCadastroComponent implements OnInit {
           this.messageService.add({ severity: 'info', summary: 'Orçamento Cadastrado!', detail: '' });
         }
         this.venda = null;
-      });
+      })
+      .catch(erro => this.errorHandler.handler(erro));
     }
   }
 
@@ -197,10 +203,10 @@ export class VendaCadastroComponent implements OnInit {
     }
     else {
       this.venda.status = "CANCELADA";
-      this.vendaService.post(this.venda).subscribe(resposta => {
+      this.vendaService.post(this.venda).then(resposta => {
         this.messageService.add({ severity: 'success', summary: 'Cancelado com Sucesso', detail: '' });
         this.venda = null;
-      });
+      }).catch(erro => this.errorHandler.handler(erro));
     }
   }
 }

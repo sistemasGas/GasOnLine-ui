@@ -7,6 +7,7 @@ import { ProdutoService } from '../produto.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { utilsBr, fakerBr } from 'js-brasil';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class ProdutoCadastroComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
     private route: ActivatedRoute,
-    public fb: FormBuilder) {
+    public fb: FormBuilder,
+    private errorHandler: ErrorHandlerService) {
 
   }
 
@@ -55,12 +57,14 @@ export class ProdutoCadastroComponent implements OnInit {
   }
 
   criarCategoria() {
-    this.produtoService.salvarCategoria(this.categoria).subscribe(resposta => {
+    this.produtoService.salvarCategoria(this.categoria)
+    .then(resposta => {
       this.messageService.add({ severity: 'success', summary: 'Nova categoria cadastrada!', detail: '' });
       this.fechaNovaCategoria();
       this.listarCategorias();
       this.categoria = { codigo: null, descricao: '', sigla: '' }
     })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   public deleteCategoria(codigo) {
@@ -78,7 +82,8 @@ export class ProdutoCadastroComponent implements OnInit {
   }
 
   criarProduto() {
-    this.produtoService.saveProduto(this.produto).subscribe(resposta => {
+    this.produtoService.saveProduto(this.produto)
+    .then(resposta => {
       if (this.produto.id) {
         this.messageService.add({ severity: 'success', summary: 'Produto Atualizado!', detail: '' });
       }
@@ -86,7 +91,8 @@ export class ProdutoCadastroComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Produto Cadastrado!', detail: '' });
       }
       this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0, imagem: "" };
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   chamaNovaCategoria() {
@@ -104,8 +110,9 @@ export class ProdutoCadastroComponent implements OnInit {
   }
 
   public buscarProdutoPorId(id) {
-    this.produtoService.getProdutosPorId(id).subscribe(resposta => {
-      this.produto = resposta;
+    this.produtoService.getProdutosPorId(id)
+    .then(resposta => {this.produto = resposta;
     })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 }

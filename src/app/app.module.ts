@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StepsModule } from 'primeng/steps';
 import { ListboxModule } from 'primeng/listbox';
@@ -50,6 +50,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { AuthService } from './login/auth.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { AuthGuard } from './guards/auth.guards';
+import { ErrorHandlerService } from './core/error-handler.service';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import { AuthGuard } from './guards/auth.guards';
     AuthGuard,
     ConfirmationService,
     MessageService,
+    ErrorHandlerService
   ],
   bootstrap: [AppComponent]
 })
