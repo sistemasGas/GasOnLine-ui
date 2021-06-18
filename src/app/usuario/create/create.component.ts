@@ -39,7 +39,9 @@ public MASKS = MASKS;
     { label: "Vendedor", value: "Vendedor" }
   ]
   categorias = [
-    { label: "Cliente | Fornecedor", value: "CLIFOR" },
+    { label: "Cliente", value: "CLIENT" },
+    { label: "Fornecedor", value: "FORN" },
+    { label: "Cliente/Fornecedor", value: "CLIFOR" },
     { label: "Funcionário", value: "FUNC" }
   ]
   perfis = [
@@ -107,6 +109,8 @@ public MASKS = MASKS;
       this.exibindoCargo=true;
       this.categorias= [
         { label: "Cliente | Fornecedor", value: "CLIFOR" },
+        { label: "Cliente", value: "CLIENT" },
+        { label: "Fornecedor", value: "FORN" },
         { label: "Funcionário", value: "FUNC" }
       ]
     }
@@ -114,7 +118,7 @@ public MASKS = MASKS;
       this.exibindoCNPJ=true;
       this.exibindoCPF=false;
       this.exibindoCargo=false;
-      this.categorias.splice(1,1);
+      this.categorias.splice(3,4);
     }
   }
 

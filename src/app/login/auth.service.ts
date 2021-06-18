@@ -49,7 +49,7 @@ export class AuthService {
         this.mostrarMenuEmitter.emit(false);
         console.log(usuario + "entrei no else");
       }
-    },1000)
+    },2000)
   }
 
   //logout() {
