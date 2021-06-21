@@ -15,7 +15,7 @@ export class ErrorHandlerService {
     msg = errorResponse
     }
     else {
-      msg = 'Erro ao processar o serviço. tente novamente'
+      msg = errorResponse.error[0].mensagemUsuario
     }
     this.messageService.add({ severity: 'error', summary: msg, detail: '' });
 

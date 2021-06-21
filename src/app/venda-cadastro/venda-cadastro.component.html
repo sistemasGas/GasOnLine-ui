@@ -26,7 +26,8 @@
       </div>
       <div class="p-col-2 col-md-3 p-fluid">
         <label>Data Venda</label>
-        <p-calendar [(ngModel)]="venda.dataVenda" dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
+        <p-calendar [(ngModel)]="venda.dataVenda" dateFormat="dd/mm/yy" value="#{venda.dataVenda}"
+        [showIcon]="true" readonlyInput="true" [minDate]="today"></p-calendar>
       </div>
       <div class="p-col-2 col-md-3 p-fluid">
         <label>Tipo Pagamento</label>
@@ -53,7 +54,7 @@
           </div>
           <div class="product-list-action">
             <h6 class="p-mb-2">{{produto.valorVenda | currency:'BRL'}}</h6>
-            <span [class]="'statusEstoque-'+produto.quantidadeEstoque">{{produto.quantidadeEstoque ? 'DISPONÍVEL' :
+            <span [class]="'statusEstoque-'+produto.quantidadeEstoque">{{produto.quantidadeEstoque ? produto.quantidadeEstoque + ' DISPONÍVEL' :
               'INDISPONÍVEL'}}</span>
           </div>
 

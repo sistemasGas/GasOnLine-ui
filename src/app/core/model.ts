@@ -92,3 +92,8 @@ export class Usuario{
   login: string;
   senha: string;
 }
+
+export class Erro{
+  mensagemUsuario: String;
+  mensagemDesenvolvedor: String;
+}

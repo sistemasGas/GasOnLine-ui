@@ -22,7 +22,6 @@ export class ProdutoCadastroComponent implements OnInit {
   categoria = new Categoria();
   public MASKS = utilsBr.MASKS;
   public formFields;
-  router:Router;
 
   constructor(
     public produtoService: ProdutoService,
@@ -30,6 +29,7 @@ export class ProdutoCadastroComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
     private route: ActivatedRoute,
+    private router: Router,
     public fb: FormBuilder,
     private errorHandler: ErrorHandlerService) {
 
@@ -91,6 +91,7 @@ export class ProdutoCadastroComponent implements OnInit {
       else {
         this.messageService.add({ severity: 'success', summary: 'Produto Cadastrado!', detail: '' });
       }
+      this.router.navigate(['/produtos/pesquisa'])
       this.produto = { id: null, descricao: "", valorCompra: 0.0, valorVenda: 0.0, categoria: null, quantidadeEstoque: 0.0, imagem: "" };
     })
     .catch(erro => this.errorHandler.handler(erro));
@@ -105,9 +106,10 @@ export class ProdutoCadastroComponent implements OnInit {
   }
 
   public listarCategorias() {
-    this.produtoService.getCategorias().subscribe(resposta => {
+    this.produtoService.getCategorias().then(resposta => {
       this.categorias = resposta;
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   public buscarProdutoPorId(id) {

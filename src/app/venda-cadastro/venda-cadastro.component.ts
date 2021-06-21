@@ -4,7 +4,7 @@ import { ProdutoService } from './../produto.service';
 import { Pessoa, Produto, Venda, ItemVenda } from './../core/model';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Component({
@@ -15,6 +15,7 @@ import { ErrorHandlerService } from '../core/error-handler.service';
 export class VendaCadastroComponent implements OnInit {
 
   pessoas = [];
+  today = new Date();
   produtosDisponiveis: Produto[];
   produtosSelecionados: Produto[];
   produtoArrastado: Produto;
@@ -33,6 +34,7 @@ export class VendaCadastroComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private route: ActivatedRoute,
+    private router: Router,
     private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
@@ -41,12 +43,12 @@ export class VendaCadastroComponent implements OnInit {
     this.itensVenda = [];
     this.butons = [
       {
-        label: 'Orçamento', icon: 'pi pi-book', routerLink: ['/dashboard'], command: () => {
+        label: 'Orçamento', icon: 'pi pi-book', command: () => {
           this.criarOrcamento();
         }
       },
       {
-        label: 'Emitir Venda', icon: 'pi pi-shopping-cart', routerLink: ['/home'], command: () => {
+        label: 'Emitir Venda', icon: 'pi pi-shopping-cart', command: () => {
           this.criarVenda();
         }
       },
@@ -72,14 +74,14 @@ export class VendaCadastroComponent implements OnInit {
     this.produtoService.getProdutos().then(resposta => {
       this.produtosDisponiveis = resposta;
     })
-    .catch(erro => this.errorHandler.handler(erro));
+      .catch(erro => this.errorHandler.handler(erro));
   }
 
   public listarClientes() {
     this.usuarioService.getUsuarios().then(resposta => {
       this.pessoas = resposta;
     })
-    .catch(erro => this.errorHandler.handler(erro));
+      .catch(erro => this.errorHandler.handler(erro));
   }
 
   public buscarVendaPorId(vendaID) {
@@ -87,7 +89,7 @@ export class VendaCadastroComponent implements OnInit {
       this.venda = resposta;
       this.itensVenda = this.venda.itensVenda;
     })
-    .catch(erro => this.errorHandler.handler(erro));;;
+      .catch(erro => this.errorHandler.handler(erro));;;
   }
 
   dragStart(produto: Produto) {
@@ -146,7 +148,7 @@ export class VendaCadastroComponent implements OnInit {
   }
   adicionarItem(itemVenda) {
     let id = itemVenda.produto.id;
-    itemVenda.produto.quantidadeEstoque--;
+    if (itemVenda.produto.quantidadeEstoque >= 1) itemVenda.produto.quantidadeEstoque--;
     for (let i = 0; i < this.itensVenda.length; i++) {
       if (id === this.itensVenda[i].produto.id && this.itensVenda[i].produto.quantidadeEstoque > 0) {
         this.itensVenda[i].quantidade++;
@@ -164,24 +166,29 @@ export class VendaCadastroComponent implements OnInit {
   }
 
   criarVenda() {
-    this.venda.itensVenda = this.itensVenda;
-    this.venda.status = "EMITIDA"
-    this.vendaService.post(this.venda).then(resposta => {
-      if (this.venda.codigo) {
-        this.messageService.add({ severity: 'success', summary: 'Venda Atualizada!', detail: '' });
-      }
-      else {
-        this.messageService.add({ severity: 'success', summary: 'Venda Cadastrada!', detail: '' });
-      }
-      this.venda = null;
-    })
-    .catch(erro => this.errorHandler.handler(erro));
+    if (this.venda.status === "CANCELADA") {
+      this.messageService.add({ severity: 'error', summary: 'Não é permitido alterar venda cancelada!!', detail: '' });
+    } else {
+      this.venda.itensVenda = this.itensVenda;
+      this.venda.status = "EMITIDA"
+      this.vendaService.post(this.venda).then(resposta => {
+        if (this.venda.codigo) {
+          this.messageService.add({ severity: 'success', summary: 'Venda Atualizada!', detail: '' });
+        }
+        else {
+          this.messageService.add({ severity: 'success', summary: 'Venda Cadastrada!', detail: '' });
+        }
+        this.router.navigate(['/home'])
+        this.venda = null;
+      })
+        .catch(erro => this.errorHandler.handler(erro));
+    }
   }
 
 
   criarOrcamento() {
-    if (this.venda.status === "ORCAMENTO") {
-      this.messageService.add({ severity: 'error', summary: 'Item já é um Orçamento, Efetive ou cancele!!!', detail: '' });
+    if (this.venda.status === "CANCELADA" || this.venda.status === "EMITIDA" || this.venda.status === "ORCAMENTO") {
+      this.messageService.add({ severity: 'error', summary: 'Nao é permitida alteração para Orçamento!', detail: '' });
     }
     else {
       this.venda.status = "ORCAMENTO";
@@ -193,9 +200,10 @@ export class VendaCadastroComponent implements OnInit {
         else {
           this.messageService.add({ severity: 'info', summary: 'Orçamento Cadastrado!', detail: '' });
         }
+        this.router.navigate(['/home'])
         this.venda = null;
       })
-      .catch(erro => this.errorHandler.handler(erro));
+        .catch(erro => this.errorHandler.handler(erro));
     }
   }
 
@@ -207,6 +215,7 @@ export class VendaCadastroComponent implements OnInit {
       this.venda.status = "CANCELADA";
       this.vendaService.post(this.venda).then(resposta => {
         this.messageService.add({ severity: 'success', summary: 'Cancelado com Sucesso', detail: '' });
+        this.router.navigate(['/home'])
         this.venda = null;
       }).catch(erro => this.errorHandler.handler(erro));
     }

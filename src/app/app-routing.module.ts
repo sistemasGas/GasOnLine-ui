@@ -17,6 +17,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "login" },
   { path: "home", component: DashboardComponent},
+  { path: "dashboard", component: DashboardComponent},
   { path: "produto/cadastro", component: ProdutoCadastroComponent },
   { path: "produtos/pesquisa", component: ProdutosPesquisaComponent },
   { path: "produto/cadastro/:id", component: ProdutoCadastroComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent},
   { path: "pagina-nao-encontrada", component: PaginaNaoEncontradaComponent },
   { path: "**", redirectTo: 'pagina-nao-encontrada'},
- 
+
 ];
 
 @NgModule({
