@@ -12,7 +12,7 @@ export class LoginService {
 
   public getLogin(): Observable<any> {
     return this.http.get(`${environment.url}/usuarios`);
-  }
+  }git
 
   public deleteLogin(id): Observable<any> {
     return this.http.delete(`${environment.url}/usuarios/${id}`);

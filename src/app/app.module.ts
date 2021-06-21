@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule,  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StepsModule } from 'primeng/steps';
@@ -51,7 +51,8 @@ import { AuthService } from './login/auth.service';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { AuthGuard } from './guards/auth.guards';
 import { ErrorHandlerService } from './core/error-handler.service';
-
+import { LoginService2 } from './login/login.service2';
+import { AuthInterceptor } from './http.interceptor';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,10 @@ import { ErrorHandlerService } from './core/error-handler.service';
     InputNumberModule,
     AppRoutingModule
   ],
-  providers: [
+  providers: [LoginService2, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true},
     AuthService,
     AuthGuard,
     ConfirmationService,

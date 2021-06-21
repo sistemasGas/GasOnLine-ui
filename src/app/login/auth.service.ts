@@ -14,7 +14,7 @@ export class AuthService {
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
-  userteste: Usuario={login:'',senha:''};
+  userLogin: Usuario={login:'',senha:''};
   //get isLoggedIn() {
   //  return this.loggedIn.asObservable();
   //}
@@ -24,8 +24,8 @@ export class AuthService {
   }
   public findByCPF(login) {
     this.loginService.findByCPF(login).subscribe(resposta => {
-      this.userteste = resposta;
-      console.log(this.userteste)
+      this.userLogin = resposta;
+      console.log(this.userLogin)
     })
   }
 
@@ -34,21 +34,21 @@ export class AuthService {
     this.findByCPF(usuario.login);
     //var n = this.userteste.login.localeCompare(usuario.login+"")
     setTimeout(()=>{
-      if ( this.userteste.login === usuario.login) {
+      if ( this.userLogin.login === usuario.login && this.userLogin.senha === usuario.senha ) {
 
         this.usuarioAutenticado = true;
 
         this.mostrarMenuEmitter.emit(true);
         this.messageService.add({ severity: 'success', summary: 'Acesso Liberado!', detail: '' });
         this.router.navigate(['/home']);
-        console.log(usuario + "entrei no if");
+        console.log(usuario + "......Usuario Logado......");
 
       } else {
         this.usuarioAutenticado = false;
 
         this.mostrarMenuEmitter.emit(false);
-        this.messageService.add({ severity: 'success', summary: 'Login ou Senha Invalido!', detail: '' });
-        console.log(usuario + "entrei no else");
+        this.messageService.add({ severity: 'error', summary: 'Login ou Senha Invalido!', detail: '' });
+        console.log(usuario + "......Usuario/Senha diferente do Banco......");
       }
     },2000)
   }
