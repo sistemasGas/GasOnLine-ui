@@ -15,20 +15,20 @@ export class ProdutoService {
     public getProdutos(): Promise <any> {
       return this.http.get(`${environment.url}/produtos`)
       .toPromise()
-      .catch(erro => {return Promise.reject('Falha ao listar Produto!')});
+      .catch(erro => {return Promise.reject(erro)});
     }
 
     public getProdutosPorId(id): Promise <any> {
       return this.http.get(`${environment.url}/produtos/${id}`)
       .toPromise()
-      .catch(erro => {return Promise.reject('Falha ao listar Produto!')});
+      .catch(erro => {return Promise.reject(erro)});
 
     }
 
     public buscarValorEstoque():Promise <any> {
       return this.http.get(`${environment.url}/produtos/valorestoque`)
       .toPromise()
-      .catch(erro => {return Promise.reject('Falha na busca do valor do estoque!')});
+      .catch(erro => {return Promise.reject(erro)});
     }
 
     public saveProduto(produto): Promise<any> {
@@ -40,7 +40,7 @@ export class ProdutoService {
     public deleteProduto(id): Promise<any> {
       return this.http.delete(`${environment.url}/produtos/${id}`)
       .toPromise()
-      .catch(erro => {return Promise.reject('Falha ao deletar o Produto {id}!')});
+      .catch(erro => {return Promise.reject(erro)});
     }
 
     public salvarCategoria(categoria):Promise<any> {
@@ -52,7 +52,7 @@ export class ProdutoService {
     public deleteCategoria(id): Promise<any> {
       return this.http.delete(`${environment.url}/categorias/${id}`)
       .toPromise()
-      .catch(erro => {return Promise.reject('Falha ao deletar o Produto {id}!')});
+      .catch(erro => {return Promise.reject(erro)});
     }
 
     public getCategorias(): Promise <any>{

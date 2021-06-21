@@ -18,39 +18,42 @@ export class DashboardComponent implements OnInit {
   vendas: Venda[];
 
   constructor(public produtoService: ProdutoService,
-              public usuarioService: UsuarioService,
-              public vendaService: VendaService,
-              private errorHandler: ErrorHandlerService) { }
+    public usuarioService: UsuarioService,
+    public vendaService: VendaService,
+    private errorHandler: ErrorHandlerService) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.buscarValorEstoque();
     this.buscarQuantidadeClientes();
     this.buscarVendas();
     this.buscarTotalVendas()
-    }
+  }
 
-  public buscarValorEstoque(){
+  public buscarValorEstoque() {
     this.produtoService.buscarValorEstoque().then(resposta => {
       this.valorEstoque = resposta;
     })
-    .catch(erro => this.errorHandler.handler(erro));
+      .catch(erro => this.errorHandler.handler(erro));
   }
 
-  public buscarQuantidadeClientes(){
+  public buscarQuantidadeClientes() {
     this.usuarioService.buscarQuantidadeClientes().subscribe(resposta => {
       this.clientes = resposta;
     });
   }
 
-  public buscarTotalVendas(){
-    this.vendaService.buscarTotalVendas().subscribe(resposta => {
+  public buscarTotalVendas() {
+    this.vendaService.buscarTotalVendas().then(resposta => {
       this.valorVendas = resposta;
-    });
+    })
+      .catch(erro => this.errorHandler.handler(erro));
   }
 
-  public buscarVendas(){
+  public buscarVendas() {
     this.vendaService.findAll().then(resposta => {
-      this.vendas = resposta;}).catch(erro => this.errorHandler.handler(erro));
+      this.vendas = resposta;
+    })
+      .catch(erro => this.errorHandler.handler(erro));
   }
 
 }

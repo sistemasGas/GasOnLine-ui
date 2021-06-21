@@ -15,6 +15,7 @@ import { ErrorHandlerService } from '../core/error-handler.service';
 export class VendaCadastroComponent implements OnInit {
 
   pessoas = [];
+  today = new Date();
   produtosDisponiveis: Produto[];
   produtosSelecionados: Produto[];
   produtoArrastado: Produto;
@@ -210,6 +211,7 @@ export class VendaCadastroComponent implements OnInit {
       this.venda.status = "CANCELADA";
       this.vendaService.post(this.venda).then(resposta => {
         this.messageService.add({ severity: 'success', summary: 'Cancelado com Sucesso', detail: '' });
+        this.router.navigate(['/home'])
         this.venda = null;
       }).catch(erro => this.errorHandler.handler(erro));
     }
