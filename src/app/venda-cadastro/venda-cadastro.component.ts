@@ -4,7 +4,7 @@ import { ProdutoService } from './../produto.service';
 import { Pessoa, Produto, Venda, ItemVenda } from './../core/model';
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Component({
@@ -33,6 +33,7 @@ export class VendaCadastroComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private route: ActivatedRoute,
+    private router: Router,
     private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
@@ -41,12 +42,12 @@ export class VendaCadastroComponent implements OnInit {
     this.itensVenda = [];
     this.butons = [
       {
-        label: 'Orçamento', icon: 'pi pi-book', routerLink: ['/dashboard'], command: () => {
+        label: 'Orçamento', icon: 'pi pi-book', command: () => {
           this.criarOrcamento();
         }
       },
       {
-        label: 'Emitir Venda', icon: 'pi pi-shopping-cart', routerLink: ['/home'], command: () => {
+        label: 'Emitir Venda', icon: 'pi pi-shopping-cart', command: () => {
           this.criarVenda();
         }
       },
@@ -173,6 +174,7 @@ export class VendaCadastroComponent implements OnInit {
       else {
         this.messageService.add({ severity: 'success', summary: 'Venda Cadastrada!', detail: '' });
       }
+      this.router.navigate(['/home'])
       this.venda = null;
     })
     .catch(erro => this.errorHandler.handler(erro));
@@ -193,6 +195,7 @@ export class VendaCadastroComponent implements OnInit {
         else {
           this.messageService.add({ severity: 'info', summary: 'Orçamento Cadastrado!', detail: '' });
         }
+        this.router.navigate(['/home'])
         this.venda = null;
       })
       .catch(erro => this.errorHandler.handler(erro));
