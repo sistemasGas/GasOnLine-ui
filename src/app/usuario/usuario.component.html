@@ -18,7 +18,7 @@
                     <th>Endereço</th>
                     <th>Categoria</th>
                     <th>Cargo</th>
-                    
+
                     <th class="centro ">Ações</th>
                 </tr>
             </thead>
@@ -32,8 +32,8 @@
                     <td> {{ usuario.endereco}}</td>
                     <td> {{ usuario.categoria }}</td>
                     <td> {{ usuario.cargo }}</td>
-                    
-                    
+
+
                     <td>
                         <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/usuario/create', usuario.id]"></a>&nbsp;
                         <button pButton pRipple type="button " icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-outlined " (click)="deleteUsuario(usuario)"></button>
