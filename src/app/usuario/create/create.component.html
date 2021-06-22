@@ -36,7 +36,7 @@
                                     placeholder="(99) 99999-9999" name="telefone"></p-inputMask>
                             </div>
                             <div class="p-col-4 col-md-3 p-fluid" style="margin-top: 32px;">
-                                <p-button label="Add endereço" (click)="chamarTelaEndereco()"></p-button>
+                                <p-button icon="pi pi-map-marker"label="Endereço" (click)="chamarTelaEndereco()"></p-button>
                             </div>
                             <!-- <div class="p-col-12 col-md-8 p-fluid">
                                 <label for="endereco">Endereço</label>
@@ -87,10 +87,10 @@
                 </form>
             </div>
         </div>
-        <a pButton label="Salvar Usuário " class="btn btn-primary " icon="pi pi-user-plus "
-            (click)="createUsuario()"></a> &nbsp;
         <button pButton pRipple type="button" icon="pi pi-arrow-left" label="Voltar" class="p-button-outlined"
             routerLink="/usuario"></button>
+        <button pButton type="button" label="Salvar Usuário" class="btn btn-primary " icon="pi pi-user-plus "
+            (click)="createUsuario()"></button>
     </div>
 </div>
 
@@ -136,7 +136,7 @@
                 <label class="col-sm-3 col-form-label">Cidade</label>
                 <div class="col-sm-9">
                     <input [(ngModel)]="endereco.localidade" type="text" class="form-control">
-                    
+
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ import { UsuarioService } from './../../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PrimeNGConfig, ConfirmationService } from 'primeng/api';
 import { Pessoa } from 'src/app/core/model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { from } from 'rxjs';
 import { MASKS, NgBrazilValidators } from 'ng-brazil';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -61,6 +61,7 @@ public MASKS = MASKS;
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
     private route: ActivatedRoute,
+    private router: Router,
     private enderecoService: EnderecoService,
     private errorHandler: ErrorHandlerService
     // private fb: FormBuilder
@@ -86,7 +87,7 @@ public MASKS = MASKS;
     this.usuarioService.salvarUsuario(this.usuario).then(resposta => {
       if (this.usuario.id) {
         this.messageService.add({ severity: 'success', summary: 'Usuário Atualizado!', detail: '' });
-        window.location.href = '/usuario';
+
       }
       else {
         this.messageService.add({ severity: 'success', summary: 'Usuário Cadastrado!', detail: '' });
@@ -95,6 +96,7 @@ public MASKS = MASKS;
       // location.reload;
     })
     .catch(erro => this.errorHandler.handler(erro));
+    this.router.navigate(['/usuario']);
   }
 
   readById(idPessoa) {
