@@ -1,25 +1,25 @@
 <div class="container">
-  <div class="col-12 grid-margin">
+  <div class="col-8 grid-auto">
       <div class="card">
-          <div class="card-body">
+          <div class="card-top">
               <div class="ui-g">
                   <div>
-                      <!-- <h1>{{edicao ? 'Edição de ' : 'Nova '}} Usuário do sistema</h1> -->
-                      <h1>Login Usuario</h1>
+                    <img src="img/logo.png" alt="">
+                    <h2 class="title">Login de Usuário</h2>
                   </div>
               </div>
               <form class="form-sample form-group">
                   <div>
                       <div class="row">
-                          <div class="p-col-4 col-md-4 p-fluid">
+                          <div class="p-col-2 col-md-4 p-fluid">
                               <label for="cpf">Login</label>
-                               <input [(ngModel)]="usuario.login" type=" text" name="login" class="form-control" id="cpf"> -->
+                               <input [(ngModel)]="usuario.login" type=" text" name="login" class="form-control" id="cpf" placeholder="Digite seu CPF">
                               <!--<p-inputMask mask="999.999.999-99" [(ngModel)]="usuario.cpf" placeholder="999.999.999-99"
                                   name="cpf"></p-inputMask>-->
                               <!-- <input [(ngModel)]="cpf" type="text" name="lcpf" class="form-control" id="cpf" readonly> -->
                           </div>
-                          <div class="p-col-12 col-md-4 p-fluid">
-                              <label for="senha">Senha *</label>
+                          <div class="p-col-4 col-md-4 p-fluid">
+                              <label for="senha">Senha </label>
                               <p-password [(ngModel)]="usuario.senha" name="senha" placeholder="Digite a senha">
                               </p-password>
                           </div>

@@ -19,7 +19,8 @@ export class AuthService {
   //  return this.loggedIn.asObservable();
   //}
 
-  constructor(private router: Router, private loginService: LoginService, private messageService: MessageService) {
+  constructor(private router: Router, private loginService: LoginService,
+     private messageService: MessageService) {
 
   }
   public findByCPF(login) {
