@@ -7,17 +7,13 @@ import { AuthService } from './login/auth.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'gasonline-ui';
 
-  mostrarMenu: boolean = false;
+  exibindoBarra =false;
+  constructor(private authService: AuthService) { }
 
-  constructor (private authService: AuthService){
-
-  }
-
-  ngOnInit(){
+  ngOnInit(): void {
     this.authService.mostrarMenuEmitter.subscribe(
-      mostrar => this.mostrarMenu = mostrar
+      mostrar => this.exibindoBarra = mostrar
     );
   }
 }
