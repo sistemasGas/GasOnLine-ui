@@ -37,7 +37,7 @@
         <div class="icon">
           <i class="ion ion-stats-bars"></i>
         </div>
-        <a href="http://localhost:4200/vendas" class="small-box-footer">Consulta Vendas<i
+        <a [routerLink]="['/vendas']" class="small-box-footer">Consulta Vendas<i
             class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
@@ -53,7 +53,7 @@
         <div class="icon">
           <i class="ion ion-person-add"></i>
         </div>
-        <a href="http://localhost:4200/usuario" class="small-box-footer">Consultar Clientes <i
+        <a [routerLink]="['/usuario']" class="small-box-footer">Consultar Clientes <i
             class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
@@ -69,7 +69,7 @@
         <div class="icon">
           <i class="ion ion-pie-graph"></i>
         </div>
-        <a href="http://localhost:4200/produtos/pesquisa" class="small-box-footer">Consultar Estoque <i
+        <a [routerLink]="['/produtos/pesquisa']" class="small-box-footer">Consultar Estoque <i
             class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
@@ -164,8 +164,8 @@
   </p-table>
   <!-- /.card-body -->
   <div class="card-footer clearfix">
-    <a href="http://localhost:4200/venda/cadastro" class="btn btn-sm btn-info float-left">Cadastrar Nova Venda</a>
-    <a href="http://localhost:4200/vendas" class="btn btn-sm btn-secondary float-right">Consultar todas Vendas</a>
+    <a [routerLink]="['/venda/cadastro']" class="btn btn-sm btn-info float-left">Cadastrar Nova Venda</a>
+    <a [routerLink]="['/vendas']" class="btn btn-sm btn-secondary float-right">Consultar todas Vendas</a>
   </div>
   <!-- /.card-footer -->
 </div>

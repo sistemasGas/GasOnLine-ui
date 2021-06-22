@@ -21,12 +21,12 @@
 
     <ul class="navbar-menu" [hidden]="!exibindoMenu">
         <li class="navbar-usuario">SGDG</li>
-        <li class="navbar-menuitem"><a href="http://localhost:4200/dashboard">DashBoards</a></li>
-        <li class="navbar-menuitem"><a href="http://localhost:4200/produtos/pesquisa">Produtos</a></li>
+        <li class="navbar-menuitem"><a [routerLink]="['/dashboard']">DashBoards</a></li>
+        <li class="navbar-menuitem"><a [routerLink]="['/produtos/pesquisa']">Produtos</a></li>
         <!-- <li class="navbar-menuitem"><a href="http://localhost:4200/pessoa/cadastro">Cliente/Fornecedor</a></li> -->
         <!-- <li class="navbar-menuitem"><a href="http://localhost:4200/compra/cadastro">Compras</a></li> -->
-        <li class="navbar-menuitem"><a href="http://localhost:4200/venda/cadastro">Vendas</a></li>
-        <li class="navbar-menuitem"><a href="http://localhost:4200/usuario">Pessoas</a></li>
+        <li class="navbar-menuitem"><a [routerLink]="['/venda/cadastro']">Vendas</a></li>
+        <li class="navbar-menuitem"><a [routerLink]="['/usuario']">Pessoas</a></li>
 
     </ul>
 
