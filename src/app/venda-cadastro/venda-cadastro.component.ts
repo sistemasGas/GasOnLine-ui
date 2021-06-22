@@ -187,7 +187,7 @@ export class VendaCadastroComponent implements OnInit {
 
 
   criarOrcamento() {
-    if (this.venda.status === "CANCELADA" || this.venda.status === "EMITIDA" || this.venda.status === "ORCAMENTO") {
+    if (this.venda.codigo != null && (this.venda.status === "CANCELADA" || this.venda.status === "EMITIDA" || this.venda.status === "ORCAMENTO")) {
       this.messageService.add({ severity: 'error', summary: 'Nao é permitida alteração para Orçamento!', detail: '' });
     }
     else {
