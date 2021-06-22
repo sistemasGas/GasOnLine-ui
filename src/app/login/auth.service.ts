@@ -1,3 +1,4 @@
+import { Pessoa } from './../core/model';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
 import { MessageService } from 'primeng/api';
@@ -13,6 +14,7 @@ export class AuthService {
   private usuarioAutenticado: boolean = false;
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
+  usuarioLogado = new EventEmitter<Pessoa>();
 
   userLogin: Usuario={login:'',senha:''};
   //get isLoggedIn() {
@@ -40,8 +42,10 @@ export class AuthService {
         this.usuarioAutenticado = true;
 
         this.mostrarMenuEmitter.emit(true);
+        this.usuarioLogado.emit()
         this.messageService.add({ severity: 'success', summary: 'Acesso Liberado!', detail: '' });
         this.router.navigate(['/home']);
+
         console.log(usuario + "......Usuario Logado......");
 
       } else {
