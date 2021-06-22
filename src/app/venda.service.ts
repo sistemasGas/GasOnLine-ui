@@ -39,4 +39,10 @@ export class VendaService {
     .toPromise()
     .catch(erro => {return Promise.reject(erro)});
   }
+
+  public buscarTotalItensVendidos(){
+    return this.http.get(`${environment.url}/vendas/totalitens`)
+    .toPromise()
+    .catch(erro => {return Promise.reject(erro)});
+  }
 }
