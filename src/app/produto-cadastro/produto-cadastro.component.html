@@ -40,13 +40,13 @@
     <div class="row">
       <div class="col-md-3 p-fluid">
         <label>Valor Compra</label>
-        <input [(ngModel)]="produto.valorCompra" pInputText type="text" name="valorCompra" class="form-control"
+        <input [(ngModel)]="produto.valorCompra" id="valorCompra" pInputText type="text" name="valorCompra" class="form-control"
           currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
       </div>
 
       <div class="col-md-3 p-fluid">
         <label>Valor Venda</label>
-        <input [(ngModel)]="produto.valorVenda" pInputText type="text" name="valorVenda" class="form-control"
+        <input [(ngModel)]="produto.valorVenda" id="valorVenda" pInputText type="text" name="valorVenda" class="form-control"
           currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative:false }">
       </div>
 
