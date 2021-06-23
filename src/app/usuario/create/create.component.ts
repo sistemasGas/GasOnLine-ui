@@ -1,6 +1,6 @@
 import { UsuarioLoginComponent } from './../usuario-login/usuario-login.component';
 import { LoginService } from './../../login.service';
-import { Endereco, Login} from './../../core/model';
+import { Endereco, Login } from './../../core/model';
 import { UsuarioService } from './../../usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { MessageService, PrimeNGConfig, ConfirmationService } from 'primeng/api';
@@ -24,15 +24,18 @@ export class CreateComponent implements OnInit {
   exibindoCNPJ = false;
   exibindoCPF = true;
   exibindoCargo = false;
+  exibindoCategoria = true;
   exibirEndereco = false;
+  exibindoLogin = false;
+  exibindoSenha = false;
+  exibindoPerfil = false;
 
   endereco = new Endereco();
   usuario = new Pessoa();
   user = new Login();
 
-formResult: string = '';
-public MASKS = MASKS;
-
+  formResult: string = '';
+  public MASKS = MASKS;
 
   cargos = [
     { label: "Administrador", value: "Administrador" },
@@ -53,8 +56,8 @@ public MASKS = MASKS;
     { label: "Física", value: "FISICA" },
     { label: "Jurídica", value: "JURIDICA" }
   ]
-   cadastroForm: FormGroup;
-   fb: any;
+  cadastroForm: FormGroup;
+  fb: any;
 
   constructor(public usuarioService: UsuarioService,
     private messageService: MessageService,
@@ -65,7 +68,7 @@ public MASKS = MASKS;
     private enderecoService: EnderecoService,
     private errorHandler: ErrorHandlerService
     // private fb: FormBuilder
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     const idPessoa = this.route.snapshot.params['id'];
@@ -75,8 +78,6 @@ public MASKS = MASKS;
       nome: ['', Validators.required],
       cpf: ['', [Validators.required, NgBrazilValidators.cpf]]
     });
-
-
   }
 
   createUsuario() {
@@ -95,7 +96,7 @@ public MASKS = MASKS;
       this.usuario = new Pessoa();
       // location.reload;
     })
-    .catch(erro => this.errorHandler.handler(erro));
+      .catch(erro => this.errorHandler.handler(erro));
     this.router.navigate(['/usuario']);
   }
 
@@ -105,29 +106,44 @@ public MASKS = MASKS;
     });
   }
 
-  onChange(change:any){
-    this.usuario.tipo=change.value;
-    if(change.value === 'FISICA'){
-      this.exibindoCPF=true;
-      this.exibindoCNPJ=false;
-      this.exibindoCargo=true;
-      this.categorias= [
+  onChange(change: any) {
+    this.usuario.tipo = change.value;
+    if (change.value === 'FISICA') {
+      this.exibindoCPF = true;
+      this.exibindoCNPJ = false;
+      this.exibindoCargo = true;
+      this.categorias = [
+        // { label: "Cliente | Fornecedor", value: "CLIFOR" },
+        { label: "Cliente", value: "CLIENT" },
+        // { label: "Fornecedor", value: "FORN" },
+        { label: "Funcionário", value: "FUNC" }
+      ]
+      this.exibindoLogin = true;
+      this.exibindoSenha = true;
+      this.exibindoPerfil = true;
+    }
+
+       
+
+    if (change.value === 'JURIDICA') {
+      this.exibindoCNPJ = true;
+      this.exibindoCPF = false;
+      this.exibindoCargo = false;
+      this.exibindoLogin = false;
+      this.exibindoSenha = false;
+      this.exibindoPerfil = false;
+      this.categorias = [
         { label: "Cliente | Fornecedor", value: "CLIFOR" },
         { label: "Cliente", value: "CLIENT" },
         { label: "Fornecedor", value: "FORN" },
-        { label: "Funcionário", value: "FUNC" }
+        // { label: "Funcionário", value: "FUNC" }
       ]
-    }
-    if(change.value === 'JURIDICA'){
-      this.exibindoCNPJ=true;
-      this.exibindoCPF=false;
-      this.exibindoCargo=false;
-      this.categorias.splice(3,4);
+      // this.categorias.splice(3, 3);
     }
   }
 
-  adicionarEndereco(){
-    this.usuario.endereco=this.endereco;
+  adicionarEndereco() {
+    this.usuario.endereco = this.endereco;
     this.fecharTelaEndereco();
     console.log(this.usuario.endereco)
   }
@@ -136,8 +152,8 @@ public MASKS = MASKS;
     this.exibirEndereco = true;
   }
 
-  fecharTelaEndereco(){
-    this.exibirEndereco=false;
+  fecharTelaEndereco() {
+    this.exibirEndereco = false;
   }
 
   public buscarEnderecoPorCep(cep) {
@@ -148,6 +164,6 @@ public MASKS = MASKS;
       this.endereco.localidade = resposta.localidade
       this.endereco.uf = resposta.uf
     })
-    .catch(erro => this.errorHandler.handler(erro));
+      .catch(erro => this.errorHandler.handler(erro));
   }
 }

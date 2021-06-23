@@ -47,10 +47,10 @@
                                 <p-dropdown name="cargo" [options]="cargos" [(ngModel)]="usuario.cargo"
                                     placeholder="Selecione"></p-dropdown>
                             </div>
-                            <div class="p-col-12 col-md-4 p-fluid">
+                            <div class="p-col-12 col-md-4 p-fluid" [hidden]="!exibindoCategoria">
                                 <label>Categoria</label>
                                 <p-dropdown name="categoria" [options]="categorias" [(ngModel)]="usuario.categoria"
-                                    placeholder="Selecione "></p-dropdown>
+                                    placeholder="Selecione " ></p-dropdown>
                             </div>
 
                             <div class="p-col-4 col-md-4 p-fluid" [hidden]="!exibindoCPF">
@@ -65,19 +65,19 @@
                                     placeholder="99.999.999/9999-99" name="cpnj"></p-inputMask>
                             </div>
 
-                            <div class="p-col-4 col-md-4 p-fluid">
+                            <div class="p-col-4 col-md-4 p-fluid" [hidden]="!exibindoLogin">
                                 <label for="cpf">Login</label>
                                 <!-- <input [(ngModel)]="user.login" type="text" name="cpf" class="form-control" id="cpf"> -->
                                 <p-inputMask mask="999.999.999-99" [(ngModel)]="user.login" placeholder="999.999.999-99"
                                     name="cpf"></p-inputMask>
                                 <!-- <input [(ngModel)]="cpf" type="text" name="lcpf" class="form-control" id="cpf" readonly> -->
                             </div>
-                            <div class="p-col-12 col-md-4 p-fluid">
+                            <div class="p-col-12 col-md-4 p-fluid" [hidden]="!exibindoSenha">
                                 <label for="senha">Senha *</label>
                                 <p-password [(ngModel)]="user.senha" name="senha" placeholder="Digite a senha"
                                     [toggleMask]="true"></p-password>
                             </div>
-                            <div class="p-col-12 col-md-4 p-fluid">
+                            <div class="p-col-12 col-md-4 p-fluid" [hidden]="!exibindoPerfil">
                                 <label>Perfil</label>
                                 <p-dropdown name="perfil" [options]="perfis" [(ngModel)]="user.perfil"
                                     placeholder="Selecione "></p-dropdown>
