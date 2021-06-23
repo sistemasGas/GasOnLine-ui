@@ -101,9 +101,10 @@ export class CreateComponent implements OnInit {
   }
 
   readById(idPessoa) {
-    this.usuarioService.readById(idPessoa).subscribe(resposta => {
+    this.usuarioService.readById(idPessoa).then(resposta => {
       this.usuario = resposta;
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   onChange(change: any) {
@@ -111,6 +112,7 @@ export class CreateComponent implements OnInit {
     if (change.value === 'FISICA') {
       this.exibindoCPF = true;
       this.exibindoCNPJ = false;
+      this.usuario.cnpj=null;
       this.exibindoCargo = true;
       this.categorias = [
         // { label: "Cliente | Fornecedor", value: "CLIFOR" },
@@ -123,15 +125,20 @@ export class CreateComponent implements OnInit {
       this.exibindoPerfil = true;
     }
 
-       
+
 
     if (change.value === 'JURIDICA') {
       this.exibindoCNPJ = true;
       this.exibindoCPF = false;
+      this.usuario.cpf=null;
       this.exibindoCargo = false;
+      this.usuario.cargo=null;
       this.exibindoLogin = false;
+      this.user.login=null;
       this.exibindoSenha = false;
+      this.user.senha=null;
       this.exibindoPerfil = false;
+      this.user.perfil=null;
       this.categorias = [
         { label: "Cliente | Fornecedor", value: "CLIFOR" },
         { label: "Cliente", value: "CLIENT" },

@@ -20,25 +20,31 @@ export class UsuarioService {
   public getUsuarios(): Promise<any> {
     return this.http.get(`${environment.url}/pessoa`)
     .toPromise()
-    .catch(erro => {return Promise.reject('Erro ao consultar Pessoa!')});
-  }
-  
-
-  public deleteUsuarios(id): Observable<any> {
-    return this.http.delete(`${environment.url}/pessoa/${id}`);
+    .catch(erro => {return Promise.reject(erro)});
   }
 
-  readById(id: string): Observable<any> {
-    return this.http.get(`${environment.url}/pessoa/${id}`);
+
+  public deleteUsuarios(id): Promise<any> {
+    return this.http.delete(`${environment.url}/pessoa/${id}`)
+    .toPromise()
+    .catch(erro => {return Promise.reject(erro)});
   }
-  
+
+  readById(id: string): Promise<any> {
+    return this.http.get(`${environment.url}/pessoa/${id}`)
+    .toPromise()
+    .catch(erro => {return Promise.reject(erro)});
+  }
+
   public salvarUsuario(pessoa): Promise<any> {
     return this.http.post(`${environment.url}/pessoa`, pessoa)
     .toPromise()
-    .catch(erro => {return Promise.reject('Erro ao salvar Pessoa!')});
+    .catch(erro => {return Promise.reject(erro)});
   }
 
-  public buscarQuantidadeClientes(): Observable<any> {
-    return this.http.get(`${environment.url}/pessoa/qntClientes`);
+  public buscarQuantidadeClientes(): Promise<any> {
+    return this.http.get(`${environment.url}/pessoa/qntClientes`)
+    .toPromise()
+    .catch(erro => {return Promise.reject(erro)});
   }
 }

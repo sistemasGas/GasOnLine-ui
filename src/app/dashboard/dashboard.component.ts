@@ -39,9 +39,10 @@ export class DashboardComponent implements OnInit {
   }
 
   public buscarQuantidadeClientes() {
-    this.usuarioService.buscarQuantidadeClientes().subscribe(resposta => {
+    this.usuarioService.buscarQuantidadeClientes().then(resposta => {
       this.clientes = resposta;
-    });
+    })
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
   public buscarTotalVendas() {

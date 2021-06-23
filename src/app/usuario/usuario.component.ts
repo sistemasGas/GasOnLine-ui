@@ -19,13 +19,13 @@ export class UsuarioComponent implements OnInit {
   usuarios;
   selectedUsuario;
   login;
-  edicao = false; 
+  edicao = false;
 
   val1: string;
-  
+
   constructor(public usuarioService: UsuarioService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService, 
+    private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig,
     private route: ActivatedRoute,
     private errorHandler: ErrorHandlerService) { }
@@ -33,16 +33,16 @@ export class UsuarioComponent implements OnInit {
   ngOnInit() {
     this.primengConfig.ripple = true;
     this.listar();
-    
-    const idUsuario = this.route.snapshot.params['id'];   
+
+    const idUsuario = this.route.snapshot.params['id'];
   }
  // Listar usuarios
   public listar() {
-    
+
     this.usuarioService.getUsuarios().then(resposta => {
       this.usuarios = resposta;
     })
-    .catch(erro => this.errorHandler.handler(erro));;;
+    .catch(erro => this.errorHandler.handler(erro));
   }
 
 
@@ -59,15 +59,16 @@ export class UsuarioComponent implements OnInit {
   public deleteUsuario(usuario) {
     this.confirmationService.confirm({message: 'Confirma exclusão?',
     accept: () => {
-      this.usuarioService.deleteUsuarios(usuario.id).subscribe(r => {
+      this.usuarioService.deleteUsuarios(usuario.id).then(r => {
         this.listar();
         this.messageService.add({severity:'success', summary: 'Excluído com sucesso', detail: ''});
-      });
+      })
+      .catch(erro => this.errorHandler.handler(erro));
     }})
   }
 
   public editar(){
-    this.edicao = true;    
+    this.edicao = true;
   }
 
   public cancelar(){
@@ -77,8 +78,8 @@ export class UsuarioComponent implements OnInit {
   public salvar(){
     this.usuarioService.salvarUsuario(this.selectedUsuario).then( r => {
       this.listar();
-      this.edicao = false;      
+      this.edicao = false;
     })
     .catch(erro => this.errorHandler.handler(erro));
-  } 
+  }
 }
