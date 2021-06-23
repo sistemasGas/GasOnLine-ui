@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guards';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { VendasPesquisaComponent } from './vendas-pesquisa/vendas-pesquisa.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -16,22 +17,22 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "login" },
-  { path: "home", component: DashboardComponent},
-  { path: "dashboard", component: DashboardComponent},
-  { path: "produto/cadastro", component: ProdutoCadastroComponent },
-  { path: "produtos/pesquisa", component: ProdutosPesquisaComponent },
-  { path: "produto/cadastro/:id", component: ProdutoCadastroComponent },
-  { path: "pessoa/cadastro", component: PessoaCadastroComponent},
-  { path: "compra/cadastro", component: CompraCadastroComponent},
-  { path: "venda/cadastro", component: VendaCadastroComponent},
-  { path: "venda/cadastro/:id", component: VendaCadastroComponent},
-  { path: "venda/pesquisa", component: VendasPesquisaComponent},
-  { path: "usuario", component: UsuarioComponent},
-  { path: "usuario/create", component: CreateComponent},
-  { path: "usuario/create/:id", component: CreateComponent},
-  { path: "usuario/usuario-login", component: UsuarioLoginComponent},
+  { path: "home", component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
+  { path: "produto/cadastro", component: ProdutoCadastroComponent, canActivate: [AuthGuard]},
+  { path: "produtos/pesquisa", component: ProdutosPesquisaComponent, canActivate: [AuthGuard]},
+  { path: "produto/cadastro/:id", component: ProdutoCadastroComponent, canActivate: [AuthGuard]},
+  { path: "pessoa/cadastro", component: PessoaCadastroComponent, canActivate: [AuthGuard]},
+  { path: "compra/cadastro", component: CompraCadastroComponent, canActivate: [AuthGuard]},
+  { path: "venda/cadastro", component: VendaCadastroComponent, canActivate: [AuthGuard]},
+  { path: "venda/cadastro/:id", component: VendaCadastroComponent, canActivate: [AuthGuard]},
+  { path: "venda/pesquisa", component: VendasPesquisaComponent, canActivate: [AuthGuard]},
+  { path: "usuario", component: UsuarioComponent, canActivate: [AuthGuard]},
+  { path: "usuario/create", component: CreateComponent, canActivate: [AuthGuard]},
+  { path: "usuario/create/:id", component: CreateComponent, canActivate: [AuthGuard]},
+  { path: "usuario/usuario-login", component: UsuarioLoginComponent, canActivate: [AuthGuard]},
   { path: "login", component: LoginComponent},
-  { path: "pagina-nao-encontrada", component: PaginaNaoEncontradaComponent },
+  { path: "pagina-nao-encontrada", component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard]},
   { path: "**", redirectTo: 'pagina-nao-encontrada'},
 
 ];
