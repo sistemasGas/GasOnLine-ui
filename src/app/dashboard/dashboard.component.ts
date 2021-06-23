@@ -14,6 +14,7 @@ import { ErrorHandlerService } from '../core/error-handler.service';
 export class DashboardComponent implements OnInit {
   valorEstoque;
   valorVendas;
+  totalItens;
   clientes;
   vendas: Venda[];
 
@@ -26,7 +27,8 @@ export class DashboardComponent implements OnInit {
     this.buscarValorEstoque();
     this.buscarQuantidadeClientes();
     this.buscarVendas();
-    this.buscarTotalVendas()
+    this.buscarTotalVendas();
+    this.buscarTotalItensVendidos()
   }
 
   public buscarValorEstoque() {
@@ -45,6 +47,13 @@ export class DashboardComponent implements OnInit {
   public buscarTotalVendas() {
     this.vendaService.buscarTotalVendas().then(resposta => {
       this.valorVendas = resposta;
+    })
+      .catch(erro => this.errorHandler.handler(erro));
+  }
+
+  public buscarTotalItensVendidos() {
+    this.vendaService.buscarTotalItensVendidos().then(resposta => {
+      this.totalItens = resposta;
     })
       .catch(erro => this.errorHandler.handler(erro));
   }
