@@ -88,7 +88,7 @@ export class CreateComponent implements OnInit {
     this.usuarioService.salvarUsuario(this.usuario).then(resposta => {
       if (this.usuario.id) {
         this.messageService.add({ severity: 'success', summary: 'Usuário Atualizado!', detail: '' });
-
+        
       }
       else {
         this.messageService.add({ severity: 'success', summary: 'Usuário Cadastrado!', detail: '' });
@@ -98,13 +98,14 @@ export class CreateComponent implements OnInit {
     })
       .catch(erro => this.errorHandler.handler(erro));
     this.router.navigate(['/usuario']);
+    this.atualizarPag();
   }
 
   readById(idPessoa) {
     this.usuarioService.readById(idPessoa).then(resposta => {
       this.usuario = resposta;
     })
-    .catch(erro => this.errorHandler.handler(erro));
+      .catch(erro => this.errorHandler.handler(erro));
   }
 
   onChange(change: any) {
@@ -112,7 +113,7 @@ export class CreateComponent implements OnInit {
     if (change.value === 'FISICA') {
       this.exibindoCPF = true;
       this.exibindoCNPJ = false;
-      this.usuario.cnpj=null;
+      this.usuario.cnpj = null;
       this.exibindoCargo = true;
       this.categorias = [
         // { label: "Cliente | Fornecedor", value: "CLIFOR" },
@@ -130,15 +131,15 @@ export class CreateComponent implements OnInit {
     if (change.value === 'JURIDICA') {
       this.exibindoCNPJ = true;
       this.exibindoCPF = false;
-      this.usuario.cpf=null;
+      this.usuario.cpf = null;
       this.exibindoCargo = false;
-      this.usuario.cargo=null;
+      this.usuario.cargo = null;
       this.exibindoLogin = false;
-      this.user.login=null;
+      this.user.login = null;
       this.exibindoSenha = false;
-      this.user.senha=null;
+      this.user.senha = null;
       this.exibindoPerfil = false;
-      this.user.perfil=null;
+      this.user.perfil = null;
       this.categorias = [
         { label: "Cliente | Fornecedor", value: "CLIFOR" },
         { label: "Cliente", value: "CLIENT" },
@@ -172,5 +173,11 @@ export class CreateComponent implements OnInit {
       this.endereco.uf = resposta.uf
     })
       .catch(erro => this.errorHandler.handler(erro));
+  }
+
+  public atualizarPag() {
+    this.usuarioService.getUsuarios().then(resposta => {
+      this.usuario = resposta;
+    })
   }
 }
