@@ -54,7 +54,7 @@ export class VendaCadastroComponent implements OnInit {
       },
       { separator: true },
       {
-        label: 'Cancelar', icon: 'pi pi-times', routerLink: ['/home'], command: () => {
+        label: 'Cancelar', icon: 'pi pi-times', routerLink: ['/vendas/pesquisa'], command: () => {
           this.cancelarVenda();
         }
       }
@@ -178,7 +178,7 @@ export class VendaCadastroComponent implements OnInit {
         else {
           this.messageService.add({ severity: 'success', summary: 'Venda Cadastrada!', detail: '' });
         }
-        this.router.navigate(['/home'])
+        this.router.navigate(['/vendas/pesquisa'])
         this.venda = null;
       })
         .catch(erro => this.errorHandler.handler(erro));
@@ -200,7 +200,7 @@ export class VendaCadastroComponent implements OnInit {
         else {
           this.messageService.add({ severity: 'info', summary: 'Orçamento Cadastrado!', detail: '' });
         }
-        this.router.navigate(['/home'])
+        this.router.navigate(['/vendas/pesquisa'])
         this.venda = null;
       })
         .catch(erro => this.errorHandler.handler(erro));
@@ -215,7 +215,7 @@ export class VendaCadastroComponent implements OnInit {
       this.venda.status = "CANCELADA";
       this.vendaService.post(this.venda).then(resposta => {
         this.messageService.add({ severity: 'success', summary: 'Cancelado com Sucesso', detail: '' });
-        this.router.navigate(['/home'])
+        this.router.navigate(['/vendas/pesquisa'])
         this.venda = null;
       }).catch(erro => this.errorHandler.handler(erro));
     }

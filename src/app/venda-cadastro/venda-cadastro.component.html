@@ -26,8 +26,8 @@
       </div>
       <div class="p-col-2 col-md-3 p-fluid">
         <label>Data Venda</label>
-        <p-calendar [(ngModel)]="venda.dataVenda" dateFormat="dd/mm/yy" value="#{venda.dataVenda}"
-        [showIcon]="true" readonlyInput="true" [minDate]="today"></p-calendar>
+        <p-calendar [(ngModel)]="venda.dataVenda" dateFormat="dd/mm/yy"
+        [showIcon]="true" readonlyInput="true" name="dataVenda" [minDate]="today"></p-calendar>
       </div>
       <div class="p-col-2 col-md-3 p-fluid">
         <label>Tipo Pagamento</label>
@@ -90,7 +90,7 @@
     </div>
     <div style="margin-top: 40px;"></div>
     <button pButton pRipple type="button" icon="pi pi-arrow-left" label="Voltar" class="p-button-outlined"
-          routerLink="/home"></button>
+          routerLink="/vendas/pesquisa"></button>
     <span class="p-buttonset" style="float:right">
       <p-splitButton label="   " icon="pi pi-shopping-cart" [model]="butons">
       </p-splitButton>
