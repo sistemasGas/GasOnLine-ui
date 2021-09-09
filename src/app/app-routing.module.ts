@@ -14,6 +14,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioLoginComponent } from './usuario/usuario-login/usuario-login.component';
 import { CreateComponent } from './usuario/create/create.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { CadastroComponent } from './distribuidora/cadastro/cadastro.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent},
   { path: "pagina-nao-encontrada", component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard]},
   { path: "distribuidora", component: DistribuidoraComponent, canActivate: [AuthGuard]},
+  { path: "distribuidora/cadastro", component: CadastroComponent, canActivate: [AuthGuard]},
   { path: "**", redirectTo: 'pagina-nao-encontrada'},
 
 ];

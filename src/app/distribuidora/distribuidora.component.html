@@ -13,13 +13,7 @@
                     <th>#</th>
                     <th>Nome</th>
                     <th>CNPJ</th>
-                    <!-- <th>Email</th> -->
                     <th>Telefone</th>
-                    <!-- <th>CPF</th> -->
-                    <!-- <th>Endereço</th> -->
-                    <!-- <th>Categoria</th> -->
-
-
                     <th class="centro ">Ações</th>
                 </tr>
             </ng-template>
@@ -27,10 +21,8 @@
                 <tr>
                     <td> {{ usuario.id }}</td>
                     <td> {{ usuario.nome }}</td>
-                    <!-- <td> {{ usuario.email }}</td> -->
                     <td> {{ usuario.telefone }}</td>
                     <!-- <td> {{ usuario.cpf }}</td> -->
-                    <!-- <td> {{ usuario.endereco}}</td> -->
                     <td> {{ usuario.categoria }}</td>
                     <td> {{ usuario.cargo }}</td>
 
@@ -48,7 +40,7 @@
     <div class="p-grid">
         <form>
             <div class="p-col-4" style="margin-top: 4px;">
-                <a pButton label="Novo Usuário" icon="pi pi-user-plus" routerLink="/usuario/create"></a><br>
+                <a pButton label="Nova Distribuidora" icon="pi pi-user-plus" routerLink="/distribuidora/cadastro"></a><br>
             </div>
         </form>
     </div>
