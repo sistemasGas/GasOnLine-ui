@@ -54,6 +54,7 @@ import { ErrorHandlerService } from './core/error-handler.service';
 import { LoginService2 } from './login/login.service2';
 import { AuthInterceptor } from './http.interceptor';
 import { DistribuidoraComponent } from './distribuidora/distribuidora.component';
+import { CadastroComponent } from './distribuidora/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { DistribuidoraComponent } from './distribuidora/distribuidora.component'
 
     PaginaNaoEncontradaComponent,
      DistribuidoraComponent,
+     CadastroComponent,
 
 
   ],
