@@ -1,3 +1,4 @@
+import { DistribuidoraComponent } from './distribuidora/distribuidora.component';
 import { AuthGuard } from './guards/auth.guards';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { VendasPesquisaComponent } from './vendas-pesquisa/vendas-pesquisa.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: "usuario/usuario-login", component: UsuarioLoginComponent, canActivate: [AuthGuard]},
   { path: "login", component: LoginComponent},
   { path: "pagina-nao-encontrada", component: PaginaNaoEncontradaComponent, canActivate: [AuthGuard]},
+  { path: "distribuidora", component: DistribuidoraComponent, canActivate: [AuthGuard]},
   { path: "**", redirectTo: 'pagina-nao-encontrada'},
 
 ];

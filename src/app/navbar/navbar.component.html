@@ -4,12 +4,13 @@
         <div class="p-grid">
             <div class="row">
                 <div class="p-col-6" style="margin-right: 50px;">
-                    <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i class="pi pi-bars"></i></a>
+                    <a href="javascript:;" class="navbar-toggle" (click)="exibindoMenu = !exibindoMenu"><i
+                            class="pi pi-bars"></i></a>
                 </div>
                 <div class="p-col-6">
                     <a [routerLink]="['/home']" class="navbar-toggle"><i class="pi pi-home"></i></a>
                 </div>
-                   <div class="p-col-6" class="navbar-botton-user">
+                <div class="p-col-6" class="navbar-botton-user">
                     <a href="javascript:;" class="navbar-toggle"><i class="pi pi-user"></i></a>
                     <label>Gas Online</label>
                 </div>
@@ -27,6 +28,7 @@
         <!-- <li class="navbar-menuitem"><a href="http://localhost:4200/compra/cadastro">Compras</a></li> -->
         <li class="navbar-menuitem"><a [routerLink]="['/vendas/pesquisa']">VENDAS</a></li>
         <li class="navbar-menuitem"><a [routerLink]="['/usuario']">PESSOAS</a></li>
+        <li class="navbar-menuitem"><a [routerLink]="['/distribuidora']">DISTRIBUIDORA</a></li>
 
     </ul>
 

@@ -53,6 +53,7 @@ import { AuthGuard } from './guards/auth.guards';
 import { ErrorHandlerService } from './core/error-handler.service';
 import { LoginService2 } from './login/login.service2';
 import { AuthInterceptor } from './http.interceptor';
+import { DistribuidoraComponent } from './distribuidora/distribuidora.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { AuthInterceptor } from './http.interceptor';
     UsuarioLoginComponent,
 
     PaginaNaoEncontradaComponent,
+     DistribuidoraComponent,
 
 
   ],
